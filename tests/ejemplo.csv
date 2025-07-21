@@ -1,0 +1,2 @@
+id_producto;nombre;descripcion;marca;referencia;cantidad;unidad;id_categoria;nombre_categoria;id_subcategoria;nombre_subcategoria
+1001;Producto de prueba;Descripción;MarcaX;RefX;10;und;1;CategoriaX;1;SubcatX

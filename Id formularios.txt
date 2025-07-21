@@ -1,0 +1,39 @@
+ID y NAME de los formularios pagina InvenPro:
+
+
+https://www.youtube.com/watch?v=8S6WhltsKy0&list=PLg9145ptuAiiU_cjK8uIaCyYtQ6KmfXwD&index=4&pp=iAQB VIDEOS DE GRID
+
+1_01
+name="tipo-usuario" id="tipo-usuario" -  id="usuario-elegido" (Opciones a escoger)
+name="usuario" id="usuario"
+name="contraseña" id="contraseña"
+
+1_02
+name="nombres-admin" id="nombres-admin"
+name="apellidos-admin" id="apellidos-admin"
+name="cedula-admin" id="cedula-admin" 
+name="celular-admin" id="celular-admin"
+name="correo-admin" id="correo-admin"
+name="contra-admin" id="contra-admin"
+name="confirmar-contra-admin" id="confirmar-contra-admin"
+
+1_03
+name="correo" id="correo"
+name="codigo" id="codigo"
+
+1_04
+name="nueva-contra" id="nueva-contra"
+name="confirmar-contra" id="confirmar-contra"
+
+3_01_01
+name="nombres-registro" id="nombres-registro"
+name="apellidos-registro" id="apellidos-registro"
+name="cedula-registro" id="cedula-registro"
+name="celular-registro" id="celular-registro"
+name="correo registro" id="correo registro"
+name="tipo-usuario-registro" id="tipo-usuario-registro" - id="usuario-elegido-registro"> (Opciones a escoger) 
+name="contra-registro" id="contra-registro"
+
+4_02
+name="cantidadConteo" id="cantidadConteo"
+name="comentariosConteo" id="comentariosConteo"

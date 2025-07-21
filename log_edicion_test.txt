@@ -1,0 +1,180 @@
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:29 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:27:30 | ID:  | Nombre:  | Rol: 
+2025-07-15 06:30:03 | ID: 102 | Nombre: CAMBIO1 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 102 | Nombre: CAMBIO1 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 102 | Nombre: CAMBIO1 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 103 | Nombre: CAMBIO2 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 103 | Nombre: CAMBIO2 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 103 | Nombre: CAMBIO2 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 104 | Nombre: CAMBIO3 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 104 | Nombre: CAMBIO3 | Rol: Administrador 
+2025-07-15 06:30:03 | ID: 104 | Nombre: CAMBIO3 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 105 | Nombre: CAMBIO4 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 105 | Nombre: CAMBIO4 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 105 | Nombre: CAMBIO4 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 106 | Nombre: CAMBIO5 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 106 | Nombre: CAMBIO5 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 106 | Nombre: CAMBIO5 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 107 | Nombre: CAMBIO6 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 107 | Nombre: CAMBIO6 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 107 | Nombre: CAMBIO6 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 108 | Nombre: CAMBIO7 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 108 | Nombre: CAMBIO7 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 108 | Nombre: CAMBIO7 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 109 | Nombre: CAMBIO8 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 109 | Nombre: CAMBIO8 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 109 | Nombre: CAMBIO8 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1010 | Nombre: CAMBIO9 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1010 | Nombre: CAMBIO9 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1010 | Nombre: CAMBIO9 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1011 | Nombre: CAMBIO10 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1011 | Nombre: CAMBIO10 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1011 | Nombre: CAMBIO10 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1012 | Nombre: CAMBIO11 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1012 | Nombre: CAMBIO11 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1012 | Nombre: CAMBIO11 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1013 | Nombre: CAMBIO12 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1013 | Nombre: CAMBIO12 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1013 | Nombre: CAMBIO12 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1014 | Nombre: CAMBIO13 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1014 | Nombre: CAMBIO13 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1015 | Nombre: CAMBIO14 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1015 | Nombre: CAMBIO14 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1015 | Nombre: CAMBIO14 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1016 | Nombre: CAMBIO15 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1014 | Nombre: CAMBIO13 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1016 | Nombre: CAMBIO15 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1016 | Nombre: CAMBIO15 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1017 | Nombre: CAMBIO16 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1017 | Nombre: CAMBIO16 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1017 | Nombre: CAMBIO16 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1018 | Nombre: CAMBIO17 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1018 | Nombre: CAMBIO17 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1018 | Nombre: CAMBIO17 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1019 | Nombre: CAMBIO18 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1019 | Nombre: CAMBIO18 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1019 | Nombre: CAMBIO18 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1020 | Nombre: CAMBIO19 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1020 | Nombre: CAMBIO19 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1020 | Nombre: CAMBIO19 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1021 | Nombre: CAMBIO20 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1021 | Nombre: CAMBIO20 | Rol: Administrador 
+2025-07-15 06:30:04 | ID: 1021 | Nombre: CAMBIO20 | Rol: Administrador 
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_10 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_9 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_8 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_7 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_6 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_1 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_5 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_4 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_3 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_2 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_4 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_5 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_1 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_7 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_8 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_9 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_9 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_8 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_6 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_7 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_1 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_11 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_5 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_4 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_2 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_3 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_10 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_11 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_6 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_10 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_3 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_2 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_11 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_12 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_12 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_12 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_13 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_13 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_14 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_14 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_13 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_15 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_15 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_15 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_14 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_16 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_16 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_16 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_17 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_17 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_18 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_17 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_18 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_18 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_19 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_19 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_19 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_20 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_20 | Rol: Administrador
+2025-07-15 06:40:19 | ID:  | Nombre: CAMBIO_20 | Rol: Administrador

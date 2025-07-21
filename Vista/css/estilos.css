@@ -1,0 +1,1103 @@
+body{
+    padding: 0;
+    margin: 0;
+    background-color: #515151;
+    color: #ffffff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: flex; /* Hace que los elementos del body como (header, footer) se alineen de manera mas ordenada */
+    flex-direction: column; /* Organiza los elementos afectados por flex verticalmente, ya que por defecto se organizan horizontalmente */
+    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% de la altura de la ventana. (La usé para enviar el footer al final con el "margin-top: auto;") */
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+
+
+/* Fuentes */
+@font-face {
+    font-family: 'MADE Tommy Soft';
+    src: url(Vista/fuentes/MADE\ Tommy\ Soft\ Bold\ PERSONAL\ USE.otf);
+    font-weight: bold;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'MADE Evolve Sans';
+    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Thin\ \PERSONAL\ USE\.otf);
+    font-weight: thin;
+    font-style: thin;
+}
+
+@font-face {
+    font-family: 'MADE Evolve Sans';
+    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Bold\ \PERSONAL\ USE\.otf);
+    font-weight: bold;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'MADE Evolve Sans';
+    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Medium\ \PERSONAL\ USE\.otf);
+    font-weight: medium;
+    font-style: medium;
+}
+
+@font-face {
+    font-family: 'MADE Evolve Sans';
+    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Light\ \PERSONAL\ USE\.otf);
+    font-weight: light;
+    font-style: light;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+
+
+header nav{
+    display: flex; /* Utilizamos flexbox para alinear los elementos */
+}
+
+header div i {
+    display: flex; /* Los íconos se podran alinear */
+}
+
+.iconosNav a i {
+    font-size: 40px; /* Tamaño fuente */
+    margin-top: 25px; /* Distancia de margen parte superior */
+    margin-left: 10px; /* Distancia de margen izquierdo - espaciado entre iconos */
+    color: #ffffff;
+}
+
+.listaNav ul {
+    list-style-type: none; /* Quitar cualquier estilo de una lista como numeros(ol) o -(ul) */
+    margin-top: 40px; /* Distancia de margen parte superior */
+    margin-inline-start: 300px; /* Distancia de los elementos de la lista hacia la derecha de acuerdo al lugar donde se ubica el primer elemento */
+}
+
+.listaNav ul li {
+    display: inline; /* Esta propiedad hace que los elementos se alineen en línea, es decir, junto a otros elementos sin interrumpir el flujo, a diferencia de display: block; */
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    font-weight: bold; /* Tipo fuente, negrita */
+    margin-left: 20px; /* Distancia de margen izquierdo - espaciado entre titulos */
+}
+
+.listaNav ul li a {
+    text-decoration: none; /* Quitar cualquier decoración de un texto como subrayados */
+    color: #ffffff;
+}
+
+
+/* ------------------------------------------------------------------------------------------------------------------------------- */
+
+
+.formulario {
+    text-align: center;
+    margin-top: -40px;
+}
+
+.formularioUsuarios {
+    text-align: center;
+}
+
+h1 {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 50px; /* Tamaño fuente */
+    margin-bottom: 10px;
+}
+
+
+/* Estilos generales para los botones enviar */
+.ingresar1 {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    margin-top: 25px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+}
+
+.ingresar1 a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.ingresar2 {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    margin-top: 60px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+    text-align: center;
+}
+
+.ingresar3 {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    margin-top: 60px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+    margin-left: -75px;
+}
+
+.ingresar4 {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 85px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+}
+
+.ingresar5 {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    margin-top: 25px;
+    margin-left: 310px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+}
+
+
+.botonSi-No {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 120px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+    text-align: center;
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botonSi-No a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.botonEliminarUsu {
+    display: flex;
+    text-decoration: none; 
+    color: #000000 ;
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 120px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+    align-items: center;
+    justify-content: center;
+}
+
+.botonInforme {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 20px; /* Tamaño fuente */
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+    text-align: center;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.botones3 {
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+    text-align: center;
+}
+
+.botones3 a {
+    text-decoration: none;
+    color: #000000;
+}
+
+
+/* Diseño de los campos de formularios */
+.campo1 {
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo input que vengan por defecto */
+    margin-top: 20px;
+}
+
+.campo2 {
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo input que vengan por defecto */
+    margin-top: 20px;
+    text-align: center;
+}
+
+.campo3 {
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #d9d9d9;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo input que vengan por defecto */
+    margin-top: 25px;
+    text-align: center;
+    margin-right: 100px;
+    margin-left: 100px;
+}
+
+.campo4 {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 24px; /* Tamaño fuente */
+    width: 375px;
+    height: 40px;
+    border-style: none; /* Remueve los estilos de borde predefinidos del input */  
+    border-bottom: solid 2pt #FF9E5B;
+    margin-top: 25px;
+    margin-right: 100px;
+    margin-left: 20px;
+}
+
+
+/* Pequeños mensajes debajo-arriba de botones o mensajes de alerta */
+.mensaje1 {
+    display: inline-block; /* Necesario para que el <a> acepte darle margin o padding por ser tipo "inline" */
+    margin-top: 10px;
+    color: #FF9E5B;
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 18px; /* Tamaño fuente */
+}
+
+.mensaje2 {
+    display: inline-block; /* Necesario para que el <a> acepte darle margin o padding por ser tipo "inline" */
+    margin-top: 10px;
+    color: #ffffff;
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 18px; /* Tamaño fuente */
+}
+
+/* Mensaje de versión en la pantalla de login */
+.version {
+    display: inline-block; /* Necesario para que el <span> acepte darle margin o padding por ser tipo "inline" */
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 16px; /* Tamaño fuente */
+    margin-top: 5px;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+/*2_01...*/
+
+.menu {
+    width: 100%;
+    display: flex; 
+}
+
+.menu1 {
+    background-color: #ffffff;
+    color: #000000;
+    width: 25%;
+    height: 85vh; /* El vh toma un porcentaje de la altura del navegador*/
+    border-top: #000000 2pt solid;
+    border-right: #000000 1pt solid;
+    border-bottom: #000000 2pt solid;
+}
+
+.usuarioMenu1 {
+    background-color: #68A3FF;
+    width: 100%;
+    height: 26vh;
+    display: flex; /*organiza los elementos dentro del contenedor de manera flexible y sin espacio extra, sin el flex se ve que el contenedor genera un pequeño espacio.*/
+    flex-direction: column; /* hace que los elementos se alineen uno debajo del otro, sin margen entre ellos, es importante tener el flex de arriba para que funcione. */
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.menuFotoNombre {
+    display: flex;
+    flex-direction: row; /* hace que los elementos se alineen uno al lado del otro, es importante tener el flex de arriba para que funcione. */
+    position: relative; /* Necesario para que el icono campanaMenu se posicione con respecto a este contenedor */
+}
+
+.campanaMenu {
+    position: absolute; /* Extraemos el icono del flujo normal */
+    top: 0; /* Lo movemos hacia la parte superior */
+    right: 0; /* Lo movemos hacia la parte derecha */
+    margin: 10px;
+    font-size: 25px;
+}
+
+.campanaMenu:hover {
+    transform: scale(1.3); /* Efecto de aumentar o disminuir tamaño al pasar el mouse encima del elemento */
+}
+
+.menuFoto {
+    width: 30%;
+    margin: 10px;
+    border: #000000 1pt solid;
+    border-radius: 50px;
+}
+
+.menuNombres {
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+}
+
+.nombres {
+    margin: 0;
+    display: flex;
+    flex-direction: column;  /* Los elementos dentro se apilan verticalmente */
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 20px; 
+}
+
+.cargo {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;  /* Los elementos dentro se apilan verticalmente */
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 15px; 
+}
+
+.menuFechaIcono {
+    display: flex;
+    flex-direction: row; 
+}
+
+.menuFecha {
+    margin: 15px;
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 15px; 
+}
+
+.menuIcono {
+    margin-top: 10px;
+    margin-inline-start: 150px;
+}
+
+.menuIcono:hover {
+    transform: scale(1.3); /* Efecto de aumentar o disminuir tamaño al pasar el mouse encima del elemento */
+}
+
+.menuIcono i {
+    font-size: 25px;        
+    color: #000000;          
+}
+
+.botonMenu { 
+    display: flex;                  
+    align-items: center; /* Centrar verticalmente (eje Y "|") el texto y el icono */
+    justify-content: space-between;  /* Coloca el texto a la izquierda y el icono a la derecha (eje X "_") */
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 24px; /* Tamaño fuente */
+    width: 320px;
+    height: 50px;
+    margin: 8px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+} 
+
+.botonMenu:hover {
+    font-weight: bold;
+}
+
+.botonMenu a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.botonMenu.abierto {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.acordeon {
+    display: flex; 
+    flex-direction: column; 
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 20px; /* Tamaño fuente */
+    width: 318px;
+    height: 70px;
+    margin: 8px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+}
+
+.acordeon a {
+    text-decoration: none;
+    color: #000000;
+    margin-left: 5px;
+}
+
+.acordeon a:hover{
+    font-weight: bold;
+}
+
+#acordeon1opciones { /* Con esto no se verá el acordeon inmediatamente al entrar a la pagina o recargarla*/
+  display: none;
+  margin-top: -8px; /* Quita la separación visual entre el botón y el contenedor */
+  border-top: none; /* Elimina borde doble */
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.linksMenu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.linksMenu1 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 98px;
+}
+
+.linkMenu {
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 20px; /* Tamaño fuente */ 
+    color: #000000;
+    margin-left: 10px;
+    margin-bottom: 2px;
+    width: fit-content; /* Ajusta el ancho del enlace al ancho de la palabra escrita */
+}
+
+.linkMenu:hover{
+    font-weight: bold;
+}
+
+.contenedorBotonCerrar {
+    display: flex;
+    justify-content: center; /* Centra el boton (eje X "_")*/
+    margin-top: 75px;
+}
+
+.contenedorBotonCerrar1 {
+    display: flex;
+    justify-content: center; /* Centra el boton (eje X "_")*/
+    margin-top: 75px;
+}
+
+.botonCerrar {
+    display: flex;                  
+    align-items: center; /* Centrar verticalmente (eje Y "|") el texto y el icono */
+    justify-content: center;  /* Centra tanto el texto como el icono (eje X "_") */
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 20px; /* Tamaño fuente */
+    width: 200px;
+    height: 30px;
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: solid 1pt #FF9E5B; /* agrega borde */
+    box-shadow: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.botonCerrarIcono {
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.botonCerrar:hover {
+    background-color: #FF9E5B;
+    border: solid 1pt #000000;
+    transform: scale(1.1); /* Efecto de aumentar o disminuir tamaño al pasar el mouse encima del elemento */
+}
+
+
+
+
+.menu2 {
+    background-color: #ffffff;
+    color: #000000;
+    width: 75%;
+    height: 85vh;
+    border-top: #000000 2pt solid;
+    border-left: #000000 1pt solid;
+    border-bottom: #000000 2pt solid;
+}
+
+.fotoMenu {
+    display: flex;                  
+    justify-content: center;  /* Centra tanto el contenido o imagen(eje X "_") */
+    margin-top: 10px;
+}
+
+.fotoBanner {
+    width: 955px;
+    height: 155px;
+    border-radius: 10px;
+}
+
+.infoMenu {                
+    margin: auto;
+    margin-top: 14px;
+    width: 955px;
+    height: 350px;
+    border-radius: 10px;
+    border: solid 1pt #000000;
+}
+
+.tituloInfo {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 40px; 
+    text-align: center;
+    margin: -2px;
+}
+
+.contenidoInfo {
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+
+.menuFooter {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* 3_01_01 */
+.tituloCentro {
+    text-align: center;
+    margin-top: 5px;
+}
+
+/* Configuraciones de formularios estan arriba "formularioUsuarios - campo4 - ingresar2" */
+
+
+/* 3_01_02 */
+.contenedorConfirmar {
+    display: flex;
+    border-radius: 10px;
+    border: solid 3pt #000000;
+    width: 700px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.datosConfirmar1 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+/* NO BORRAR AUN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/*.datosConfirmar2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 100px;
+} */
+
+.datos1Fuente {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 22px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+} 
+
+.datos2Fuente {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+.mensajeConfirmar {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 22px;
+    text-align: center;
+}
+
+.botonesSiNo {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+
+/* 3_01_03 */
+.logo2 {
+    display: flex;
+    width: 15%;
+    margin: auto; /* Con flex centra este elemento */
+}
+
+.botonesEleccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* 3_01_04 */
+.contenedorBarra {
+    display: flex;
+}
+
+.barraBuscar {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 18px; 
+    width: 200px;
+    height: 20px;
+    margin-left: 30px;
+    border-style: none;
+    border-bottom: solid 2pt #FF9E5B;
+}
+
+.iconoLupa {
+    font-size: 18px;
+    margin-left: -20px;
+    margin-top: 2px;
+}
+
+.botonFiltrar {
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 15px; 
+    width: 70px;
+    height: 25px;
+    margin-left: 20px;
+    background-color: #ffffff;
+    border: solid 2pt #FF9E5B;
+    cursor: pointer;
+}
+
+.botonFiltrar:hover {
+    background-color: #FF9E5B;
+    border: solid 2pt #000000;
+}
+
+.contenedorInfoUsuarios {
+    display: flex;
+    border-radius: 10px;
+    border: solid 3pt #000000;
+    width: 750px;
+    height: 300px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.contenedorTablaUsuarios {
+    padding: 0;
+}
+
+.contenedorTablaUsuarios table {
+    border-collapse: separate;  /* Mantén el espacio entre celdas - "collapse sirve para unirlas" */
+    border-spacing: 50px 0;  /* Espacio entre las celdas aplicando 50px horizontal y 0 vertical */
+    width: 100%; /* Hace que la tabla ocupe todo el ancho disponible de su contenedor sin importar el tamaño de pantalla */
+}
+
+.contenedorTablaUsuarios th {
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 20px; 
+    padding-bottom: 25px; /* Espacio dentro de las celdas */
+    text-align: center; 
+    color: #FF9E5B;  
+}
+
+.contenedorTablaUsuarios td {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 18px; 
+    padding-bottom: 10px; /* Espacio dentro de las celdas */
+    text-align: center;
+    color: #000000; 
+}
+
+.iconoEditar {
+    color: #68a3ff;
+    margin-left: -150px;
+}
+
+.iconoBorrar {
+    color: #a10606;
+    margin-left: -170px;
+}
+
+.iconoMirar {
+    color: #39cc26;
+    margin-left: -50px;
+}
+
+.iconoEditar:hover , .iconoBorrar:hover , .iconoMirar:hover {
+    transform: scale(1.4)
+}
+
+/* 3_01_04 3_01_09(icono) */
+
+.iconoVolver {
+    position: absolute; /* Para que el icono este sobre una "capa encima" y no mueva el resto de información */
+    top: 17%;
+    left: 27%;
+    font-size: 50px;
+    color: #68a3ff;
+} 
+
+.iconoVolver:hover {
+    transform: rotate(-90deg) scale(1.2);
+    color: #FF9E5B;
+} 
+
+
+/* 4_01 */
+.contenedorInfoConteos {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    border: solid 3pt #000000;
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.contenedorConteos {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.tituloConteo {
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 24px;
+    color: #FF9E5B;
+    text-align: center;
+}
+
+.infoConteo {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 22px; 
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: #000000;
+    margin-top: 20px;
+}
+
+.infoConteo:hover{
+    color: #68A3FF;
+}
+
+.botonSiguiente {
+    text-align: center;
+}
+
+
+/* 4_02 */
+.contenedorInfoConteos2 {
+    border-radius: 10px;
+    border: solid 3pt #000000;
+    width: 700px;
+    height: 300px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.contenedorConteos2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorConteos2 h2 {
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 22px;
+    text-align: center;
+    color: #FF9E5B;
+}
+
+.contenedorConteos2 p {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 20px; 
+    margin-bottom: 5px;
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.contenedorLlenar {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedorLlenar label {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 20px; 
+    margin-left: 20px;
+}
+
+.contenedorLlenar input {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 18px; 
+    border-style: none;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.contenedorLlenar textarea {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 18px; 
+    border-style: none;
+    width: 90%;
+}
+
+
+/* 5_01 */
+.contenedorInfoInformes {
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    border: solid 3pt #000000;
+    width: 670px;
+    height: 300px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.contenedorInformes {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.tituloInforme {
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 24px;
+    color: #FF9E5B;
+    text-align: center;
+}
+
+.infoInforme {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 22px; 
+    margin-bottom: 5px;
+}
+
+
+.contenedorInformes a {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 22px; 
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #68A3FF;
+    width: fit-content; /* Ajusta el ancho del enlace al ancho de la palabra escrita */
+}
+
+.contenedorInformes a:hover {
+    transform: scale(1.1); /* Efecto de aumentar o disminuir tamaño al pasar el mouse encima del elemento */
+}
+
+.contenedorInformes a i {
+    color: #000000c0;
+    margin-right: 8px;
+}
+
+.nuevoInforme {
+    margin-top: 15px;
+    margin-left: 170px;
+    font-size: 26px;
+}
+
+
+/* 5_02 */
+.contenedorTablaInformes {
+    padding: 0;
+}
+
+.contenedorTablaInformes table {
+    border-collapse: separate;  /* Mantén el espacio entre celdas - "collapse sirve para unirlas" */
+    border-spacing: 20px 0;  /* Espacio entre las celdas aplicando 50px horizontal y 0 vertical */
+    width: 100%; /* Hace que la tabla ocupe todo el ancho disponible de su contenedor sin importar el tamaño de pantalla */
+}
+
+.contenedorTablaInformes th {
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 20px; 
+    padding-bottom: 25px; /* Espacio dentro de las celdas */
+    text-align: center; 
+    color: #FF9E5B;  
+}
+
+.contenedorTablaInformes td {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 18px; 
+    padding-bottom: 10px; /* Espacio dentro de las celdas */
+    text-align: center;
+    color: #000000; 
+    cursor: pointer;
+}
+
+.contenedorTablaInformes td a {
+    text-decoration: none;
+    color: #000000;
+}
+
+
+/* 5_03 */
+.contenedorConfirmarInforme {
+    display: flex;
+    border-radius: 10px;
+    border: solid 3pt #000000;
+    width: 800px;
+    margin: auto;
+    margin-top: 25px;
+}
+
+.datosConfirmarInforme {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.datosConfirmarInforme p {
+    font-family: 'MADE Evolve Sans';
+    font-weight: light;
+    font-size: 19px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+
+/* 3_02_02 */
+.inputCsv {
+    font-family: 'MADE Evolve Sans';
+    font-weight: bold;
+    font-size: 18px; /* Tamaño fuente */
+}
+
+.labelCsv {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.labelCsv label {
+    margin-right: 10px;
+    margin-left: 100px;
+}
+
+
+/* 3_02_04 */
+.contenedorAsignar {
+    display: flex;
+    border-radius: 10px;
+    border: solid 3pt #000000;
+    width: 700px;
+    height: 300px;
+    margin: auto;
+    margin-top: 25px;
+}
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+
+footer {
+    margin-top: auto; /* Envia al footer hacia abajo por encontrarse dentro del flex en body con "min-height: 100vh;" */
+    text-align: center;
+    font-family: 'MADE Evolve Sans';
+    font-weight: thin;
+    font-size: 18px; /* Tamaño fuente */
+}
