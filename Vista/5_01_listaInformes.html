@@ -33,24 +33,24 @@
                     <div class="menuFechaIcono">
                         <p class="menuFecha">17/10/2024 - Jueves</p>
                         <div class="menuIcono">
-                          <a href="#"><i class="fa-solid fa-house-user"></i></a>
+                          <a href="2_03_menuJefe.html"><i class="fa-solid fa-house-user"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <button class="botonMenu">Generar informes <i class="fa-sharp fa-solid fa-chevron-down"></i></button>
+                    <button class="botonMenu"><a href="5_01_listaInformes.html">Generar informes</a></button>
                 </div>
 
                 <div class="linksMenu1">
                     <a href="#" target="_blank" class="linkMenu">Documentación</a>
                     <a href="#" target="_blank" class="linkMenu">Soporte</a>
-                    <a href="#" target="_blank" class="linkMenu">Quienes somos</a>
+                    <a href="#" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
 
                 <div class="contenedorBotonCerrar1">
-                    <button class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></button>
+                    <a href="1_01_login.html" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
                 </div>
 
             </div>
@@ -58,24 +58,33 @@
 
             <div class="menu2">
 
-                <h1 class="tituloCentro">Generar informes</h1>               
+                <h1 class="tituloCentro">Generar informes</h1>     
+                <div class="formInforme">
+                 <form method="POST" action="#">
+                    
+                    
+                        <label for="tipoInforme">Tipo de Informe</label>
+                        <select class="campo1" id="tipoInforme" name="tipo_informe" required>
+                            <option value="detallado">Informe detallado</option>
+                            <option value="simple">Informe simple</option>
+                        </select>
+                    
 
-                    <div class="contenedorInfoInformes">
+                    
+                        <label for="fechaInicio">Fecha de Inicio</label>
+                        <input class="campo1" type="date" id="fechaInicio" name="fecha_inicio" required>
+                    
 
-                        <div class="contenedorInformes">
-                            <h2 class="tituloInforme">Informes generados</h2>
-                            <a href="#"><i class="fa-solid fa-calendar-plus"></i>Nuevo informe</a>
-                            <p class="infoInforme">Informe 02 - Toma de inventario Id 02 - Martes 15 </p>
-                            <p class="infoInforme">Informe 01 - Toma de inventario Id 01 - Lunes 14</p>
-                        </div>
+                    
+                        <label for="fechaFin">Fecha Final</label>
+                        <input class="campo1" type="date" id="fechaFin" name="fecha_fin" required>
+                    
 
-                    </div>
-
-                    <div class="botonSiguiente">
-                        <button class="botonInforme">Editar informe</button>
-                        <button class="botonInforme">Consultar informe</button>
-                        <button class="botonInforme">Eliminar informe</button>
-                    </div>
+                    
+                        <button class="ingresar1" type="submit"><a href="5_02_confirmarInforme.html">Buscar</a></button>
+                    
+                  </form>
+                </div>
 
             </div>
 
@@ -86,6 +95,8 @@
                 <p>Términos de servicio     ©2025 Inventory Project - InvenPro</p>
             </footer>
         </div>
+
+        <script src="js/script.js"></script>
 
 </body>
 </html>

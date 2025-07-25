@@ -1043,8 +1043,10 @@ h1 {
     border-radius: 10px;
     border: solid 3pt #000000;
     width: 800px;
+    height: 300px;
     margin: auto;
     margin-top: 25px;
+    overflow-y: auto;
 }
 
 .datosConfirmarInforme {
@@ -1090,6 +1092,36 @@ h1 {
     height: 300px;
     margin: auto;
     margin-top: 25px;
+}
+
+
+/* 5_01 REAL */
+.formInforme {
+    display:flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.formInforme label {
+    display: flex;
+    justify-content: center;
+    font-family: 'MADE Evolve Sans';
+    font-weight: medium;
+    font-size: 24px;
+}
+
+.formInforme select ,
+.formInforme input {
+    display: flex;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+.formInforme .ingresar1 {
+    display: flex;
+    margin: auto;
+    justify-content: center; /* Centra el texto horizontalmente */
+    align-items: center; /* Centra el texto verticalmente */
 }
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 
