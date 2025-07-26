@@ -57,7 +57,7 @@ $con = conexion();
                 <div class="linksMenu">
                     <a href="#" target="_blank" class="linkMenu">Documentación</a>
                     <a href="#" target="_blank" class="linkMenu">Soporte</a>
-                    <a href="#" target="_blank" class="linkMenu">Quienes somos</a>
+                    <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
 

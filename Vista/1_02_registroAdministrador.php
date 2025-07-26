@@ -19,7 +19,7 @@ $con = conexion();
     <header>
         <nav>
             <div>
-                <img width="300px" src="img/logo.png" alt="Logo InvenPro">
+                <a href="1_01_login.html"><img width="300px" src="img/logo.png" alt="Logo InvenPro"></a>
             </div>
             <div class="iconosNav">
                 <a href="#" target="_blank"><i class="fa-brands fa-facebook"></i></a>
@@ -30,7 +30,7 @@ $con = conexion();
                 <ul>
                     <li><a href="#" target="_blank">Documentación</a></li>
                     <li><a href="#" target="_blank">Soporte</a></li>
-                    <li><a href="#" target="_blank">¿Quienes Somos?</a></li>
+                    <li><a href="1_00_index.html" target="_blank">Empresa</a></li>
                 </ul>
             </div>
         </nav>

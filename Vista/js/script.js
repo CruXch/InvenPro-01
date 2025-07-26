@@ -68,7 +68,13 @@ function editarAdmin(){
 }
 
 
-//-----------------3_02_03_asignarProducto----------------
+//-----------------3_02_02_subirCSV----------------
+function pestañaListaPlanificacion(){
+  window.location.href = "3_02_01_listaPlanificacion.html";
+}
+
+
+//-----------------3_02_02_subirCSV----------------
 function pestañaAsignarContador() {
     window.location.href = "3_02_04_asignarContador.html";
 }

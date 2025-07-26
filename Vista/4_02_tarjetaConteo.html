@@ -34,24 +34,24 @@
                     <div class="menuFechaIcono">
                         <p class="menuFecha">17/10/2024 - Jueves</p>
                         <div class="menuIcono">
-                          <a href="#"><i class="fa-solid fa-house-user"></i></a>
+                          <a href="2_02_menuContador.html"><i class="fa-solid fa-house-user"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <button class="botonMenu">Registrar conteos</i></button>
+                    <button class="botonMenu"><a href="4_01_listaConteos.html">Registrar conteos</a></button>
                 </div>
 
                 <div class="linksMenu1">
                     <a href="#" target="_blank" class="linkMenu">Documentación</a>
                     <a href="#" target="_blank" class="linkMenu">Soporte</a>
-                    <a href="#" target="_blank" class="linkMenu">Quienes somos</a>
+                    <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
 
                 <div class="contenedorBotonCerrar1">
-                    <button class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></button>
+                    <a href="1_01_login.html" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
                 </div>
 
             </div>
@@ -79,12 +79,27 @@
                                 </label>
                             </div>
 
+                            <p>──────────────────────────────────────────────</p>
+
+                            <p>Id toma: 03</p>
+                            <p>Id producto: 00001</p>
+                            <p>Nombre producto: Harina 500gr</p>
+                            
+                            <div class="contenedorLlenar">
+                                <label for="cantidadConteo">Cantidad:
+                                    <input type="text" name="cantidadConteo" id="cantidadConteo" placeholder="Escribir(unidades,kg,etc.)">
+                                </label> 
+                                <label for="comentariosConteo">Comentarios:
+                                    <textarea id="comentariosConteo" name="comentariosConteo" placeholder="Escribir"></textarea>
+                                </label>
+                            </div>
+
                         </div>
 
                     </div>
 
                     <div class="botonSiguiente">
-                        <button class="ingresar2">Siguiente</button>
+                        <button class="ingresar1"><a href="4_03_enviarConteo.html">Siguiente</a></button>
                     </div>
 
             </div>
@@ -96,6 +111,8 @@
                 <p>Términos de servicio     ©2025 Inventory Project - InvenPro</p>
             </footer>
         </div>
+
+        <script src="js/script.js"></script>
 
 </body>
 </html>

@@ -38,25 +38,31 @@ $con = conexion();
                     <div class="menuFechaIcono">
                         <p class="menuFecha">17/10/2024 - Jueves</p>
                         <div class="menuIcono">
-                          <a href="#"><i class="fa-solid fa-house-user"></i></a>
+                          <a href="2_01_menuAdministrador.html"><i class="fa-solid fa-house-user"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <button class="botonMenu">Registrar usuarios <i class="fa-sharp fa-solid fa-chevron-down"></i></button>
-                    <button class="botonMenu">Planificar inventarios <i class="fa-sharp fa-solid fa-chevron-down"></i></button>
+                    <button class="botonMenu" id="acordeon1">Registrar usuarios <i class="fa-sharp fa-solid fa-chevron-down" id="icono1"></i></button>
+                    <div class="acordeon" id="acordeon1opciones">
+                        <a href="3_01_01_registrarUsuarios.php">Registrar nuevo usuario</a>
+                        <a href="3_01_04_editarOEliminar.php">Lista de usuarios</a>
+                        <a href="3_01_08_listaAdmin.php">Lista de usuarios administrador</a>
+                    </div>
+                    
+                    <button class="botonMenu" id="acordeon2" onclick="pestañaListaPlanificacion()">Planificar inventarios</button>
                 </div>
 
                 <div class="linksMenu">
                     <a href="#" target="_blank" class="linkMenu">Documentación</a>
                     <a href="#" target="_blank" class="linkMenu">Soporte</a>
-                    <a href="#" target="_blank" class="linkMenu">Quienes somos</a>
+                    <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
 
                 <div class="contenedorBotonCerrar">
-                    <button class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></button>
+                    <a href="1_01_login.html" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
                 </div>
 
             </div>

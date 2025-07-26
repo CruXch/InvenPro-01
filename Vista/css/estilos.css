@@ -616,6 +616,8 @@ h1 {
     height: 350px;
     border-radius: 10px;
     border: solid 1pt #000000;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .tituloInfo {
@@ -658,8 +660,10 @@ h1 {
     border-radius: 10px;
     border: solid 3pt #000000;
     width: 700px;
+    height: 250px;
     margin: auto;
     margin-top: 25px;
+    overflow-y: auto;
 }
 
 .datosConfirmar1 {
@@ -768,6 +772,7 @@ h1 {
     height: 300px;
     margin: auto;
     margin-top: 25px;
+    overflow-y: auto;
 }
 
 .contenedorTablaUsuarios {
@@ -843,6 +848,7 @@ h1 {
     height: 300px;
     margin: auto;
     margin-top: 25px;
+    overflow-y: auto;
 }
 
 .contenedorConteos {
@@ -886,6 +892,7 @@ h1 {
     height: 300px;
     margin: auto;
     margin-top: 25px;
+    overflow-y: auto;
 }
 
 .contenedorConteos2 {
@@ -1092,6 +1099,7 @@ h1 {
     height: 300px;
     margin: auto;
     margin-top: 25px;
+    overflow-y: auto;
 }
 
 
