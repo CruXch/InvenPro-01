@@ -79,10 +79,6 @@ $con = conexion();
                             <h2 class="tituloConteo">Cargar archivo CSV</h2>
 
                             <form action="../Controlador/importar.php" method="post" enctype="multipart/form-data">
-                            <div class="labelCsv">
-                                <label class="inputCsv" for="fechaCsv">Fecha:</label>
-                                <input type="datetime-local" name="fechaCsv" id="fechaCsv">
-                            </div>
                             <br><br>
                             <div class="labelCsv">
                                 <label class="inputCsv" for="cargarCsv">Subir archivo .csv:</label>

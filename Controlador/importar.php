@@ -115,6 +115,14 @@ if (isset($_POST['importar'])) {
 
                     mysqli_query($con, $sql_update);
 
+                    // Insertar el ingreso como un registro individual en la tabla tbl_Ingresos_Csv
+                    $sql_ingreso = "INSERT INTO tbl_Ingresos_Csv 
+                        (marca_ingreso, nombre_ingreso, stock_ingreso, id_producto)
+                        VALUES ('$marca','$nombre', $cantidad, $id_producto)";
+
+                    mysqli_query($con, $sql_ingreso);
+
+
                 } else {
                     //Producto no existe: insertamos como nuevo
                     $sql_insert = "INSERT INTO tbl_productos 
@@ -122,6 +130,13 @@ if (isset($_POST['importar'])) {
                         VALUES ($id_producto, '$nombre', '$descripcion', '$marca', '$referencia', $cantidad, '$unidad', $id_categoria)";
 
                     mysqli_query($con, $sql_insert);
+
+                    // Insertar el ingreso como un registro individual en la tabla tbl_Ingresos_Csv
+                    $sql_ingreso = "INSERT INTO tbl_Ingresos_Csv 
+                        (marca_ingreso, nombre_ingreso, stock_ingreso, id_producto)
+                        VALUES ('$marca', '$nombre', $cantidad, $id_producto)";
+
+                    mysqli_query($con, $sql_ingreso);
                 }
 
             }

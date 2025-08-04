@@ -47,6 +47,16 @@ CREATE TABLE Tbl_Productos (
     FOREIGN KEY (id_categoria) REFERENCES Tbl_Categorias(id_categoria) 
 ) 
 
+CREATE TABLE tbl_Ingresos_Csv (
+    id_ingreso INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_ingreso VARCHAR(40) NOT NULL,
+    marca_ingreso VARCHAR(25) NOT NULL,
+    stock_ingreso INT NOT NULL,
+    fecha_ingreso DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_producto INT NOT NULL,
+    FOREIGN KEY (id_producto) REFERENCES tbl_productos(id_producto)
+);
+
 
 CREATE TABLE Tbl_Tomas_De_Inventario (
     id_toma INT AUTO_INCREMENT PRIMARY KEY,
