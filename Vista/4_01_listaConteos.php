@@ -1,3 +1,7 @@
+<?php
+include("../Modelo/validar_sesion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,7 +11,7 @@
     <link rel="stylesheet" href="css/estilos.css">
     <!--Iconos de FontAwesome-->
     <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
-    <title>Menú Jefe</title>
+    <title>Registrar conteos</title>
 </head>
 <body>
 
@@ -23,23 +27,24 @@
 
                 <div class="usuarioMenu1">
                     <div class="menuFotoNombre">
+                        <i class="fa-solid fa-bell campanaMenu"></i>
                         <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                             <div class="menuNombres">
-                              <p class="nombres">David Fernando</p>
-                              <p class="nombres">Pérez Ortiz</p>
-                              <p class="cargo">Jefe</p>
+                              <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
+                              <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
+                              <p class="cargo"><?= $_SESSION['rol'] ?></p>
                             </div>
                     </div>
                     <div class="menuFechaIcono">
                         <p class="menuFecha">17/10/2024 - Jueves</p>
                         <div class="menuIcono">
-                          <a href="2_03_menuJefe.html"><i class="fa-solid fa-house-user"></i></a>
+                          <a href="2_02_menuContador.php"><i class="fa-solid fa-house-user"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <button class="botonMenu"><a href="5_01_listaInformes.html">Generar informes</a></button>
+                    <button class="botonMenu"><a href="4_01_listaConteos.php">Registrar conteos</a></button>
                 </div>
 
                 <div class="linksMenu1">
@@ -50,7 +55,7 @@
                 </div>
 
                 <div class="contenedorBotonCerrar1">
-                    <a href="1_01_login.html" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
+                    <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
                 </div>
 
             </div>
@@ -58,16 +63,18 @@
 
             <div class="menu2">
 
-                <div class="fotoMenu">
-                    <img class="fotoBanner" src="img/imagen-banner.jpg" alt="Foto-Banner">
-                </div>
+                <h1 class="tituloCentro">Registrar conteos de inventarios</h1>               
 
-                <div class="infoMenu">
-                    <h2 class="tituloInfo">Noticias - Actualizaciones</h2>
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                </div>
+                    <div class="contenedorInfoConteos">
+
+                        <div class="contenedorConteos">
+                            <h2 class="tituloConteo">Tomas de inventario</h2>
+                            <a class="infoConteo" href="4_02_tarjetaConteo.php">Asignación - Id-03 - Jueves 17 Octubre 2024</a>
+                            <a class="infoConteo" href="4_02_tarjetaConteo.php">Asignación - Id-08 - Viernes 18 Octubre 2024</a>
+                            <a class="infoConteo" href="4_02_tarjetaConteo.php">Asignación - Id-16 - Martes 22 Octubre 2024</a>
+                        </div>
+
+                    </div>
 
             </div>
 

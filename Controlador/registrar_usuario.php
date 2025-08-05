@@ -23,7 +23,7 @@ VALUES ('$cedulaUsuario','$contraUsuario','$nombresUsuario','$apellidosUsuario',
 $consulta = mysqli_query($con, $sql);
 
 if ($consulta){
-    Header ("Location:../Vista/3_01_03_mensajeRegistro.html");
+    Header ("Location:../Vista/3_01_03_mensajeRegistro.php");
 } else{
     echo "Error al registrar el usuario administrador.";
 }

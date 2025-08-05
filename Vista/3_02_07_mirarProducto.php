@@ -1,3 +1,7 @@
+<?php
+include("../Modelo/validar_sesion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,15 +29,15 @@
                     <div class="menuFotoNombre">
                         <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                             <div class="menuNombres">
-                              <p class="nombres">David Fernando</p>
-                              <p class="nombres">Pérez Ortiz</p>
-                              <p class="cargo">Administrador</p>
+                              <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
+                              <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
+                              <p class="cargo"><?= $_SESSION['rol'] ?></p>
                             </div>
                     </div>
                     <div class="menuFechaIcono">
                         <p class="menuFecha">17/10/2024 - Jueves</p>
                         <div class="menuIcono">
-                          <a href="2_01_menuAdministrador.html"><i class="fa-solid fa-house-user"></i></a>
+                          <a href="2_01_menuAdministrador.php"><i class="fa-solid fa-house-user"></i></a>
                         </div>
                     </div>
                 </div>
@@ -41,9 +45,9 @@
                 <div>
                     <button class="botonMenu" id="acordeon1">Registrar usuarios <i class="fa-sharp fa-solid fa-chevron-down" id="icono1"></i></button>
                     <div class="acordeon" id="acordeon1opciones">
-                        <a href="3_01_01_registrarUsuarios.html">Registrar nuevo usuario</a>
-                        <a href="3_01_04_editarOEliminar.html">Lista de usuarios</a>
-                        <a href="3_01_08_listaAdmin.html">Lista de usuarios administrador</a>
+                        <a href="3_01_01_registrarUsuarios.php">Registrar nuevo usuario</a>
+                        <a href="3_01_04_editarOEliminar.php">Lista de usuarios</a>
+                        <a href="3_01_08_listaAdmin.php">Lista de usuarios administrador</a>
                     </div>
                     
                     <button class="botonMenu" id="acordeon2" onclick="pestañaListaPlanificacion()">Planificar inventarios</button>
@@ -57,7 +61,7 @@
                 </div>
 
                 <div class="contenedorBotonCerrar">
-                    <a href="1_01_login.html" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
+                    <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
                 </div>
 
             </div>
@@ -65,30 +69,29 @@
 
             <div class="menu2">
 
-                <h1 class="tituloCentro">Información contador</h1>
-
+                <h1 class="tituloCentro">Información producto</h1>
+                    
                     <div class="contenedorConfirmar">
                         <div class="datosConfirmar1">
-                            <p class="datos1Fuente">Nombre: David Fernando</p>
-                            <p class="datos1Fuente">Apellido: Pérez Ortiz</p>
-                            <p class="datos1Fuente">Cédula: 11111111</p>
-                            <p class="datos1Fuente">Contraseña: David-1-perez</p>
-                            <p class="datos1Fuente">Tipo de usuario: Contador</p>
-                            <p class="datos1Fuente">Correo electrónico: davidperez234@gmail.com</p>
-                            <p class="datos1Fuente">Número de celular: 3225463423</p>                            
+                            <p class="datos1Fuente">Id: 00001</p>
+                            <p class="datos1Fuente">Nombre: Harina - 500gr</p>
+                            <p class="datos1Fuente">Marca: Haz de oros</p>
+                            <p class="datos1Fuente">Descripción: Harina para arepas</p>
+                            <p class="datos1Fuente">Stock: 300 unidades</p>
+                            <p class="datos1Fuente">Categoria: Consumibles</p>
+                            <p class="datos1Fuente">Subcategoria: No registra</p>                          
                         </div>
                     </div>
                     
                     <p class="mensajeConfirmar">Regresar a la pantalla anterior</p>
                     <div class="botonesSiNo">
-                        <a class="botonEliminarUsu" href="3_02_04_asignarContador.html">Atras</a>
+                        <a class="botonEliminarUsu" href="3_02_03_asignarProductos.php">Atras</a>
                     </div>
 
             </div>
                     
                     
         </div>
-
 
         <div class="menuFooter">
             <footer>

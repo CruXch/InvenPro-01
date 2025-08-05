@@ -1,4 +1,5 @@
 <?php
+include("../Modelo/validar_sesion.php");
 include ("../Modelo/conexion.php");
 $con = conexion();
 
@@ -30,15 +31,15 @@ $con = conexion();
                     <div class="menuFotoNombre">
                         <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                             <div class="menuNombres">
-                              <p class="nombres">David Fernando</p>
-                              <p class="nombres">Pérez Ortiz</p>
-                              <p class="cargo">Administrador</p>
+                              <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
+                              <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
+                              <p class="cargo"><?= $_SESSION['rol'] ?></p>
                             </div>
                     </div>
                     <div class="menuFechaIcono">
                         <p class="menuFecha">17/10/2024 - Jueves</p>
                         <div class="menuIcono">
-                          <a href="2_01_menuAdministrador.html"><i class="fa-solid fa-house-user"></i></a>
+                          <a href="2_01_menuAdministrador.php"><i class="fa-solid fa-house-user"></i></a>
                         </div>
                     </div>
                 </div>
@@ -62,7 +63,7 @@ $con = conexion();
                 </div>
 
                 <div class="contenedorBotonCerrar">
-                    <a href="1_01_login.html" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
+                   <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
                 </div>
 
             </div>

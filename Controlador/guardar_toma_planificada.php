@@ -36,7 +36,7 @@ if ($id_toma) {
     $stmt2->execute();
 
     // Redirigir si todo fue exitoso
-    Header("Location: ../Vista/3_02_06_mensajeToma.html");
+    Header("Location: ../Vista/3_02_06_mensajeToma.php");
 } else {
     echo "Error al guardar la toma.";
 }

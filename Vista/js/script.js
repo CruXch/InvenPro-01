@@ -1,3 +1,4 @@
+console.log("✅ JS cargado");
 //-----------------1_02_registroAdministrador---------------
 function registroAdmin() {
   const password1 = document.getElementById('contra-admin').value;
@@ -29,36 +30,37 @@ function registroAdmin() {
 //-----------------1_02_registroAdministrador---------------
 const boton = document.getElementById('acordeon1');
 const submenu = document.getElementById('acordeon1opciones');
-const botonInventario = document.getElementById('acordeon2'); // <- este es el que desaparecerá
+const botonInventario = document.getElementById('acordeon2');
 const icono = document.getElementById('icono1');
 
-boton.addEventListener('click', () => {
-  const desplegado = submenu.style.display === 'flex';
-  
-  // Alternar visibilidad del submenú
-  submenu.style.display = desplegado ? 'none' : 'flex';
+// Solo ejecutar si todos los elementos existen en la página actual
+if (boton && submenu && botonInventario && icono) {
+  boton.addEventListener('click', () => {
+    const desplegado = submenu.style.display === 'flex';
 
-  // Ocultar o mostrar el otro botón según estado del submenú
-  botonInventario.style.display = desplegado ? 'flex' : 'none';
+    // Alternar visibilidad del submenú
+    submenu.style.display = desplegado ? 'none' : 'flex';
 
-  //Con esto se despliega el nuevo modo de ver el boton con las opciones juntas
-  if (desplegado) {
-    boton.classList.remove('abierto');
-  } else {
-    boton.classList.add('abierto');
-  }
+    // Ocultar o mostrar el otro botón según estado del submenú
+    botonInventario.style.display = desplegado ? 'flex' : 'none';
 
-  // Cambia la clase del ícono al estar abierto o cerrado el boton con las opciones de acordeon
-  if (desplegado) {
-    boton.classList.remove('abierto');
-    icono.classList.remove('fa-chevron-up');
-    icono.classList.add('fa-chevron-down');
-  } else {
-    boton.classList.add('abierto');
-    icono.classList.remove('fa-chevron-down');
-    icono.classList.add('fa-chevron-up');
-  }
-});
+    // Alternar clases del botón principal
+    if (desplegado) {
+      boton.classList.remove('abierto');
+    } else {
+      boton.classList.add('abierto');
+    }
+
+    // Cambiar ícono de flecha
+    if (desplegado) {
+      icono.classList.remove('fa-chevron-up');
+      icono.classList.add('fa-chevron-down');
+    } else {
+      icono.classList.remove('fa-chevron-down');
+      icono.classList.add('fa-chevron-up');
+    }
+  });
+}
 
 
 
@@ -91,19 +93,19 @@ function editarAdmin(){
 
 //-----------------3_02_02_subirCSV----------------
 function pestañaListaPlanificacion(){
-  window.location.href = "3_02_01_listaPlanificacion.html";
+  window.location.href = "3_02_01_listaPlanificacion.php";
 }
 
 
 //-----------------3_02_02_subirCSV----------------
 function pestañaAsignarContador() {
-    window.location.href = "3_02_04_asignarContador.html";
+    window.location.href = "3_02_04_asignarContador.php";
 }
 
 
 //-----------------3_02_04_asignarContador----------------
 function pestañaEnviarToma(){
-  window.location.href = "3_02_05_enviarToma.html";
+  window.location.href = "3_02_05_enviarToma.php";
 }
 
 
@@ -111,3 +113,11 @@ function pestañaEnviarToma(){
 function eliminarInforme(){
     alert ("Informe eliminado")
 }
+
+// Evita acceso con botón "atrás" después de cerrar sesión en todos los archivos
+window.addEventListener('pageshow', function (event) {
+  if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+    window.location.reload();
+  }
+});
+

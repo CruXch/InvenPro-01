@@ -1,3 +1,7 @@
+<?php
+include("../Modelo/validar_sesion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,21 +30,21 @@
                         <i class="fa-solid fa-bell campanaMenu"></i>
                         <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                             <div class="menuNombres">
-                              <p class="nombres">David Fernando</p>
-                              <p class="nombres">Pérez Ortiz</p>
-                              <p class="cargo">Contador</p>
+                              <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
+                              <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
+                              <p class="cargo"><?= $_SESSION['rol'] ?></p>
                             </div>
                     </div>
                     <div class="menuFechaIcono">
                         <p class="menuFecha">17/10/2024 - Jueves</p>
                         <div class="menuIcono">
-                          <a href="2_02_menuContador.html"><i class="fa-solid fa-house-user"></i></a>
+                          <a href="2_02_menuContador.php"><i class="fa-solid fa-house-user"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <button class="botonMenu"><a href="4_01_listaConteos.html">Registrar conteos</a></button>
+                    <button class="botonMenu"><a href="4_01_listaConteos.php">Registrar conteos</a></button>
                 </div>
 
                 <div class="linksMenu1">
@@ -51,7 +55,7 @@
                 </div>
 
                 <div class="contenedorBotonCerrar1">
-                    <a href="1_01_login.html" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
+                    <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
                 </div>
 
             </div>
@@ -99,7 +103,7 @@
                     </div>
 
                     <div class="botonSiguiente">
-                        <button class="ingresar1"><a href="4_03_enviarConteo.html">Siguiente</a></button>
+                        <button class="ingresar1"><a href="4_03_enviarConteo.php">Siguiente</a></button>
                     </div>
 
             </div>

@@ -18,38 +18,40 @@ body{
 /* Fuentes */
 @font-face {
     font-family: 'MADE Tommy Soft';
-    src: url(Vista/fuentes/MADE\ Tommy\ Soft\ Bold\ PERSONAL\ USE.otf);
+    src: url('../fuentes/MADE Evolve Sans Bold (PERSONAL USE).otf');
     font-weight: bold;
-    font-style: bold;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'MADE Evolve Sans';
-    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Thin\ \PERSONAL\ USE\.otf);
-    font-weight: thin;
-    font-style: thin;
+    src: url('../fuentes/MADE Evolve Sans Thin (PERSONAL USE).otf');
+    font-weight: 100;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'MADE Evolve Sans';
-    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Bold\ \PERSONAL\ USE\.otf);
+    src: url('../fuentes/MADE Evolve Sans Bold (PERSONAL USE).otf');
     font-weight: bold;
-    font-style: bold;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'MADE Evolve Sans';
-    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Medium\ \PERSONAL\ USE\.otf);
-    font-weight: medium;
-    font-style: medium;
+    src: url('../fuentes/MADE Evolve Sans Medium (PERSONAL USE).otf');
+    font-weight: 500;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'MADE Evolve Sans';
-    src: url(Vista/fuentes/MADE\ Evolve\ Sans\ Light\ \PERSONAL\ USE\.otf);
-    font-weight: light;
-    font-style: light;
+    src: url('../fuentes/MADE Evolve Sans Light (PERSONAL USE).otf');
+    font-weight: 300;
+    font-style: normal;
 }
+
+
 
 
 /* ------------------------------------------------------------------------------------------------------------------------------- */
