@@ -1,3 +1,29 @@
+<?php
+include("../Modelo/conexion.php");
+$con = conexion();
+
+if (!isset($_GET['fecha'])) {
+    echo "No se recibió una fecha válida.";
+    exit;
+}
+
+$fechaRecibida = urldecode($_GET['fecha']);
+$fechaEscapada = mysqli_real_escape_string($con, $fechaRecibida);
+
+$sql = "SELECT p.id_producto, p.nombre_producto, i.marca_ingreso, i.stock_ingreso
+        FROM tbl_ingresos_csv i
+        INNER JOIN tbl_productos p ON i.id_producto = p.id_producto
+        WHERE i.fecha_ingreso = '$fechaEscapada'";
+
+$resultado = mysqli_query($con, $sql);
+
+// Formatear la fecha
+$fecha = new DateTime($fechaRecibida);
+setlocale(LC_TIME, 'spanish');
+$fechaFormateada = strftime("%A, %e de %B de %Y - %I:%M %p", $fecha->getTimestamp());
+$fechaFormateada = ucfirst($fechaFormateada);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -64,9 +90,9 @@
         
 
             <div class="menu2">
-                <a href="3_02_03_asignarProductos.html"><i class="fa-solid fa-circle-up fa-rotate-270 iconoVolver"></i></a>
+                <a href="3_02_01_listaPlanificacion.php"><i class="fa-solid fa-circle-up fa-rotate-270 iconoVolver"></i></a>
 
-                    <h1 class="tituloCentro">Asignar contador/es</h1>
+                <h1 class="tituloCentro">Asignar productos</h1>
 
                     <div class="contenedorBarra">
                         <input class="barraBuscar" type="text" placeholder="Buscar">
@@ -77,32 +103,42 @@
                             <button class="botonFiltrar"><i class="fa-solid fa-filter"></i>Filtrar</button>
                         </div>
                     </div>
-
-                    <div class="contenedorAsignar">
+                    
+                    <div class="contenedorInfoUsuarios">
+                        <form action="3_02_04_asignarContador.php" method="POST">
+                        <input type="hidden" name="fecha" value="<?= htmlspecialchars($fechaRecibida) ?>">
 
                         <div class="contenedorTablaUsuarios">
                             <table>
                                 <tr>
-                                    <th>Cédula</th>
-                                    <th>Apellidos</th>
-                                    <th>Nombres</th>
+                                    <th>Id</th>
+                                    <th>Producto</th>
+                                    <th>Marca</th>
+                                    <th>Stock</th>
                                     <th>Asignar</th>
                                     <th>Información</th>
                                 </tr>
                             
+                                <?php while ($fila = mysqli_fetch_assoc($resultado)): ?>
                                 <tr>
-                                    <td>11111111</td>
-                                    <td>Pérez Ortiz</td>
-                                    <td>David Fernando</td>
-                                    <td><input type="checkbox" name="usuarios[]" value="11111111"></td>     
-                                    <td><a href="3_02_08_mirarContador.html"><i class="fa-solid fa-eye iconoMirar"></i></a></td>                              
+                                <td><?= htmlspecialchars($fila['id_producto']) ?></td>
+                                <td><?= htmlspecialchars($fila['nombre_producto']) ?></td>
+                                <td><?= htmlspecialchars($fila['marca_ingreso']) ?></td>
+                                <td><?= htmlspecialchars($fila['stock_ingreso']) ?></td>
+                                <td><input type="radio" name="productos_seleccionados" value="<?= $fila['id_producto'] ?>"></td>
+                                <td><a href="3_02_07_mirarProducto.html"><i class="fa-solid fa-eye iconoMirar"></i></a></td>
                                 </tr>
+                                <?php endwhile; ?>
                                 
                             </table>
                         </div>
 
                     </div>
-                    <button class="ingresar5" type="submit" onclick="pestañaEnviarToma()">Siguiente</button> 
+                    <button class="ingresar5" type="submit">Siguiente</button>
+                    </form>
+
+                    </div>
+                    
                     
             </div>
 
@@ -117,3 +153,4 @@
         <script src="js/script.js"></script>
 </body>
 </html>
+

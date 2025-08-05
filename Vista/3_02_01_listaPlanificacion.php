@@ -1,3 +1,9 @@
+<?php
+// Paso 1: Conexión a la base de datos
+require_once ("../Modelo/conexion.php");
+$con = conexion();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -64,59 +70,21 @@
         
 
             <div class="menu2">
-                <a href="3_02_01_listaPlanificacion.html"><i class="fa-solid fa-circle-up fa-rotate-270 iconoVolver"></i></a>
 
-                <h1 class="tituloCentro">Asignar productos</h1>
-
-                    <div class="contenedorBarra">
-                        <input class="barraBuscar" type="text" placeholder="Buscar">
-                        <div class="botonBuscar">
-                            <i class="fa-solid fa-magnifying-glass iconoLupa"></i>
-                        </div>
-                        <div class="contenedorBotonFiltrar">
-                            <button class="botonFiltrar"><i class="fa-solid fa-filter"></i>Filtrar</button>
-                        </div>
-                    </div>
+                    <h1 class="tituloCentro">Planificar Inventarios</h1>
                     
-                    <div class="contenedorInfoUsuarios">
+                    <div class="contenedorInformes">
+                    <a href="3_02_02_subirCSV.php" class="nuevoInforme"><i class="fa-solid fa-calendar-plus"></i>Subir nuevo CSV</a>
+                    </div>          
 
-                        <div class="contenedorTablaUsuarios">
-                            <table>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Producto</th>
-                                    <th>Marca</th>
-                                    <th>Stock</th>
-                                    <th>Asignar</th>
-                                    <th>Información</th>
-                                </tr>
-                            
-                                <tr>
-                                    <td>00001</td>
-                                    <td>Harina - 500gr</td>
-                                    <td>Haz de oros</td>
-                                    <td>300</td>
-                                    <td><input type="checkbox" name="Harina" value="00001"></td>    
-                                    <td><a href="3_02_07_mirarProducto.html"><i class="fa-solid fa-eye iconoMirar"></i></a></td>                               
-                                </tr>
+                    <div class="contenedorInfoConteos">
 
-                                <tr>
-                                    <td>00002</td>
-                                    <td>Pasta - 250gr</td>
-                                    <td>La muñeca</td>
-                                    <td>500</td>
-                                    <td><input type="checkbox" name="Pasta" value="00002"></td>
-                                    <td><a href="3_02_07_mirarProducto.html"><i class="fa-solid fa-eye iconoMirar"></i></a></td>                                   
-                                </tr>
-                                
-                            </table>
+                        <div class="contenedorConteos">
+                            <h2 class="tituloConteo">Tomas de inventario</h2>
+                            <?php include("../Controlador/mostrar_grupos_csv.php"); ?>
                         </div>
 
                     </div>
-                    <button class="ingresar5" type="submit" onclick="pestañaAsignarContador()">Siguiente</button>
-
-                    </div>
-                    
                     
             </div>
 
@@ -131,4 +99,3 @@
         <script src="js/script.js"></script>
 </body>
 </html>
-

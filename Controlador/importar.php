@@ -147,7 +147,7 @@ if (isset($_POST['importar'])) {
             //Mostramos mensaje de éxito poniendo un fragmento de js pero no estará definido en una funcion en el archivo js.        
             echo "<script>
                   alert('Archivo .csv cargado exitosamente'); 
-                  window.location.href = '../Vista/3_02_01_listaPlanificacion.html';
+                  window.location.href = '../Vista/3_02_01_listaPlanificacion.php';
                   </script>";
             exit; //Este exit es para cerrar en su totalidad el uso del js aqui.
 

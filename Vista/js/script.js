@@ -1,7 +1,28 @@
 //-----------------1_02_registroAdministrador---------------
-function registroAdmin(){
-    let respuesta = confirm("¿Desea registrar el siguiente usuario administrador?")
-    return respuesta
+function registroAdmin() {
+  const password1 = document.getElementById('contra-admin').value;
+  const password2 = document.getElementById('confirmar-contra-admin').value;
+
+  // Validación de estructura segura
+  if (
+    password1.length < 6 ||
+    !/[A-Z]/.test(password1) ||        // al menos una mayúscula
+    !/\d/.test(password1) ||          // al menos un número
+    !/[!@#$%^&*(),.?":{}|<>]/.test(password1) // al menos un símbolo
+  ) {
+    alert("La contraseña debe tener al menos 6 caracteres, una mayúscula, un número y un símbolo.");
+    return false;
+  }
+
+  // Validación de coincidencia
+  if (password1 !== password2) {
+    alert("Las contraseñas no coinciden.");
+    return false;
+  }
+
+  // Confirmación final
+  let respuesta = confirm("¿Desea registrar el siguiente usuario administrador?");
+  return respuesta;
 }
 
 

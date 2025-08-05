@@ -61,9 +61,9 @@ CREATE TABLE tbl_Ingresos_Csv (
 CREATE TABLE Tbl_Tomas_De_Inventario (
     id_toma INT AUTO_INCREMENT PRIMARY KEY,
     fecha_toma DATE NOT NULL,
-    unidades_toma INT NOT NULL,
-    comentarios_toma VARCHAR(70)
-    diferencia_toma INT NOT NULL,
+    unidades_toma INT NULL,
+    comentarios_toma VARCHAR(70),
+    diferencia_toma INT NULL
 ) 
 
 
