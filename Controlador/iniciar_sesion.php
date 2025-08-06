@@ -41,13 +41,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         switch ($rol) {
             case 'administrador':
-                echo "<script>alert('Bienvenido administrador'); window.location.href='../Vista/2_01_menuAdministrador.php';</script>";
+                echo "<script>alert('Bienvenido Administrador'); window.location.href='../Vista/2_01_menuAdministrador.php';</script>";
                 break;
             case 'jefe':
-                echo "<script>alert('Bienvenido jefe'); window.location.href='../Vista/2_03_menuJefe.php';</script>";
+                echo "<script>alert('Bienvenido Jefe'); window.location.href='../Vista/2_03_menuJefe.php';</script>";
                 break;
             case 'contador':
-                echo "<script>alert('Bienvenido contador'); window.location.href='../Vista/2_02_menuContador.php';</script>";
+                echo "<script>alert('Bienvenido Contador'); window.location.href='../Vista/2_02_menuContador.php';</script>";
                 break;
             default:
                 echo "<script>alert('Rol no reconocido'); window.location.href='../Vista/1_01_login.php';</script>";

@@ -1,5 +1,41 @@
 <?php
 include("../Modelo/validar_sesion.php");
+include("../Modelo/conexion.php");
+$con = conexion();
+
+$id_toma = $_GET['id_toma'] ?? null;
+
+if (!$id_toma) {
+    die("Error: ID de toma no proporcionado.");
+}
+
+// Consultar la toma actual
+$sql = "SELECT * FROM Tbl_Tomas_De_Inventario WHERE id_toma = ?";
+$stmt = $con->prepare($sql);
+$stmt->bind_param("i", $id_toma);
+$stmt->execute();
+$resultado = $stmt->get_result();
+$toma = $resultado->fetch_assoc();
+
+if (!$toma) {
+    die("Error: Toma no encontrada.");
+}
+
+// Consultar productos relacionados con esta toma
+$sqlProductos = "
+    SELECT p.id_producto, p.nombre_producto 
+    FROM Tbl_Productos p
+    INNER JOIN Tbl_Productos_Tomas_De_Inventario pti ON p.id_producto = pti.id_producto
+    WHERE pti.id_toma = ?";
+$stmtProductos = $con->prepare($sqlProductos);
+$stmtProductos->bind_param("i", $id_toma);
+$stmtProductos->execute();
+$resultadoProductos = $stmtProductos->get_result();
+
+$productos = [];
+while ($fila = $resultadoProductos->fetch_assoc()) {
+    $productos[] = $fila;
+}
 ?>
 
 <!DOCTYPE html>
@@ -7,116 +43,109 @@ include("../Modelo/validar_sesion.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Estilos de css-->
     <link rel="stylesheet" href="css/estilos.css">
-    <!--Iconos de FontAwesome-->
     <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
     <title>Registrar conteos</title>
 </head>
 <body>
 
-    <header>
+<header>
+    <div>
+        <img width="22%" src="img/logo.png" alt="Logo InvenPro">
+    </div>
+</header>
+
+<div class="menu">
+
+    <div class="menu1">
+        <div class="usuarioMenu1">
+            <div class="menuFotoNombre">
+                <i class="fa-solid fa-bell campanaMenu"></i>
+                <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
+                <div class="menuNombres">
+                    <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
+                    <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
+                    <p class="cargo"><?= $_SESSION['rol'] ?></p>
+                </div>
+            </div>
+            <div class="menuFechaIcono">
+                <p class="menuFecha">17/10/2024 - Jueves</p>
+                <div class="menuIcono">
+                    <a href="2_02_menuContador.php"><i class="fa-solid fa-house-user"></i></a>
+                </div>
+            </div>
+        </div>
+
         <div>
-            <img width="22%" src="img/logo.png" alt="Logo InvenPro">
+            <button class="botonMenu"><a href="4_01_listaConteos.php">Registrar conteos</a></button>
         </div>
-    </header>
-    
-        <div class="menu">
 
-            <div class="menu1">
+        <div class="linksMenu1">
+            <a href="#" class="linkMenu">Documentación</a>
+            <a href="#" class="linkMenu">Soporte</a>
+            <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
+            <a href="#" class="linkMenu">Redes sociales</a>
+        </div>
 
-                <div class="usuarioMenu1">
-                    <div class="menuFotoNombre">
-                        <i class="fa-solid fa-bell campanaMenu"></i>
-                        <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
-                            <div class="menuNombres">
-                              <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
-                              <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
-                              <p class="cargo"><?= $_SESSION['rol'] ?></p>
-                            </div>
-                    </div>
-                    <div class="menuFechaIcono">
-                        <p class="menuFecha">17/10/2024 - Jueves</p>
-                        <div class="menuIcono">
-                          <a href="2_02_menuContador.php"><i class="fa-solid fa-house-user"></i></a>
-                        </div>
-                    </div>
-                </div>
+        <div class="contenedorBotonCerrar1">
+            <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">
+                Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i>
+            </a>
+        </div>
+    </div>
 
-                <div>
-                    <button class="botonMenu"><a href="4_01_listaConteos.php">Registrar conteos</a></button>
-                </div>
+    <div class="menu2">
 
-                <div class="linksMenu1">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
-                    <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
-                    <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
-                </div>
+        <h1 class="tituloCentro">Registrar conteos de inventarios</h1>
 
-                <div class="contenedorBotonCerrar1">
-                    <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
-                </div>
+        <form action="4_03_enviarConteo.php" method="POST">
 
+    <div class="contenedorInfoConteos2">
+        <div class="contenedorConteos2">
+            <h2><?= date("l d F Y", strtotime($toma['fecha_toma'])) ?></h2>
+            <p>ID toma: <?= $toma['id_toma'] ?></p>
+            <input type="hidden" name="id_toma" value="<?= $id_toma ?>">
+
+            <?php if (!empty($productos)): ?>
+                <?php foreach ($productos as $producto): ?>
+                    <p>ID producto: <?= $producto['id_producto'] ?></p>
+                    <p>Nombre producto: <?= $producto['nombre_producto'] ?></p>
+                    
+                    <!-- Inputs ocultos para enviar datos al backend -->
+                    <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
+                    <input type="hidden" name="nombre_producto" value="<?= $producto['nombre_producto'] ?>">
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No hay productos asociados a esta toma.</p>
+            <?php endif; ?>
+
+            <div class="contenedorLlenar">
+                <label for="cantidadConteo">Cantidad:
+                    <input type="text" name="cantidadConteo" id="cantidadConteo" placeholder="Unidades, kg, etc." required>
+                </label> 
+                <label for="comentariosConteo">Comentarios:
+                    <textarea id="comentariosConteo" name="comentariosConteo" placeholder="Escribir" required></textarea>
+                </label>
             </div>
-        
-
-            <div class="menu2">
-
-                <h1 class="tituloCentro">Registrar conteos de inventarios</h1>               
-
-                    <div class="contenedorInfoConteos2">
-
-                        <div class="contenedorConteos2">
-
-                            <h2>Jueves 17 Octubre 2024</h2>
-                            <p>Id toma: 03</p>
-                            <p>Id producto: 00001</p>
-                            <p>Nombre producto: Harina 500gr</p>
-                            
-                            <div class="contenedorLlenar">
-                                <label for="cantidadConteo">Cantidad:
-                                    <input type="text" name="cantidadConteo" id="cantidadConteo" placeholder="Escribir(unidades,kg,etc.)">
-                                </label> 
-                                <label for="comentariosConteo">Comentarios:
-                                    <textarea id="comentariosConteo" name="comentariosConteo" placeholder="Escribir"></textarea>
-                                </label>
-                            </div>
-
-                            <p>──────────────────────────────────────────────</p>
-
-                            <p>Id toma: 03</p>
-                            <p>Id producto: 00001</p>
-                            <p>Nombre producto: Harina 500gr</p>
-                            
-                            <div class="contenedorLlenar">
-                                <label for="cantidadConteo">Cantidad:
-                                    <input type="text" name="cantidadConteo" id="cantidadConteo" placeholder="Escribir(unidades,kg,etc.)">
-                                </label> 
-                                <label for="comentariosConteo">Comentarios:
-                                    <textarea id="comentariosConteo" name="comentariosConteo" placeholder="Escribir"></textarea>
-                                </label>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    <div class="botonSiguiente">
-                        <button class="ingresar1"><a href="4_03_enviarConteo.php">Siguiente</a></button>
-                    </div>
-
-            </div>
-
         </div>
+    </div>
 
-        <div class="menuFooter">
-            <footer>
-                <p>Términos de servicio     ©2025 Inventory Project - InvenPro</p>
-            </footer>
-        </div>
+    <div class="botonSiguiente">
+        <button type="submit" class="ingresar1">Siguiente</button>
+    </div>
+</form>
 
-        <script src="js/script.js"></script>
+    </div>
+</div>
+
+<div class="menuFooter">
+    <footer>
+        <p>Términos de servicio     ©2025 Inventory Project - InvenPro</p>
+    </footer>
+</div>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
+

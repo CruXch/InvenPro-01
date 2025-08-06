@@ -63,7 +63,8 @@ CREATE TABLE Tbl_Tomas_De_Inventario (
     fecha_toma DATE NOT NULL,
     unidades_toma INT NULL,
     comentarios_toma VARCHAR(70),
-    diferencia_toma INT NULL
+    diferencia_toma INT NULL,
+    estado_toma VARCHAR(20) DEFAULT 'pendiente';
 ) 
 
 
@@ -83,6 +84,17 @@ CREATE TABLE Tbl_Productos_Tomas_De_Inventario (
     FOREIGN KEY (id_producto) REFERENCES Tbl_Productos(id_producto),
     FOREIGN KEY (id_toma) REFERENCES Tbl_Tomas_De_Inventario(id_toma) 
 ) 
+
+CREATE TABLE Tbl_Asignaciones_Toma (
+    id_asignacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_toma INT NOT NULL,
+    id_usuario INT NOT NULL,
+    fecha_asignacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_toma) REFERENCES Tbl_Tomas_De_Inventario(id_toma),
+    FOREIGN KEY (id_usuario) REFERENCES Tbl_Usuarios(id_usuario)
+);
+
+
 
 
 INSERT INTO tbl_roles (id_rol, nombre_rol) VALUES
