@@ -22,16 +22,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cantidadConteo'], $_PO
 // Si se hizo clic en “Sí” (confirmación)
 if (isset($_POST['confirmar_toma']) && isset($_SESSION['datos_toma'])) {
     $datos = $_SESSION['datos_toma'];
+    $id_toma = $datos['id_toma'];
+    $id_producto = $datos['id_producto'];
+    $cantidad = $datos['cantidad'];
+    $comentarios = $datos['comentarios'];
 
-    // Guardar en la base de datos y marcar como completada
+    // 1. Obtener el stock actual más reciente de ese producto
+    $sqlStock = "SELECT stock_ingreso FROM tbl_Ingresos_Csv WHERE id_producto = ? ORDER BY fecha_ingreso DESC LIMIT 1";
+    $stmtStock = $con->prepare($sqlStock);
+    $stmtStock->bind_param("i", $id_producto);
+    $stmtStock->execute();
+    $resultadoStock = $stmtStock->get_result();
+
+    if ($filaStock = $resultadoStock->fetch_assoc()) {
+        $stock_actual = $filaStock['stock_ingreso'];
+    } else {
+        $stock_actual = 0; // Si no hay stock registrado
+    }
+    $stmtStock->close();
+
+    // 2. Calcular diferencia
+    $diferencia = $cantidad - $stock_actual;
+
+    // 3. Actualizar la tabla de tomas de inventario
     $sql = "UPDATE Tbl_Tomas_De_Inventario 
-            SET unidades_toma = ?, comentarios_toma = ?, estado_toma = 'completada'
+            SET unidades_toma = ?, comentarios_toma = ?, estado_toma = 'completada', diferencia_toma = ?
             WHERE id_toma = ?";
     $stmt = $con->prepare($sql);
-    $stmt->bind_param("isi", $datos['cantidad'], $datos['comentarios'], $datos['id_toma']);
+    $stmt->bind_param("isii", $cantidad, $comentarios, $diferencia, $id_toma);
 
     if ($stmt->execute()) {
-        // Limpiar sesión temporal y redirigir
         unset($_SESSION['datos_toma']);
         header("Location: 4_04_mensajeConteo.php");
         exit;
@@ -40,7 +60,7 @@ if (isset($_POST['confirmar_toma']) && isset($_SESSION['datos_toma'])) {
     }
 }
 
-// Si no hay datos en sesión, redirigir al paso anterior
+// Si no hay datos en sesión, redirigir al paso anterior sin datos
 if (!isset($_SESSION['datos_toma'])) {
     header("Location: 4_02_tarjetaConteo.php");
     exit;
@@ -49,7 +69,7 @@ if (!isset($_SESSION['datos_toma'])) {
 $datos = $_SESSION['datos_toma'];
 
 // Configurar idioma español para la fecha
-setlocale(LC_TIME, 'spanish'); // Windows 
+setlocale(LC_TIME, 'spanish');
 $fecha_actual = strftime('%d/%m/%Y - %A');
 ?>
 

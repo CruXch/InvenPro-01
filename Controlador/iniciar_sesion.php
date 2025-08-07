@@ -50,11 +50,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 echo "<script>alert('Bienvenido Contador'); window.location.href='../Vista/2_02_menuContador.php';</script>";
                 break;
             default:
-                echo "<script>alert('Rol no reconocido'); window.location.href='../Vista/1_01_login.php';</script>";
+                echo "<script>alert('Rol no reconocido'); window.location.href='../Vista/1_01_login.html';</script>";
                 break;
         }
     } else {
-        echo "<script>alert('Usuario o contraseña incorrectos'); window.location.href='../Vista/1_01_login.php';</script>";
+        echo "<script>alert('Usuario o contraseña incorrectos'); window.location.href='../Vista/1_01_login.html';</script>";
     }
 }
 

@@ -28,10 +28,10 @@ if ($id_toma) {
     $stmt1->bind_param("ii", $id_producto, $id_toma);
     $stmt1->execute();
 
-    // Insertar en Tbl_Productos_Usuarios
-    $sql2 = "INSERT INTO Tbl_Productos_Usuarios (id_producto, id_usuario) VALUES (?, ?)";
+    // Insertar en Tbl_Productos_Usuarios_Toma
+    $sql2 = "INSERT INTO Tbl_Productos_Usuarios_Toma (id_toma, id_producto, id_usuario) VALUES (?, ?, ?)";
     $stmt2 = $con->prepare($sql2);
-    $stmt2->bind_param("ii", $id_producto, $id_usuario);
+    $stmt2->bind_param("iii", $id_toma, $id_producto, $id_usuario);
     $stmt2->execute();
 
     // Insertar en Tbl_Asignaciones_Toma 
