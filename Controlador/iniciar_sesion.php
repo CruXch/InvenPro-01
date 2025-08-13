@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         echo 
         "<script>
         alert('Por favor ingrese su usuario y contraseña');
-        window.location.href='../Vista/1_01_login.php';
+        window.location.href='../Vista/1_01_login.html';
         </script>";
         exit();
     }

@@ -78,15 +78,6 @@ CREATE TABLE Tbl_Productos_Usuarios_Toma (
     FOREIGN KEY (id_usuario) REFERENCES Tbl_Usuarios(id_usuario)
 ) 
 
--- Con la tabla de arriba teniendo los 3 capos de id:toma,producto y usuario esta tabla de abajo podria eliminarse
--- Revisar esta parte !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-CREATE TABLE Tbl_Productos_Tomas_De_Inventario (
-    id_producto INT,
-    id_toma INT,
-    PRIMARY KEY (id_producto, id_toma),
-    FOREIGN KEY (id_producto) REFERENCES Tbl_Productos(id_producto),
-    FOREIGN KEY (id_toma) REFERENCES Tbl_Tomas_De_Inventario(id_toma) 
-) 
 
 CREATE TABLE Tbl_Asignaciones_Toma (
     id_asignacion INT AUTO_INCREMENT PRIMARY KEY,
