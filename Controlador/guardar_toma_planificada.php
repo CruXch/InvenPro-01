@@ -22,12 +22,6 @@ $stmt->execute();
 $id_toma = $stmt->insert_id; // Guarda el ID de la toma recién insertada
 
 if ($id_toma) {
-    // Insertar en Tbl_Productos_Tomas_De_Inventario
-    $sql1 = "INSERT INTO Tbl_Productos_Tomas_De_Inventario (id_producto, id_toma) VALUES (?, ?)";
-    $stmt1 = $con->prepare($sql1);
-    $stmt1->bind_param("ii", $id_producto, $id_toma);
-    $stmt1->execute();
-
     // Insertar en Tbl_Productos_Usuarios_Toma
     $sql2 = "INSERT INTO Tbl_Productos_Usuarios_Toma (id_toma, id_producto, id_usuario) VALUES (?, ?, ?)";
     $stmt2 = $con->prepare($sql2);
