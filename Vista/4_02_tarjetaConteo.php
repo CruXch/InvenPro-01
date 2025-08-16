@@ -23,12 +23,16 @@ if (!$toma) {
 
 // Consultar productos relacionados con esta toma
 $sqlProductos = "
-    SELECT p.id_producto, p.nombre_producto 
+    SELECT 
+        p.id_producto, 
+        p.nombre_producto,
+        put.id_ingreso
     FROM Tbl_Productos p
-    INNER JOIN Tbl_Productos_Tomas_De_Inventario pti ON p.id_producto = pti.id_producto
-    WHERE pti.id_toma = ?";
+    INNER JOIN Tbl_Productos_Usuarios_Toma put 
+        ON p.id_producto = put.id_producto
+    WHERE put.id_toma = ? AND put.id_usuario = ?";
 $stmtProductos = $con->prepare($sqlProductos);
-$stmtProductos->bind_param("i", $id_toma);
+$stmtProductos->bind_param("ii", $id_toma, $_SESSION['id_usuario']);
 $stmtProductos->execute();
 $resultadoProductos = $stmtProductos->get_result();
 
@@ -102,32 +106,37 @@ while ($fila = $resultadoProductos->fetch_assoc()) {
 
     <div class="contenedorInfoConteos2">
         <div class="contenedorConteos2">
-            <h2><?= date("l d F Y", strtotime($toma['fecha_toma'])) ?></h2>
-            <p>ID toma: <?= $toma['id_toma'] ?></p>
-            <input type="hidden" name="id_toma" value="<?= $id_toma ?>">
+    <h2><?= date("l d F Y", strtotime($toma['fecha_toma'])) ?></h2>
+    <p>ID toma: <?= $toma['id_toma'] ?></p>
+    <input type="hidden" name="id_toma" value="<?= $id_toma ?>">
 
-            <?php if (!empty($productos)): ?>
-                <?php foreach ($productos as $producto): ?>
-                    <p>ID producto: <?= $producto['id_producto'] ?></p>
-                    <p>Nombre producto: <?= $producto['nombre_producto'] ?></p>
-                    
-                    <!-- Inputs ocultos para enviar datos al backend -->
-                    <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
-                    <input type="hidden" name="nombre_producto" value="<?= $producto['nombre_producto'] ?>">
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p>No hay productos asociados a esta toma.</p>
-            <?php endif; ?>
+    <?php if (!empty($productos)): ?>
+        <?php 
+            // Como solo habrá un producto, tomamos el primero
+            $producto = $productos[0];
+        ?>
+        <p>ID producto: <?= $producto['id_producto'] ?></p>
+        <p>Nombre producto: <?= $producto['nombre_producto'] ?></p>
+        
+        <!-- Inputs ocultos para enviar datos al backend -->
+        <input type="hidden" name="id_producto" value="<?= $producto['id_producto'] ?>">
+        <input type="hidden" name="nombre_producto" value="<?= $producto['nombre_producto'] ?>">
+        <input type="hidden" name="id_ingreso" value="<?= $producto['id_ingreso'] ?>">
 
-            <div class="contenedorLlenar">
-                <label for="cantidadConteo">Cantidad:
-                    <input type="text" name="cantidadConteo" id="cantidadConteo" placeholder="Unidades, kg, etc." required>
-                </label> 
-                <label for="comentariosConteo">Comentarios:
-                    <textarea id="comentariosConteo" name="comentariosConteo" placeholder="Escribir" required></textarea>
-                </label>
-            </div>
-        </div>
+    <?php else: ?>
+        <p>No hay productos asociados a esta toma.</p>
+    <?php endif; ?>
+
+    <div class="contenedorLlenar">
+        <label for="cantidadConteo">Cantidad:
+            <input type="number" name="cantidadConteo" id="cantidadConteo" placeholder="Unidades" required>
+        </label> 
+        <label for="comentariosConteo">Comentarios:
+            <textarea id="comentariosConteo" name="comentariosConteo" placeholder="Escribir" required></textarea>
+        </label>
+    </div>
+</div>
+
     </div>
 
     <div class="botonSiguiente">

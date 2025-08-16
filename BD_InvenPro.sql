@@ -72,10 +72,12 @@ CREATE TABLE Tbl_Productos_Usuarios_Toma (
     id_toma INT,
     id_producto INT,
     id_usuario INT,
+    id_ingreso INT,
     PRIMARY KEY (id_toma, id_producto, id_usuario),
     FOREIGN KEY (id_toma) REFERENCES Tbl_Tomas_De_Inventario(id_toma),
     FOREIGN KEY (id_producto) REFERENCES Tbl_Productos(id_producto),
-    FOREIGN KEY (id_usuario) REFERENCES Tbl_Usuarios(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES Tbl_Usuarios(id_usuario),
+    FOREIGN KEY (id_ingreso) REFERENCES tbl_Ingresos_Csv(id_ingreso)
 ) 
 
 

@@ -1,0 +1,80 @@
+[33mcommit 4fdfbf238ccb587cc7d70b477d49b771e83aa703[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Wed Aug 13 23:55:18 2025 -0500
+
+    Eliminé la inserción de datos en guardar_toma.php sobre la tabla que se borró anteriormente y agregué un archivo prueba.php donde empezaremos a organizar el modulo de generacion de informes
+
+[33mcommit 4710dfea6bd6559201f41d1bbf2983042c7059c5[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Wed Aug 13 13:45:26 2025 -0500
+
+    Eliminé la tabla que sobraba en relacion producto-toma
+
+[33mcommit 69c195987945aeab1c88236cd5ef8814897b1704[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Thu Aug 7 16:05:47 2025 -0500
+
+    Agregué funcionalidad al campo diferencia en tabla tomas de inventario. Corregí error con la tabla productos_usuarios, la elimine y agregue una nueva tabla que contenga el id de toma para arreglar el error que un contador no podia volver a tener una toda de un mismo producto
+
+[33mcommit 6b9494c35255c00a1a8d3f69d25ccf6abf30eddf[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Wed Aug 6 13:41:27 2025 -0500
+
+    Agregué nueva tabla asignaciones y un campo en tomas de inventario para poder realizar el modulo del contador. Modulo de contador tambien completo sobre registrar conteo y actualizar la tabla toma de inventario, falta agregar funcionalidad en campo diferencia en tabla toma de inventario
+
+[33mcommit 4fe8b20469650eb70ea2d48ce287bf96468368c7[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Tue Aug 5 17:01:55 2025 -0500
+
+    Agregué el back para el inicio de sesión y cerrar sesión asi como tambien el nombre y cargo de quien este dentro del programa
+
+[33mcommit 76c29e44bbe425a657186ccb84f1ffbddf72a703[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Tue Aug 5 14:15:53 2025 -0500
+
+    Agregué modulo de planificacion de inventarios ademas de añadir la validacion de contraseña para registro mas de 6 caracteres, numero, mayuscula, simbolo
+
+[33mcommit f08b7e580eb0cf8853823f444b6cdf557556c2d8[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Mon Aug 4 12:22:53 2025 -0500
+
+    Agregué la funcion de la nueva tabla para mostrar los ingresos de productos individuales, asi como tambien la nueva tabla tbl_ingresos_csv
+
+[33mcommit 544b0d557e9f82d2dac3aa58fac5db41a9d4d7d8[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Sat Jul 26 13:17:47 2025 -0500
+
+    FRONT - Agregue funcionalidad en botones de pantallas faltantes, hipervinculos, overflow para pantallas que necesitaban scroll
+
+[33mcommit 4733cfeb409edf6e1b7c325a9c7afba9559b09f8[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Fri Jul 25 17:11:05 2025 -0500
+
+    Cambios hechos en el modulo de jefe vista final Julio 2025
+
+[33mcommit 348fb731889aa57eeea01a48466b62c5ab4a3cb2[m
+Merge: e2977fa b7e0163
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Wed Jul 23 13:15:48 2025 -0500
+
+    Resuelvo conflicto con nuevo archivo de base de datos
+
+[33mcommit e2977fa43daab86d2df778bf84561a1a0bd8dad7[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Wed Jul 23 13:09:20 2025 -0500
+
+    Agregue base de datos actualizada despues de borrar la obsoleta
+
+[33mcommit b7e01639aa9980f50669a854c18cf1ea94e8ca42[m
+Author: CruXch <148264801+CruXch@users.noreply.github.com>
+Date:   Wed Jul 23 13:03:07 2025 -0500
+
+    Delete InvenPro_bd.sql
+    
+    Base de datos obsoleta
+
+[33mcommit 68699581d4461f72add8a78861a2498329c45d41[m
+Author: David Fer Pérez <cruxchns@hotmail.com>
+Date:   Mon Jul 21 14:28:31 2025 -0500
+
+    Primer commit InvenPro Julio 2025

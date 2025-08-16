@@ -4,13 +4,14 @@ include("../Modelo/conexion.php");
 $con = conexion();
 
 // Validar recepción de datos
-if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados'])) {
+if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados_id'])) {
     echo "No se recibieron los datos necesarios.";
     exit;
 }
 
 $fecha = mysqli_real_escape_string($con, $_POST['fecha']);
 $productos = $_POST['productos_seleccionados'];
+$productosId = $_POST['productos_seleccionados_id'];
 
 // Consulta para obtener los contadores disponibles
 $sql_contadores = "SELECT id_usuario, nombre_usuario, apellido_usuario 
@@ -97,6 +98,7 @@ $resultado_contadores = mysqli_query($con, $sql_contadores);
                     <input type="hidden" name="fecha" value="<?= htmlspecialchars($fecha) ?>">
 
                     <input type="hidden" name="productos_seleccionados" value="<?= htmlspecialchars($productos) ?>">
+                    <input type="hidden" name="productos_seleccionados_id" value="<?= htmlspecialchars($productosId) ?>">
 
                     <div class="contenedorTablaUsuarios">
                         <table>

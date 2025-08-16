@@ -11,7 +11,7 @@ if (!isset($_GET['fecha'])) {
 $fechaRecibida = urldecode($_GET['fecha']);
 $fechaEscapada = mysqli_real_escape_string($con, $fechaRecibida);
 
-$sql = "SELECT p.id_producto, p.nombre_producto, i.marca_ingreso, i.stock_ingreso
+$sql = "SELECT p.id_producto, p.nombre_producto, i.id_ingreso, i.marca_ingreso, i.stock_ingreso
         FROM tbl_ingresos_csv i
         INNER JOIN tbl_productos p ON i.id_producto = p.id_producto
         WHERE i.fecha_ingreso = '$fechaEscapada'";
@@ -126,7 +126,8 @@ $fechaFormateada = ucfirst($fechaFormateada);
                                 <td><?= htmlspecialchars($fila['nombre_producto']) ?></td>
                                 <td><?= htmlspecialchars($fila['marca_ingreso']) ?></td>
                                 <td><?= htmlspecialchars($fila['stock_ingreso']) ?></td>
-                                <td><input type="radio" name="productos_seleccionados" value="<?= $fila['id_producto'] ?>"></td>
+                                <td><input type="radio" name="productos_seleccionados" value="<?= $fila['id_ingreso'] ?>"></td>
+                                <input type="hidden" name="productos_seleccionados_id" value="<?= $fila['id_producto'] ?>">
                                 <td><a href="3_02_07_mirarProducto.php"><i class="fa-solid fa-eye iconoMirar"></i></a></td>
                                 </tr>
                                 <?php endwhile; ?>

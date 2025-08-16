@@ -3,7 +3,7 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
-if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['contadores_asignados'])) {
+if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados_id']) || !isset($_POST['contadores_asignados'])) {
     echo "Faltan datos necesarios para generar el resumen.";
     exit;
 }
@@ -16,24 +16,30 @@ if (!is_array($productos)) {
     $productos = [$productos];
 }
 
+$productosId = $_POST['productos_seleccionados_id'];
+if (!is_array($productosId)) {
+    $productosId = [$productosId];
+}
+
 $contadores = $_POST['contadores_asignados'];
 if (!is_array($contadores)) {
     $contadores = [$contadores];
 }
 
-// Obtener nombres de los productos seleccionados
-$productosInfo = [];
-foreach ($productos as $id_producto) {
+// Obtener nombres de los ingresos de productos seleccionados
+$productosIdInfo = [];
+foreach ($productosId as $id_producto) {
     $id_escapado = mysqli_real_escape_string($con, $id_producto);
-    $sqlProducto = "SELECT nombre_producto FROM tbl_productos WHERE id_producto = '$id_escapado'";
-    $resProducto = mysqli_query($con, $sqlProducto);
-    if ($fila = mysqli_fetch_assoc($resProducto)) {
-        $productosInfo[] = [
+    $sqlProductoId = "SELECT nombre_producto FROM tbl_productos WHERE id_producto = '$id_escapado'";
+    $resProductoId = mysqli_query($con, $sqlProductoId);
+    if ($fila = mysqli_fetch_assoc($resProductoId)) {
+        $productosIdInfo[] = [
             'id' => $id_producto,
             'nombre' => $fila['nombre_producto']
         ];
     }
 }
+
 
 // Obtener nombres de los contadores seleccionados
 $contadoresInfo = [];
@@ -125,8 +131,8 @@ $fechaFormateada = ucfirst($fechaFormateada);
 
                     <h2 class="datos2Fuente">Productos asignados:</h2>
                     <ul>
-                        <?php foreach ($productosInfo as $producto): ?>
-                            <p class="datos2Fuente"><strong>ID:</strong> <?= htmlspecialchars($producto['id']) ?> - <?= htmlspecialchars($producto['nombre']) ?></p>
+                        <?php foreach ($productosIdInfo as $productoId): ?>
+                            <p class="datos2Fuente"><strong>ID:</strong> <?= htmlspecialchars($productoId['id']) ?> - <?= htmlspecialchars($productoId['nombre']) ?></p>
                         <?php endforeach; ?>
                     </ul>
 
@@ -148,6 +154,9 @@ $fechaFormateada = ucfirst($fechaFormateada);
                         <?php foreach ($productos as $producto): ?>
                             <input type="hidden" name="productos_seleccionados[]" value="<?= htmlspecialchars($producto) ?>">
                         <?php endforeach; ?>
+                        <?php foreach ($productosId as $productoId): ?>
+                            <input type="hidden" name="productos_seleccionados_id[]" value="<?= htmlspecialchars($productoId) ?>">
+                        <?php endforeach; ?>
                         <?php foreach ($contadores as $contador): ?>
                             <input type="hidden" name="contadores_asignados[]" value="<?= htmlspecialchars($contador) ?>">
                         <?php endforeach; ?>
@@ -159,6 +168,9 @@ $fechaFormateada = ucfirst($fechaFormateada);
                         <input type="hidden" name="fecha" value="<?= htmlspecialchars($fecha) ?>">
                         <?php foreach ($productos as $producto): ?>
                             <input type="hidden" name="productos_seleccionados[]" value="<?= htmlspecialchars($producto) ?>">
+                        <?php endforeach; ?>
+                        <?php foreach ($productosId as $productoId): ?>
+                            <input type="hidden" name="productos_seleccionados_id[]" value="<?= htmlspecialchars($productoId) ?>">
                         <?php endforeach; ?>
                         <?php foreach ($contadores as $contador): ?>
                             <input type="hidden" name="contadores_asignados[]" value="<?= htmlspecialchars($contador) ?>">
