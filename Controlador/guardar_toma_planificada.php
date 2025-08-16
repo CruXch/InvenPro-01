@@ -3,12 +3,14 @@ include ("../Modelo/conexion.php");
 $con = conexion();
 
 // Asegúrate de que existan los valores esperados
-if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['contadores_asignados'])) {
+if (!isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['contadores_asignados'])) {
     echo "Faltan datos necesarios.";
     exit;
 }
 
-$fecha = $_POST['fecha'];
+// Fecha actual al momento de planificar
+$fecha = date("Y-m-d");  // <-- Aquí la ajustamos
+
 $id_ingreso = $_POST['productos_seleccionados'][0];  // Para escalar se puede usar un foreach después
 $id_producto = $_POST['productos_seleccionados_id'][0];  // Para escalar se puede usar un foreach después
 $id_usuario = $_POST['contadores_asignados'][0];      // Igualmente para múltiples contadores
