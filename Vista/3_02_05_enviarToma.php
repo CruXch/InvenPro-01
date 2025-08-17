@@ -167,13 +167,13 @@ $fechaFormateada = ucfirst($fechaFormateada);
                     <form method="POST" action="3_02_04_asignarContador.php" style="display:inline;">
                         <input type="hidden" name="fecha" value="<?= htmlspecialchars($fecha) ?>">
                         <?php foreach ($productos as $producto): ?>
-                            <input type="hidden" name="productos_seleccionados[]" value="<?= htmlspecialchars($producto) ?>">
+                            <input type="hidden" name="productos_seleccionados" value="<?= htmlspecialchars($producto) ?>">
                         <?php endforeach; ?>
                         <?php foreach ($productosId as $productoId): ?>
-                            <input type="hidden" name="productos_seleccionados_id[]" value="<?= htmlspecialchars($productoId) ?>">
+                            <input type="hidden" name="productos_seleccionados_id" value="<?= htmlspecialchars($productoId) ?>">
                         <?php endforeach; ?>
                         <?php foreach ($contadores as $contador): ?>
-                            <input type="hidden" name="contadores_asignados[]" value="<?= htmlspecialchars($contador) ?>">
+                            <input type="hidden" name="contadores_asignados" value="<?= htmlspecialchars($contador) ?>">
                         <?php endforeach; ?>
                         <button type="submit" class="botonSi-No">No</button>
                     </form>

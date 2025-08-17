@@ -80,7 +80,7 @@ $resultado_contadores = mysqli_query($con, $sql_contadores);
             </div>
 
         <div class="menu2">
-            <a href="3_02_03_asignarProductos.php"><i class="fa-solid fa-circle-up fa-rotate-270 iconoVolver"></i></a>
+            <a href="3_02_03_asignarProductos.php?fecha=<?= urlencode($fecha) ?>"><i class="fa-solid fa-circle-up fa-rotate-270 iconoVolver"></i></a>
             <h1 class="tituloCentro">Asignar contador/es</h1>
 
             <div class="contenedorBarra">
