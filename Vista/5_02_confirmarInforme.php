@@ -1,5 +1,97 @@
 <?php
 include("../Modelo/validar_sesion.php");
+include("../Modelo/conexion.php");
+$con = conexion();
+
+// Iniciar sesión solo si no está activa
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Variables de sesión
+$tipoInforme = $_SESSION['tipo_informe'] ?? null;
+$fechaInicio = $_SESSION['fecha_inicio'] ?? null;
+$fechaFin    = $_SESSION['fecha_fin'] ?? null;
+
+// Inicializamos arrays y variables para el informe
+$filas = [];
+$total_productos_asignados = 0;
+$total_productos_contados = 0;
+$total_diferencias_negativas = 0;
+$total_diferencias_positivas = 0;
+$discrepancias_negativas = [];
+$discrepancias_positivas = [];
+$top_negativas = [];
+$top_positivas = [];
+$mensaje_error = "";
+
+// --- LÓGICA DE CONSULTA Y PROCESAMIENTO ---
+if ($fechaInicio && $fechaFin) {
+    $sql = "SELECT 
+                ti.id_toma,
+                u.nombre_usuario,
+                u.apellido_usuario,
+                u.id_usuario,
+                ti.fecha_toma,
+                ic.id_ingreso,
+                ic.id_producto,
+                ic.nombre_ingreso,
+                ic.marca_ingreso,
+                ic.stock_ingreso,
+                ti.unidades_toma,
+                ti.comentarios_toma,
+                ti.diferencia_toma
+            FROM Tbl_Productos_Usuarios_Toma put
+            INNER JOIN Tbl_Tomas_De_Inventario ti ON put.id_toma = ti.id_toma
+            INNER JOIN Tbl_Usuarios u ON put.id_usuario = u.id_usuario
+            INNER JOIN tbl_Ingresos_Csv ic ON put.id_ingreso = ic.id_ingreso
+            WHERE ti.fecha_toma BETWEEN '$fechaInicio' AND '$fechaFin'
+            ORDER BY ti.id_toma ASC";
+
+    $resultado = $con->query($sql);
+
+    if ($resultado && $resultado->num_rows > 0) {
+        while ($fila = $resultado->fetch_assoc()) {
+            $filas[] = $fila;
+        }
+
+        // --- Cálculos del resumen ---
+        $total_productos_asignados = count($filas);
+
+        foreach ($filas as $fila) {
+            if (!empty($fila["unidades_toma"])) {
+                $total_productos_contados++;
+            }
+
+            $diferencia = $fila["diferencia_toma"];
+            if ($diferencia < 0) {
+                $total_diferencias_negativas++;
+                $discrepancias_negativas[] = $fila;
+            } elseif ($diferencia > 0) {
+                $total_diferencias_positivas++;
+                $discrepancias_positivas[] = $fila;
+            }
+        }
+
+        $total_diferencias = $total_diferencias_negativas + $total_diferencias_positivas;
+        $porcentaje_ejecucion = $total_productos_asignados > 0 ? ($total_productos_contados / $total_productos_asignados) * 100 : 0;
+        $porcentaje_diferencias_negativas = $total_productos_asignados > 0 ? ($total_diferencias_negativas / $total_productos_asignados) * 100 : 0;
+        $porcentaje_diferencias_positivas = $total_productos_asignados > 0 ? ($total_diferencias_positivas / $total_productos_asignados) * 100 : 0;
+        $porcentaje_diferencias_totales = $total_productos_asignados > 0 ? ($total_diferencias / $total_productos_asignados) * 100 : 0;
+
+        usort($discrepancias_negativas, fn($a, $b) => $a['diferencia_toma'] <=> $b['diferencia_toma']);
+        $top_negativas = array_slice($discrepancias_negativas, 0, 5);
+
+        usort($discrepancias_positivas, fn($a, $b) => $b['diferencia_toma'] <=> $a['diferencia_toma']);
+        $top_positivas = array_slice($discrepancias_positivas, 0, 5);
+
+    } else {
+        $mensaje_error = "No hay registros disponibles en ese rango de fechas.";
+    }
+
+} else {
+    $mensaje_error = "Faltan parámetros de fecha.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -7,116 +99,119 @@ include("../Modelo/validar_sesion.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Estilos de css-->
     <link rel="stylesheet" href="css/estilos.css">
-    <!--Iconos de FontAwesome-->
     <link rel="stylesheet" href="fontawesome-free-6.7.2-web/css/all.min.css">
-    <title>Generar informes</title>
+    <title>Informe detallado</title>
 </head>
 <body>
 
-    <header>
+<header>
+    <div>
+        <img width="22%" src="img/logo.png" alt="Logo InvenPro">
+    </div>
+</header>
+
+<div class="menu">
+    <div class="menu1">
+        <div class="usuarioMenu1">
+            <div class="menuFotoNombre">
+                <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
+                <div class="menuNombres">
+                  <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
+                  <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
+                  <p class="cargo"><?= $_SESSION['rol'] ?></p>
+                </div>
+            </div>
+            <div class="menuFechaIcono">
+                <p class="menuFecha">17/10/2024 - Jueves</p>
+                <div class="menuIcono">
+                  <a href="2_03_menuJefe.php"><i class="fa-solid fa-house-user"></i></a>
+                </div>
+            </div>
+        </div>
+
         <div>
-            <img width="22%" src="img/logo.png" alt="Logo InvenPro">
+            <button class="botonMenu"><a href="5_01_listaInformes.php">Generar informes</a></button>
         </div>
-    </header>
-    
-        <div class="menu">
 
-            <div class="menu1">
+        <div class="linksMenu1">
+            <a href="#" target="_blank" class="linkMenu">Documentación</a>
+            <a href="#" target="_blank" class="linkMenu">Soporte</a>
+            <a href="#" target="_blank" class="linkMenu">Empresa</a>
+            <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
+        </div>
 
-                <div class="usuarioMenu1">
-                    <div class="menuFotoNombre">
-                        <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
-                            <div class="menuNombres">
-                              <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
-                              <p class="nombres"><?= $_SESSION['apellido_usuario'] ?></p>
-                              <p class="cargo"><?= $_SESSION['rol'] ?></p>
-                            </div>
-                    </div>
-                    <div class="menuFechaIcono">
-                        <p class="menuFecha">17/10/2024 - Jueves</p>
-                        <div class="menuIcono">
-                          <a href="2_03_menuJefe.php"><i class="fa-solid fa-house-user"></i></a>
-                        </div>
-                    </div>
-                </div>
+        <div class="contenedorBotonCerrar1">
+            <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">
+                Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i>
+            </a>
+        </div>
+    </div>
 
-                <div>
-                    <button class="botonMenu"><a href="5_01_listaInformes.php">Generar informes</a></button>
-                </div>
+    <div class="menu2">
+        <h1 class="tituloCentro">Informe detallado</h1>
 
-                <div class="linksMenu1">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
-                    <a href="#" target="_blank" class="linkMenu">Empresa</a>
-                    <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
-                </div>
-
-                <div class="contenedorBotonCerrar1">
-                    <a href="../Controlador/cerrar_sesion.php" class="botonCerrar">Cerrar sesión <i class="fa-sharp fa-solid fa-right-from-bracket botonCerrarIcono"></i></a>
-                </div>
-
-            </div>
-        
-
-            <div class="menu2">
-
-                <h1 class="tituloCentro">Generar informes</h1>               
-
-                <div class="contenedorConfirmarInforme">
-                    <div class="datosConfirmarInforme">
-                        <p>Toma de inventario Id: 03</p>
-                        <p>Nombre trabajador: David Fernando Pérez Ortiz</p>
-                        <p>Id trabajador: *****990</p>
-                        <p>Fecha toma: Octubre 17 de 2024 - Jueves</p>
-                        <p>Id producto: 00001</p>
-                        <p>Nombre producto: Harina 500gr</p>
-                        <p>Cantidad registrada: 300 Unidades</p>
-                        <p>Comentarios: Sin novedades.</p>
-                        <p>Diferencia con información SAP: 0</p>
+        <div class="contenedorConfirmarInforme">
+            <div class="datosConfirmarInforme">
+                <?php if ($mensaje_error): ?>
+                    <p><?= $mensaje_error ?></p>
+                <?php else: ?>
+                    <?php foreach ($filas as $fila): ?>
+                        <p><strong>Toma de inventario Id:</strong> <?= $fila["id_toma"] ?></p>
+                        <p><strong>Nombre trabajador:</strong> <?= $fila["nombre_usuario"] ?> <?= $fila["apellido_usuario"] ?></p>
+                        <p><strong>Id trabajador:</strong> <?= $fila["id_usuario"] ?></p>
+                        <p><strong>Fecha toma:</strong> <?= date("d/m/Y", strtotime($fila["fecha_toma"])) ?></p>
+                        <p><strong>Id producto:</strong> <?= $fila["id_producto"] ?></p>
+                        <p><strong>Nombre producto:</strong> <?= $fila["nombre_ingreso"] ?></p>
+                        <p><strong>Marca producto:</strong> <?= $fila["marca_ingreso"] ?></p>
+                        <p><strong>Cantidad registrada:</strong> <?= $fila["unidades_toma"] ?> Unidades</p>
+                        <p><strong>Unidades SAP:</strong> <?= $fila["stock_ingreso"] ?></p>
+                        <p><strong>Diferencia con información SAP:</strong> <?= $fila["diferencia_toma"] ?></p>
+                        <p><strong>Comentarios:</strong> <?= $fila["comentarios_toma"] ?></p>
                         <br>
                         <p>────────────────────────────────────────────────────────</p>
                         <br>
-                        <p>Toma de inventario Id: 05</p>
-                        <p>Nombre trabajador: David Fernando Pérez Ortiz</p>
-                        <p>Id trabajador: *****990</p>
-                        <p>Fecha toma: Octubre 18 de 2024 - Viernes</p>
-                        <p>Id producto: 00002</p>
-                        <p>Nombre producto: Pastas 500gr</p>
-                        <p>Cantidad registrada: 97 Unidades</p>                       
-                        <p>Comentarios: Sin novedades.</p>
-                        <p>Diferencia con información SAP: 3</p>
-                        <br>
-                        <p>────────────────────────────────────────────────────────</p>
-                        <br>
-                        <p>Total de productos asignados: 2</p>
-                        <p>Total de productos contados: 2</p>
-                        <p>Porcentaje de ejecución de tomas: 100%</p>
-                        <p>Total de productos con diferencias: 1</p>
-                        <p>Porcentaje de productos con diferencias: 50%</p>
-                    </div>
-                </div>
+                    <?php endforeach; ?>
 
-                
-                    <p class="mensajeConfirmar">¿Desea generar el informe de 
-                    acuerdo a la siguiente información?</p>
-                    <div class="botonesSiNo">
-                        <button class="botonSi-No"><a href="5_03_mensajeInforme.php">Si</a></button>
-                        <button class="botonSi-No"><a href="5_01_listaInformes.php">No</a></button>
-                    </div>
+                    <p class="tituloCentro"><strong>Resumen del informe</strong></p>
 
+                        <p><strong>Total de productos asignados:</strong> <?= $total_productos_asignados ?></p>
+                        <p><strong>Total de productos contados:</strong> <?= $total_productos_contados ?></p>
+                        <p><strong>% de ejecución:</strong> <?= round($porcentaje_ejecucion, 2) ?>%</p>
+                        <p><strong>Total diferencias negativas:</strong> <?= $total_diferencias_negativas ?> (<?= round($porcentaje_diferencias_negativas,2) ?>%)</p>
+                        <p><strong>Total diferencias positivas:</strong> <?= $total_diferencias_positivas ?> (<?= round($porcentaje_diferencias_positivas,2) ?>%)</p>
+                        <p><strong>Total diferencias:</strong> <?= $total_diferencias ?> (<?= round($porcentaje_diferencias_totales,2) ?>%)</p>
+                        <br><br>
+
+                    <p><strong>Top 5 discrepancias negativas</strong></p>
+
+                        <?php foreach ($top_negativas as $item): ?>
+                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> ~ Conteo físico: <?= $item['unidades_toma'] ?> | Diferencia: <?= $item['diferencia_toma'] ?></p>
+                        <?php endforeach; ?>
+                        <br><br>
+
+                    <p><strong>Top 5 discrepancias positivas</strong></p>
+
+                        <?php foreach ($top_positivas as $item): ?>
+                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> ~ Conteo físico: <?= $item['unidades_toma'] ?> | Diferencia: +<?= $item['diferencia_toma'] ?></p>
+                        <?php endforeach; ?>
+                        <br>
+
+                <?php endif; ?>
             </div>
-
         </div>
 
-        <div class="menuFooter">
-            <footer>
-                <p>Términos de servicio     ©2025 Inventory Project - InvenPro</p>
-            </footer>
-        </div>
+    </div>
+</div>
 
-        <script src="js/script.js"></script>
+<div class="menuFooter">
+    <footer>
+        <p>Términos de servicio ©2025 Inventory Project - InvenPro</p>
+    </footer>
+</div>
 
+<script src="js/script.js"></script>
 </body>
 </html>
+
+

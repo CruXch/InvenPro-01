@@ -64,30 +64,22 @@ include("../Modelo/validar_sesion.php");
 
                 <h1 class="tituloCentro">Generar informes</h1>     
                 <div class="formInforme">
-                 <form method="POST" action="#">
-                    
-                    
-                        <label for="tipoInforme">Tipo de Informe</label>
-                        <select class="campo1" id="tipoInforme" name="tipo_informe" required>
-                            <option value="detallado">Informe detallado</option>
-                            <option value="simple">Informe simple</option>
-                        </select>
-                    
+                 <form method="POST" action="../Controlador/generar_informe.php">
+                    <label for="tipoInforme">Tipo de Informe</label>
+                    <select class="campo1" id="tipoInforme" name="tipo_informe" required>
+                        <option value="detallado">Informe detallado</option>
+                        <option value="simple">Informe simple</option>
+                    </select>
 
-                    
-                        <label for="fechaInicio">Fecha de Inicio</label>
-                        <input class="campo1" type="date" id="fechaInicio" name="fecha_inicio" required>
-                    
+                    <label for="fechaInicio">Fecha de Inicio</label>
+                    <input class="campo1" type="date" id="fechaInicio" name="fecha_inicio" required>
 
-                    
-                        <label for="fechaFin">Fecha Final</label>
-                        <input class="campo1" type="date" id="fechaFin" name="fecha_fin" required>
-                    
+                    <label for="fechaFin">Fecha Final</label>
+                    <input class="campo1" type="date" id="fechaFin" name="fecha_fin" required>
 
-                    
-                        <button class="ingresar1" type="submit"><a href="5_02_confirmarInforme.php">Buscar</a></button>
-                    
-                  </form>
+                    <button class="ingresar1" type="submit">Buscar</button>
+                 </form>
+
                 </div>
 
             </div>
