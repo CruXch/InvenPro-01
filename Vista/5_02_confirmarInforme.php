@@ -9,7 +9,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Variables de sesión
-$tipoInforme = $_SESSION['tipo_informe'] ?? null;
 $fechaInicio = $_SESSION['fecha_inicio'] ?? null;
 $fechaFin    = $_SESSION['fecha_fin'] ?? null;
 
@@ -21,8 +20,10 @@ $total_diferencias_negativas = 0;
 $total_diferencias_positivas = 0;
 $discrepancias_negativas = [];
 $discrepancias_positivas = [];
+
 $top_negativas = [];
 $top_positivas = [];
+
 $mensaje_error = "";
 
 // --- LÓGICA DE CONSULTA Y PROCESAMIENTO ---
@@ -50,15 +51,12 @@ if ($fechaInicio && $fechaFin) {
 
     $resultado = $con->query($sql);
 
-    if ($resultado && $resultado->num_rows > 0) {
+    if ($resultado->num_rows > 0) {
+        
         while ($fila = $resultado->fetch_assoc()) {
             $filas[] = $fila;
-        }
 
-        // --- Cálculos del resumen ---
-        $total_productos_asignados = count($filas);
-
-        foreach ($filas as $fila) {
+            $total_productos_asignados++;
             if (!empty($fila["unidades_toma"])) {
                 $total_productos_contados++;
             }
@@ -67,6 +65,7 @@ if ($fechaInicio && $fechaFin) {
             if ($diferencia < 0) {
                 $total_diferencias_negativas++;
                 $discrepancias_negativas[] = $fila;
+
             } elseif ($diferencia > 0) {
                 $total_diferencias_positivas++;
                 $discrepancias_positivas[] = $fila;
@@ -74,10 +73,10 @@ if ($fechaInicio && $fechaFin) {
         }
 
         $total_diferencias = $total_diferencias_negativas + $total_diferencias_positivas;
-        $porcentaje_ejecucion = $total_productos_asignados > 0 ? ($total_productos_contados / $total_productos_asignados) * 100 : 0;
-        $porcentaje_diferencias_negativas = $total_productos_asignados > 0 ? ($total_diferencias_negativas / $total_productos_asignados) * 100 : 0;
-        $porcentaje_diferencias_positivas = $total_productos_asignados > 0 ? ($total_diferencias_positivas / $total_productos_asignados) * 100 : 0;
-        $porcentaje_diferencias_totales = $total_productos_asignados > 0 ? ($total_diferencias / $total_productos_asignados) * 100 : 0;
+        $porcentaje_ejecucion = ($total_productos_contados / $total_productos_asignados) * 100;
+        $porcentaje_diferencias_negativas = ($total_diferencias_negativas / $total_productos_asignados) * 100;
+        $porcentaje_diferencias_positivas = ($total_diferencias_positivas / $total_productos_asignados) * 100;
+        $porcentaje_diferencias_totales = ($total_diferencias / $total_productos_asignados) * 100;
 
         usort($discrepancias_negativas, fn($a, $b) => $a['diferencia_toma'] <=> $b['diferencia_toma']);
         $top_negativas = array_slice($discrepancias_negativas, 0, 5);
@@ -88,7 +87,6 @@ if ($fechaInicio && $fechaFin) {
     } else {
         $mensaje_error = "No hay registros disponibles en ese rango de fechas.";
     }
-
 } else {
     $mensaje_error = "Faltan parámetros de fecha.";
 }
@@ -185,15 +183,15 @@ if ($fechaInicio && $fechaFin) {
 
                     <p><strong>Top 5 discrepancias negativas</strong></p>
 
-                        <?php foreach ($top_negativas as $item): ?>
-                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> -- Conteo físico: <?= $item['unidades_toma'] ?> -- Diferencia: <?= $item['diferencia_toma'] ?></p>
+                        <?php foreach ($top_negativas as $negativo): ?>
+                            <p><?= $negativo['nombre_ingreso'] ?> (ID: <?= $negativo['id_producto'] ?>) (ID Toma: <?= $negativo['id_toma'] ?>) -- Cantidad SAP: <?= $negativo['stock_ingreso'] ?> -- Conteo físico: <?= $negativo['unidades_toma'] ?> -- Diferencia: <?= $negativo['diferencia_toma'] ?></p>
                         <?php endforeach; ?>
                         <br><br>
 
                     <p><strong>Top 5 discrepancias positivas</strong></p>
 
-                        <?php foreach ($top_positivas as $item): ?>
-                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) (ID Toma: <?= $item['id_toma'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> -- Conteo físico: <?= $item['unidades_toma'] ?> -- Diferencia: +<?= $item['diferencia_toma'] ?></p>
+                        <?php foreach ($top_positivas as $positivo): ?>
+                            <p><?= $positivo['nombre_ingreso'] ?> (ID: <?= $positivo['id_producto'] ?>) (ID Toma: <?= $positivo['id_toma'] ?>) -- Cantidad SAP: <?= $positivo['stock_ingreso'] ?> -- Conteo físico: <?= $positivo['unidades_toma'] ?> -- Diferencia: +<?= $positivo['diferencia_toma'] ?></p>
                         <?php endforeach; ?>
                         <br>
 
