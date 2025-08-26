@@ -1133,6 +1133,26 @@ h1 {
     justify-content: center; /* Centra el texto horizontalmente */
     align-items: center; /* Centra el texto verticalmente */
 }
+
+
+.botonPdf {
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    font-family: 'MADE Tommy Soft';
+    font-weight: bold;
+    font-size: 24px; /* Tamaño fuente */
+    color: #000000;
+    text-decoration: none;
+    justify-content: center;
+    align-items: center;
+    width: 275px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #FF9E5B;
+    border: solid 1pt black; /* agrega borde */
+    box-shadow: none; /* Elimina sombras del estilo */
+}
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 
 

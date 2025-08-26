@@ -180,6 +180,8 @@ if ($fechaInicio && $fechaFin) {
             </div>
         </div>
 
+        <a href="../Controlador/exportar_pdf_simple.php" class="botonPdf">Descargar PDF</a>
+
     </div>
 </div>
 
