@@ -171,14 +171,14 @@ if ($fechaInicio && $fechaFin) {
                     <p><strong>Top 5 discrepancias negativas</strong></p>
 
                         <?php foreach ($top_negativas as $item): ?>
-                            <p><?= $item['producto'] ?> (ID: <?= $item['id'] ?>) -- (ID Toma: <?= $item['idToma'] ?>) (ID Ingreso: <?= $item['idIngreso'] ?>) -- Cantidad SAP: <?= $item['unidadesStock'] ?> ~ Cantidad conteo físico: <?= $item['unidadesToma'] ?> |--| Diferencia: <?= $item['diferencia'] ?></p>
+                            <p><?= $item['producto'] ?> (ID: <?= $item['id'] ?>) (ID Toma: <?= $item['idToma'] ?>) -- Cantidad SAP: <?= $item['unidadesStock'] ?> -- Cantidad conteo físico: <?= $item['unidadesToma'] ?> -- Diferencia: <?= $item['diferencia'] ?></p>
                         <?php endforeach; ?>
                         <br><br>
 
                     <p><strong>Top 5 discrepancias positivas</strong></p>
 
                         <?php foreach ($top_positivas as $item): ?>
-                            <p><?= $item['producto'] ?> (ID: <?= $item['id'] ?>) -- (ID Toma: <?= $item['idToma'] ?>) (ID Ingreso: <?= $item['idIngreso'] ?>) -- Cantidad SAP: <?= $item['unidadesStock'] ?> ~ Cantidad conteo físico: <?= $item['unidadesToma'] ?> |--| Diferencia: +<?= $item['diferencia'] ?></p>
+                            <p><?= $item['producto'] ?> (ID: <?= $item['id'] ?>) (ID Toma: <?= $item['idToma'] ?>) -- Cantidad SAP: <?= $item['unidadesStock'] ?> -- Cantidad conteo físico: <?= $item['unidadesToma'] ?> -- Diferencia: +<?= $item['diferencia'] ?></p>
                         <?php endforeach; ?>
                         <br>
 

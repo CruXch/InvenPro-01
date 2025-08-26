@@ -186,14 +186,14 @@ if ($fechaInicio && $fechaFin) {
                     <p><strong>Top 5 discrepancias negativas</strong></p>
 
                         <?php foreach ($top_negativas as $item): ?>
-                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> ~ Conteo físico: <?= $item['unidades_toma'] ?> | Diferencia: <?= $item['diferencia_toma'] ?></p>
+                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> -- Conteo físico: <?= $item['unidades_toma'] ?> -- Diferencia: <?= $item['diferencia_toma'] ?></p>
                         <?php endforeach; ?>
                         <br><br>
 
                     <p><strong>Top 5 discrepancias positivas</strong></p>
 
                         <?php foreach ($top_positivas as $item): ?>
-                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> ~ Conteo físico: <?= $item['unidades_toma'] ?> | Diferencia: +<?= $item['diferencia_toma'] ?></p>
+                            <p><?= $item['nombre_ingreso'] ?> (ID: <?= $item['id_producto'] ?>) (ID Toma: <?= $item['id_toma'] ?>) -- Cantidad SAP: <?= $item['stock_ingreso'] ?> -- Conteo físico: <?= $item['unidades_toma'] ?> -- Diferencia: +<?= $item['diferencia_toma'] ?></p>
                         <?php endforeach; ?>
                         <br>
 
