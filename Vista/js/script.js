@@ -64,6 +64,8 @@ if (boton && submenu && botonInventario && icono) {
 
 
 
+
+
 //-----------------3_01_01_registrarUsuarios----------------
 function registroUsuario(){
     let respuesta = confirm("¿Desea registrar el siguiente usuario?")

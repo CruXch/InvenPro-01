@@ -1,3 +1,9 @@
+<?php
+include ("../Modelo/conexion.php");
+$con = conexion();
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,6 +16,13 @@
     <title>Restablecer contraseña</title>
 </head>
 <body>
+
+<?php if (isset($_GET['error_codigo']) && $_GET['error_codigo'] == 1): ?>
+    <script>
+        alert("El código ingresado es incorrecto.");
+    </script>
+<?php endif; ?>
+
 
     <header>
         <nav>
@@ -31,16 +44,27 @@
         </nav>
     </header>
 
-    <div class="formulario">
-        <h1>Restablecer Contraseña</h1>
-        <form action="" method="post">
+<div class="formulario">
+    <h1>Restablecer Contraseña</h1>
 
-            <input class="campo2" type="password" name="nueva-contra" id="nueva-contra" placeholder="Nueva contraseña"> <br>
-            <input class="campo2" type="password" name="confirmar-contra" id="confirmar-contra" placeholder="Confirmar contraseña"> <br> <br> <br>
-            <button class="ingresar1" type="submit">Aceptar</button> <br> <br>
+    <!-- Formulario para Enviar Código -->
+    <form action="../Controlador/enviar_codigo.php" method="post" id="form-enviar-codigo">
+        <span class="mensaje2">Se enviará un código al correo electrónico que fue registrado para comprobar su identidad.</span> <br>
+        <input class="campo2" type="text" name="correo" placeholder="Correo electrónico" required> <br>
+        
+        <!-- Botón Enviar Código -->
+        <button class="ingresar1" type="submit" name="accion" value="enviar">Enviar código</button> <br><br>
+    </form>
 
-        </form>
-    </div>
+    <br><br>
+
+    <!-- Formulario para Ingresar el Código y Continuar -->
+    <form action="../Controlador/verificar_codigo.php" method="post" id="form-verificar-codigo">
+        <input class="campo2" type="text" name="codigo2" placeholder="Código" required> <br>
+        <button class="ingresar1" type="submit">Siguiente</button> <br>
+    </form>
+</div>
+
 
     <footer>
         <p>Términos de servicio     ©2025 Inventory Project - InvenPro</p>

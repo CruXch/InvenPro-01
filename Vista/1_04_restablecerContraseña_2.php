@@ -1,3 +1,16 @@
+<?php
+session_start();
+include("../Modelo/conexion.php");
+$con = conexion();
+
+// Verificamos si la sesión de código ha sido verificada
+if (!isset($_SESSION['codigo_verificado']) || $_SESSION['codigo_verificado'] !== true) {
+    // Si no está verificado, redirigimos de vuelta
+    header("Location: 1_03_restablecerContraseña_1.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -33,17 +46,12 @@
 
     <div class="formulario">
         <h1>Restablecer Contraseña</h1>
-        <form action="" method="post">
+        <form action="../Controlador/cambiar_contra.php" method="post" id="restablecer-contra">
 
-            <span class="mensaje2">Se enviará un código al correo electrónico que fue registrado para comprobar su identidad.</span> <br>
-            <input class="campo2" type="text" name="correo" id="correo" placeholder="Correo electrónico"> <br>
-            <button class="ingresar1" type="submit">Enviar código</button> <br> <br>
+            <input class="campo2" type="password" name="nueva-contra" id="nueva-contra" placeholder="Nueva contraseña"> <br>
+            <input class="campo2" type="password" name="confirmar-contra" id="confirmar-contra" placeholder="Confirmar contraseña"> <br> <br> <br>
+            <button class="ingresar1" type="submit">Aceptar</button> <br> <br>
 
-            <input class="campo2" type="text" name="codigo" id="codigo" placeholder="Código"> <br>
-            <span class="mensaje2">¿No recibió el código?</span> <br>
-            <a class="mensaje1" href="#">Reenviar código</a> <br>
-
-            <button class="ingresar1" type="submit">Siguiente</button> <br>
         </form>
     </div>
 
