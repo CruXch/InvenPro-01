@@ -432,7 +432,7 @@ h1 {
 
 .menuFechaIcono {
     display: flex;
-    flex-direction: row; 
+    flex-direction: column; 
 }
 
 .menuFecha {
@@ -443,8 +443,8 @@ h1 {
 }
 
 .menuIcono {
-    margin-top: 10px;
-    margin-inline-start: 150px;
+    margin-top: -40px;
+    margin-inline-start: 300px;
 }
 
 .menuIcono:hover {

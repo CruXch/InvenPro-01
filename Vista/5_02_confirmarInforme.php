@@ -121,7 +121,7 @@ if ($fechaInicio && $fechaFin) {
                 </div>
             </div>
             <div class="menuFechaIcono">
-                <p class="menuFecha">17/10/2024 - Jueves</p>
+                <p class="menuFecha"><?= fechaConDia() ?></p>
                 <div class="menuIcono">
                   <a href="2_03_menuJefe.php"><i class="fa-solid fa-house-user"></i></a>
                 </div>

@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cantidadConteo'], $_PO
         'id_toma' => $_POST['id_toma'],
         'id_producto' => $_POST['id_producto'],
         'nombre_producto' => $_POST['nombre_producto'],
-        'id_ingreso' => $_POST['id_ingreso'] // 👈 ahora también lo guardamos
+        'id_ingreso' => $_POST['id_ingreso'] //  ahora también lo guardamos
     ];
 }
 
@@ -24,7 +24,7 @@ if (isset($_POST['confirmar_toma']) && isset($_SESSION['datos_toma'])) {
     $datos = $_SESSION['datos_toma'];
     $id_toma = $datos['id_toma'];
     $id_producto = $datos['id_producto'];
-    $id_ingreso = $datos['id_ingreso']; // 👈 lo usamos
+    $id_ingreso = $datos['id_ingreso']; //  lo usamos
     $cantidad = $datos['cantidad'];
     $comentarios = $datos['comentarios'];
 
@@ -104,7 +104,7 @@ $fecha_actual = strftime('%d/%m/%Y - %A');
                 </div>
             </div>
             <div class="menuFechaIcono">
-                <p class="menuFecha">17/10/2024 - Jueves</p>
+                <p class="menuFecha"><?= fechaConDia() ?></p>
                 <div class="menuIcono">
                     <a href="2_02_menuContador.php"><i class="fa-solid fa-house-user"></i></a>
                 </div>

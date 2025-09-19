@@ -1,5 +1,8 @@
 <?php
 include("../Modelo/validar_sesion.php");
+include ("../Modelo/conexion.php");
+$con = conexion();
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +39,7 @@ include("../Modelo/validar_sesion.php");
                             </div>
                     </div>
                     <div class="menuFechaIcono">
-                        <p class="menuFecha">17/10/2024 - Jueves</p>
+                        <p class="menuFecha"><?= fechaConDia() ?></p>
                         <div class="menuIcono">
                           <a href="2_02_menuContador.php"><i class="fa-solid fa-house-user"></i></a>
                         </div>

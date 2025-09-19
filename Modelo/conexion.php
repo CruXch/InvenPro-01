@@ -28,4 +28,19 @@ function conexion() {
     return $conectar;
 }
 
+//Función para la fecha en las pantallas de los usuarios con los dias de la semana en español
+function fechaConDia() {
+    $dias = [
+        'Sunday' => 'Domingo',
+        'Monday' => 'Lunes',
+        'Tuesday' => 'Martes',
+        'Wednesday' => 'Miércoles',
+        'Thursday' => 'Jueves',
+        'Friday' => 'Viernes',
+        'Saturday' => 'Sábado'
+    ];
+
+    return date("d/m/Y") . " - " . $dias[date("l")];
+}
+
 
