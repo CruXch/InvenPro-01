@@ -16,6 +16,8 @@ CREATE TABLE Tbl_Usuarios (
     apellido_usuario VARCHAR(30) NOT NULL,
     correo_usuario VARCHAR(35) NOT NULL,
     telefono_usuario VARCHAR(15) NOT NULL,
+    codigo_recuperacion VARCHAR(6),
+    expiracion_codigo DATETIME,
     id_rol INT NOT NULL,
     FOREIGN KEY (id_rol) REFERENCES Tbl_Roles(id_rol) 
 ) 
