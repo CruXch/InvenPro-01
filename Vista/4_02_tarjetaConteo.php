@@ -3,25 +3,30 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// Obtener el ID de la toma desde la URL (GET). 
+// Se usa el operador null coalescing (??) para asignar null si no se pasa el parámetro.
 $id_toma = $_GET['id_toma'] ?? null;
 
+// Si no se recibe el ID de la toma, se detiene la ejecución con un mensaje de error.
 if (!$id_toma) {
     die("Error: ID de toma no proporcionado.");
 }
 
-// Consultar la toma actual
+// Consultar la información de la toma actual a partir de su ID
 $sql = "SELECT * FROM Tbl_Tomas_De_Inventario WHERE id_toma = ?";
 $stmt = $con->prepare($sql);
-$stmt->bind_param("i", $id_toma);
+$stmt->bind_param("i", $id_toma); // "i" indica que el parámetro es un entero
 $stmt->execute();
 $resultado = $stmt->get_result();
-$toma = $resultado->fetch_assoc();
+$toma = $resultado->fetch_assoc(); // Obtener los datos de la toma como array asociativo
 
+// Validar que la toma exista. Si no se encuentra, detener la ejecución.
 if (!$toma) {
     die("Error: Toma no encontrada.");
 }
 
-// Consultar productos relacionados con esta toma
+// Consultar los productos relacionados con esta toma de inventario,
+// asignados específicamente al usuario que tiene la sesión activa.
 $sqlProductos = "
     SELECT 
         p.id_producto, 
@@ -31,16 +36,21 @@ $sqlProductos = "
     INNER JOIN Tbl_Productos_Usuarios_Toma put 
         ON p.id_producto = put.id_producto
     WHERE put.id_toma = ? AND put.id_usuario = ?";
+
+// Preparar la consulta con los parámetros: id_toma y id_usuario (de la sesión)
 $stmtProductos = $con->prepare($sqlProductos);
 $stmtProductos->bind_param("ii", $id_toma, $_SESSION['id_usuario']);
 $stmtProductos->execute();
 $resultadoProductos = $stmtProductos->get_result();
 
+// Guardar los productos encontrados en un array
 $productos = [];
 while ($fila = $resultadoProductos->fetch_assoc()) {
     $productos[] = $fila;
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

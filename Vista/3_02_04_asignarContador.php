@@ -1,23 +1,33 @@
 <?php
+// Verifica que el usuario tenga sesión activa antes de acceder
 include("../Modelo/validar_sesion.php");
+
+// Incluye la conexión a la base de datos
 include("../Modelo/conexion.php");
 $con = conexion();
 
-// Validar recepción de datos
+// Validar que el formulario haya enviado todos los datos necesarios
+// Si falta alguno, se muestra un mensaje y se detiene la ejecución
 if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados_id'])) {
     echo "No se recibieron los datos necesarios.";
     exit;
 }
 
+// Escapar la fecha recibida para evitar inyección SQL
 $fecha = mysqli_real_escape_string($con, $_POST['fecha']);
+
+// Guardar en variables los arrays con productos seleccionados e IDs
 $productos = $_POST['productos_seleccionados'];
 $productosId = $_POST['productos_seleccionados_id'];
 
-// Consulta para obtener los contadores disponibles
+// Consulta para obtener todos los usuarios con rol de "Contador" (id_rol = 2)
 $sql_contadores = "SELECT id_usuario, nombre_usuario, apellido_usuario 
                    FROM Tbl_Usuarios WHERE id_rol = 2";
+
+// Ejecutar la consulta y obtener el resultado
 $resultado_contadores = mysqli_query($con, $sql_contadores);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

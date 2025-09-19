@@ -1,15 +1,20 @@
 <?php
+// Verifica que el usuario tenga sesión activa antes de acceder
 include("../Modelo/validar_sesion.php");
+
+// Incluye el archivo de conexión a la base de datos
 include("../Modelo/conexion.php");
 $con = conexion();
 
-// Establecer el locale en español antes de formatear fechas
-setlocale(LC_TIME, 'spanish'); // Windows 
+// Configura el idioma para formatear fechas en español
+// (En Windows se usa 'spanish', en Linux puede ser 'es_ES.UTF-8')
+setlocale(LC_TIME, 'spanish');
 
-// Obtener el id del usuario logueado
+// Obtener el ID del usuario que está logueado desde la sesión
 $id_usuario = $_SESSION['id_usuario'];
 
-// Consultar las tomas asignadas a este usuario (contador) Solo las que esten pendientes por hacer
+// Consulta SQL para obtener las tomas de inventario asignadas al usuario actual
+// Solo se traen aquellas que aún están en estado "pendiente"
 $sql = "SELECT 
             tdi.id_toma, 
             tdi.fecha_toma
@@ -21,19 +26,31 @@ $sql = "SELECT
             ta.id_usuario = ?
             AND tdi.estado_toma = 'pendiente'";
 
-
+// Preparar la consulta para evitar inyecciones SQL
 $stmt = $con->prepare($sql);
+
+// Vincular el parámetro (i = integer) con el id del usuario logueado
 $stmt->bind_param("i", $id_usuario);
+
+// Ejecutar la consulta
 $stmt->execute();
+
+// Obtener el resultado de la ejecución
 $resultado = $stmt->get_result();
+
+// Crear un arreglo para almacenar todas las tomas encontradas
 $tomas = [];
 
+// Recorrer los resultados y guardarlos en el arreglo
 while ($fila = $resultado->fetch_assoc()) {
     $tomas[] = $fila;
 }
 
+// Cerrar la consulta preparada
 $stmt->close();
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

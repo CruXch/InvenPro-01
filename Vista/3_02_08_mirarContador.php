@@ -3,22 +3,30 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
-// Validar recepción de datos
+// Validar que se reciban todos los datos esperados por la URL (GET)
+// En este caso: id del usuario, fecha y los productos seleccionados con sus IDs
 if (!isset($_GET['id_usuario']) || !isset($_GET['fecha']) || !isset($_GET['productos_seleccionados']) || !isset($_GET['productos_seleccionados_id'])) {
     echo "No se recibieron los datos necesarios.";
-    exit;
+    exit; // Si falta algún dato, se interrumpe la ejecución
 }
 
-$id = $_GET['id_usuario'];
-$fecha = $_GET['fecha'];
-$productos = $_GET['productos_seleccionados'];
-$productosId = $_GET['productos_seleccionados_id'];
+// Guardar los valores recibidos en variables para usarlos después
+$id = $_GET['id_usuario'];                   // Identificador del usuario
+$fecha = $_GET['fecha'];                     // Fecha recibida
+$productos = $_GET['productos_seleccionados'];       // Lista de productos seleccionados
+$productosId = $_GET['productos_seleccionados_id']; // IDs de los productos seleccionados
 
+// Consulta SQL para obtener los datos del usuario que corresponde al id recibido
 $sql = "SELECT * FROM tbl_usuarios WHERE id_usuario='$id'";
+
+// Ejecutar la consulta
 $consulta = mysqli_query($con, $sql);
+
+// Obtener la fila con los resultados de la consulta en formato asociativo
 $fila = mysqli_fetch_assoc($consulta);
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

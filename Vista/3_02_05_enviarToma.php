@@ -1,37 +1,53 @@
 <?php
+// Verifica que el usuario tenga sesión activa antes de acceder
 include("../Modelo/validar_sesion.php");
+
+// Incluye la conexión a la base de datos
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// Validación: comprobar que todos los datos esperados fueron enviados por POST
 if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados_id']) || !isset($_POST['contadores_asignados'])) {
     echo "Faltan datos necesarios para generar el resumen.";
     exit;
 }
 
+// Escapar la fecha recibida para evitar inyección SQL
 $fecha = mysqli_real_escape_string($con, $_POST['fecha']);
 
-// Asegurarse de que los productos y contadores sean arrays
+// Asegurarse de que los productos sean un array (si no, convertirlo en array)
 $productos = $_POST['productos_seleccionados'];
 if (!is_array($productos)) {
     $productos = [$productos];
 }
 
+// Asegurarse de que los IDs de productos sean un array (si no, convertirlos)
 $productosId = $_POST['productos_seleccionados_id'];
 if (!is_array($productosId)) {
     $productosId = [$productosId];
 }
 
+// Asegurarse de que los contadores sean un array (si no, convertirlos)
 $contadores = $_POST['contadores_asignados'];
 if (!is_array($contadores)) {
     $contadores = [$contadores];
 }
 
-// Obtener nombres de los ingresos de productos seleccionados
+// -------------------- OBTENER NOMBRES DE LOS PRODUCTOS --------------------
+
+// Arreglo para guardar la información de los productos seleccionados
 $productosIdInfo = [];
+
+// Recorrer todos los IDs de productos seleccionados
 foreach ($productosId as $id_producto) {
+    // Escapar el valor para seguridad
     $id_escapado = mysqli_real_escape_string($con, $id_producto);
+
+    // Consultar el nombre del producto en la base de datos
     $sqlProductoId = "SELECT nombre_producto FROM tbl_productos WHERE id_producto = '$id_escapado'";
     $resProductoId = mysqli_query($con, $sqlProductoId);
+
+    // Si se encontró el producto, guardarlo en el arreglo
     if ($fila = mysqli_fetch_assoc($resProductoId)) {
         $productosIdInfo[] = [
             'id' => $id_producto,
@@ -40,24 +56,41 @@ foreach ($productosId as $id_producto) {
     }
 }
 
+// -------------------- OBTENER NOMBRES DE LOS CONTADORES --------------------
 
-// Obtener nombres de los contadores seleccionados
+// Arreglo para guardar la información de los contadores seleccionados
 $contadoresInfo = [];
+
+// Recorrer todos los IDs de contadores seleccionados
 foreach ($contadores as $id_contador) {
+    // Escapar el valor para seguridad
     $id_escapado = mysqli_real_escape_string($con, $id_contador);
+
+    // Consultar el nombre y apellido del contador
     $sqlContador = "SELECT nombre_usuario, apellido_usuario FROM Tbl_Usuarios WHERE id_usuario = '$id_escapado'";
     $resContador = mysqli_query($con, $sqlContador);
+
+    // Si se encontró, concatenar nombre y apellido y guardarlo en el arreglo
     if ($fila = mysqli_fetch_assoc($resContador)) {
         $contadoresInfo[] = $fila['nombre_usuario'] . " " . $fila['apellido_usuario'];
     }
 }
 
-// Formatear fecha para mostrar
+// -------------------- FORMATEAR FECHA PARA MOSTRAR --------------------
+
+// Crear objeto de fecha a partir de la fecha recibida
 $fechaObj = new DateTime($fecha);
+
+// Configurar idioma español para mostrar la fecha
 setlocale(LC_TIME, 'spanish');
+
+// Dar formato amigable a la fecha (ejemplo: "Lunes, 15 de Septiembre de 2025")
 $fechaFormateada = strftime("%A, %e de %B de %Y", $fechaObj->getTimestamp());
+
+// Poner en mayúscula la primera letra
 $fechaFormateada = ucfirst($fechaFormateada);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

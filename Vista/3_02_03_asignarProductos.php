@@ -3,27 +3,40 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// Verifica que la URL traiga un parámetro "fecha"
+// Si no lo recibe, muestra un mensaje de error y detiene la ejecución
 if (!isset($_GET['fecha'])) {
     echo "No se recibió una fecha válida.";
     exit;
 }
 
+// Decodifica la fecha recibida en la URL y la limpia para evitar inyección SQL
 $fechaRecibida = urldecode($_GET['fecha']);
 $fechaEscapada = mysqli_real_escape_string($con, $fechaRecibida);
 
+// Consulta los productos registrados en la fecha seleccionada
+// Une las tablas de ingresos y productos para obtener nombre, marca y stock
 $sql = "SELECT p.id_producto, p.nombre_producto, i.id_ingreso, i.marca_ingreso, i.stock_ingreso
         FROM tbl_ingresos_csv i
         INNER JOIN tbl_productos p ON i.id_producto = p.id_producto
         WHERE i.fecha_ingreso = '$fechaEscapada'";
 
+// Ejecuta la consulta y guarda el resultado
 $resultado = mysqli_query($con, $sql);
 
-// Formatear la fecha
+// Convierte la fecha recibida a un objeto DateTime para formatearla
 $fecha = new DateTime($fechaRecibida);
+
+// Configura la localización a español para mostrar la fecha con nombres de días y meses
 setlocale(LC_TIME, 'spanish');
+
+// Da formato a la fecha: ejemplo "Lunes, 16 de Septiembre de 2025 - 03:45 PM"
 $fechaFormateada = strftime("%A, %e de %B de %Y - %I:%M %p", $fecha->getTimestamp());
+
+// Asegura que la primera letra esté en mayúscula
 $fechaFormateada = ucfirst($fechaFormateada);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

@@ -3,6 +3,7 @@ include("../Modelo/validar_sesion.php");
 include ("../Modelo/conexion.php");
 $con = conexion();
 
+//Consulta en la base de datos para traer información de usuarios contador y jefe por su rol (2 y 3)
 $sql = "SELECT * FROM Tbl_Usuarios WHERE id_rol IN (2, 3)";
 $consulta = mysqli_query($con, $sql);
 

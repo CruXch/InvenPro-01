@@ -3,31 +3,34 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
-// Iniciar sesión solo si no está activa
+// Iniciar sesión solo si aún no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Variables de sesión
+// Recuperar variables de sesión con las fechas de inicio y fin del informe
 $fechaInicio = $_SESSION['fecha_inicio'] ?? null;
 $fechaFin    = $_SESSION['fecha_fin'] ?? null;
 
-// Inicializamos arrays y variables para el informe
-$filas = [];
-$total_productos_asignados = 0;
-$total_productos_contados = 0;
-$total_diferencias_negativas = 0;
-$total_diferencias_positivas = 0;
-$discrepancias_negativas = [];
-$discrepancias_positivas = [];
+// Inicializamos arrays y contadores que se usarán en el informe
+$filas = []; // Guardará todas las filas resultantes de la consulta
+$total_productos_asignados = 0; // Total de productos asignados a contadores
+$total_productos_contados = 0;  // Total de productos que sí fueron contados
+$total_diferencias_negativas = 0; // Cantidad de discrepancias negativas
+$total_diferencias_positivas = 0; // Cantidad de discrepancias positivas
+$discrepancias_negativas = []; // Lista de discrepancias negativas
+$discrepancias_positivas = []; // Lista de discrepancias positivas
 
+// Top 5 discrepancias en cada categoría
 $top_negativas = [];
 $top_positivas = [];
 
+// Mensaje de error en caso de no encontrar registros o faltar parámetros
 $mensaje_error = "";
 
 // --- LÓGICA DE CONSULTA Y PROCESAMIENTO ---
 if ($fechaInicio && $fechaFin) {
+    // Consulta SQL para obtener las tomas y sus detalles en el rango de fechas dado
     $sql = "SELECT 
                 ti.id_toma,
                 u.nombre_usuario,
@@ -51,16 +54,21 @@ if ($fechaInicio && $fechaFin) {
 
     $resultado = $con->query($sql);
 
+    // Si hay registros en el rango de fechas
     if ($resultado->num_rows > 0) {
         
         while ($fila = $resultado->fetch_assoc()) {
-            $filas[] = $fila;
+            $filas[] = $fila; // Guardamos cada fila en el arreglo principal
 
+            // Contamos productos asignados
             $total_productos_asignados++;
+
+            // Contamos solo los productos efectivamente tomados
             if (!empty($fila["unidades_toma"])) {
                 $total_productos_contados++;
             }
 
+            // Clasificamos diferencias
             $diferencia = $fila["diferencia_toma"];
             if ($diferencia < 0) {
                 $total_diferencias_negativas++;
@@ -72,25 +80,32 @@ if ($fechaInicio && $fechaFin) {
             }
         }
 
+        // Totales y porcentajes
         $total_diferencias = $total_diferencias_negativas + $total_diferencias_positivas;
         $porcentaje_ejecucion = ($total_productos_contados / $total_productos_asignados) * 100;
         $porcentaje_diferencias_negativas = ($total_diferencias_negativas / $total_productos_asignados) * 100;
         $porcentaje_diferencias_positivas = ($total_diferencias_positivas / $total_productos_asignados) * 100;
         $porcentaje_diferencias_totales = ($total_diferencias / $total_productos_asignados) * 100;
 
+        // Ordenar discrepancias negativas de menor a mayor (más negativas primero)
         usort($discrepancias_negativas, fn($a, $b) => $a['diferencia_toma'] <=> $b['diferencia_toma']);
         $top_negativas = array_slice($discrepancias_negativas, 0, 5);
 
+        // Ordenar discrepancias positivas de mayor a menor (más positivas primero)
         usort($discrepancias_positivas, fn($a, $b) => $b['diferencia_toma'] <=> $a['diferencia_toma']);
         $top_positivas = array_slice($discrepancias_positivas, 0, 5);
 
     } else {
+        // Si no hay registros en ese rango
         $mensaje_error = "No hay registros disponibles en ese rango de fechas.";
     }
 } else {
+    // Si faltan las fechas en sesión
     $mensaje_error = "Faltan parámetros de fecha.";
 }
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

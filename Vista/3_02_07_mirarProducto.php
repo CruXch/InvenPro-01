@@ -3,14 +3,23 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// Validación: asegurarse de que se hayan recibido el id del producto y la fecha
 if (!isset($_GET['id_producto']) || !isset($_GET['fecha'])) {
     echo "El id del producto o fecha no han sido recibidos";
     exit;
 }
 
+// Guardar el id de producto recibido por la URL
 $id = $_GET['id_producto'];
+
+// Guardar la fecha recibida por la URL
 $fechaRecibida = $_GET['fecha'];
 
+// Consulta SQL para obtener información detallada del producto
+// - Se obtienen todos los campos de la tabla productos (p.*)
+// - Se hace INNER JOIN con la tabla categorías (c) para obtener su nombre
+// - Se hace LEFT JOIN con subcategorías (s) para que, incluso si el producto no tiene subcategoría, igual se devuelva el registro
+//   (si fuera INNER JOIN, los productos sin subcategoría quedarían fuera del resultado)
 $sql = "SELECT p.*, 
                c.nombre_categoria, 
                s.id_subcategoria,
@@ -18,16 +27,16 @@ $sql = "SELECT p.*,
         FROM tbl_productos p
         INNER JOIN tbl_categorias c ON p.id_categoria = c.id_categoria
         LEFT JOIN tbl_subcategorias s ON c.id_subcategoria = s.id_subcategoria 
-        /* Se usa LEFT JOIN porque si se usa INNER JOIN y hay valores NULL (por ejemplo, sin subcategoría), la consulta no devuelve resultados */
-        /* INNER JOIN solo trae datos cuando todas las tablas tienen coincidencias; LEFT JOIN permite traer productos aunque no tengan subcategoría */
         WHERE p.id_producto = '$id'";
 
-
+// Ejecutar la consulta en la base de datos
 $consulta = mysqli_query($con, $sql);
 
+// Obtener la fila con los resultados de la consulta
 $fila = mysqli_fetch_array($consulta);
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

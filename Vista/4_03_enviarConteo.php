@@ -3,38 +3,43 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// Inicia la sesión solo si aún no está iniciada
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Guardar datos enviados desde 4_02
+// Guardar datos enviados desde la pantalla 4_02
+// Se validan que vengan todos los parámetros esperados vía POST
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['cantidadConteo'], $_POST['comentariosConteo'], $_POST['id_toma'], $_POST['id_producto'], $_POST['nombre_producto'], $_POST['id_ingreso'])) {
+    // Se almacenan los datos en la sesión para usarlos posteriormente
     $_SESSION['datos_toma'] = [
         'cantidad' => $_POST['cantidadConteo'],
         'comentarios' => $_POST['comentariosConteo'],
         'id_toma' => $_POST['id_toma'],
         'id_producto' => $_POST['id_producto'],
         'nombre_producto' => $_POST['nombre_producto'],
-        'id_ingreso' => $_POST['id_ingreso'] //  ahora también lo guardamos
+        'id_ingreso' => $_POST['id_ingreso'] // Se guarda también el id del ingreso
     ];
 }
 
-// Si se confirma la toma
+// Si se confirma la toma desde el formulario
 if (isset($_POST['confirmar_toma']) && isset($_SESSION['datos_toma'])) {
+    // Recuperar los datos almacenados en la sesión
     $datos = $_SESSION['datos_toma'];
     $id_toma = $datos['id_toma'];
     $id_producto = $datos['id_producto'];
-    $id_ingreso = $datos['id_ingreso']; //  lo usamos
+    $id_ingreso = $datos['id_ingreso']; // Se usará para consultar el stock
     $cantidad = $datos['cantidad'];
     $comentarios = $datos['comentarios'];
 
-    // 1. Obtener el stock del ingreso exacto
+    // 1. Consultar el stock real del ingreso exacto en la base de datos
     $sqlStock = "SELECT stock_ingreso FROM tbl_Ingresos_Csv WHERE id_ingreso = ?";
     $stmtStock = $con->prepare($sqlStock);
     $stmtStock->bind_param("i", $id_ingreso);
     $stmtStock->execute();
     $resultadoStock = $stmtStock->get_result();
 
+    // Si existe registro, obtener el stock actual; de lo contrario, asignar 0
     if ($filaStock = $resultadoStock->fetch_assoc()) {
         $stock_actual = $filaStock['stock_ingreso'];
     } else {
@@ -42,36 +47,42 @@ if (isset($_POST['confirmar_toma']) && isset($_SESSION['datos_toma'])) {
     }
     $stmtStock->close();
 
-    // 2. Calcular diferencia
+    // 2. Calcular la diferencia entre lo contado y el stock registrado
     $diferencia = $cantidad - $stock_actual;
 
-    // 3. Guardar resultados en la tabla de tomas
+    // 3. Actualizar la toma de inventario en la base de datos con los resultados
     $sql = "UPDATE Tbl_Tomas_De_Inventario 
             SET unidades_toma = ?, comentarios_toma = ?, estado_toma = 'completada', diferencia_toma = ?
             WHERE id_toma = ?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("isii", $cantidad, $comentarios, $diferencia, $id_toma);
 
+    // Si se actualiza correctamente, se limpia la sesión y redirige al mensaje de éxito
     if ($stmt->execute()) {
-        unset($_SESSION['datos_toma']);
+        unset($_SESSION['datos_toma']); // Se eliminan los datos de la sesión
         header("Location: 4_04_mensajeConteo.php");
         exit;
     } else {
+        // En caso de error, mostrar mensaje
         echo "Error al guardar los datos: " . $con->error;
     }
 }
 
-// Si no hay datos, regresar a 4_02
+// Si no existen datos en la sesión, regresar a la pantalla 4_02
 if (!isset($_SESSION['datos_toma'])) {
     header("Location: 4_02_tarjetaConteo.php");
     exit;
 }
 
+// Recuperar los datos para mostrarlos en la vista
 $datos = $_SESSION['datos_toma'];
 
+// Establecer formato de fecha en español
 setlocale(LC_TIME, 'spanish');
 $fecha_actual = strftime('%d/%m/%Y - %A');
+
 ?>
+
 
 
 <!DOCTYPE html>
