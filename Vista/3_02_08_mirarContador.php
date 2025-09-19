@@ -1,5 +1,23 @@
 <?php
 include("../Modelo/validar_sesion.php");
+include("../Modelo/conexion.php");
+$con = conexion();
+
+// Validar recepción de datos
+if (!isset($_GET['id_usuario']) || !isset($_GET['fecha']) || !isset($_GET['productos_seleccionados']) || !isset($_GET['productos_seleccionados_id'])) {
+    echo "No se recibieron los datos necesarios.";
+    exit;
+}
+
+$id = $_GET['id_usuario'];
+$fecha = $_GET['fecha'];
+$productos = $_GET['productos_seleccionados'];
+$productosId = $_GET['productos_seleccionados_id'];
+
+$sql = "SELECT * FROM tbl_usuarios WHERE id_usuario='$id'";
+$consulta = mysqli_query($con, $sql);
+$fila = mysqli_fetch_assoc($consulta);
+
 ?>
 
 <!DOCTYPE html>
@@ -72,22 +90,28 @@ include("../Modelo/validar_sesion.php");
                 <h1 class="tituloCentro">Información contador</h1>
 
                     <div class="contenedorConfirmar">
-                        <div class="datosConfirmar1">
-                            <p class="datos1Fuente">Nombre: David Fernando</p>
-                            <p class="datos1Fuente">Apellido: Pérez Ortiz</p>
-                            <p class="datos1Fuente">Cédula: 11111111</p>
-                            <p class="datos1Fuente">Contraseña: David-1-perez</p>
-                            <p class="datos1Fuente">Tipo de usuario: Contador</p>
-                            <p class="datos1Fuente">Correo electrónico: davidperez234@gmail.com</p>
-                            <p class="datos1Fuente">Número de celular: 3225463423</p>                            
+                        <div class="datosConfirmar1"><br>
+                            <p class="datos1Fuente">Nombre: <?= $fila['nombre_usuario']?></p>
+                            <p class="datos1Fuente">Apellido: <?= $fila['apellido_usuario']?></p>
+                            <p class="datos1Fuente">Cédula: <?= $fila['id_usuario']?></p>
+                            <p class="datos1Fuente">Correo electrónico: <?= $fila['correo_usuario']?></p>
+                            <p class="datos1Fuente">Número de celular: <?= $fila['telefono_usuario']?></p>                            
                         </div>
                     </div>
                     
                     <p class="mensajeConfirmar">Regresar a la pantalla anterior</p>
-                    <div class="botonesSiNo">
-                        <a class="botonEliminarUsu" href="3_02_04_asignarContador.php">Atras</a>
-                    </div>
-
+                    <form action="3_02_04_asignarContador.php" method="post">
+                        <input type="hidden" name="productos_seleccionados" value="<?= htmlspecialchars($productos) ?>">
+                        <input type="hidden" name="productos_seleccionados_id" value="<?= htmlspecialchars($productosId) ?>">
+                        <input type="hidden" name="fecha" value="<?= htmlspecialchars($fecha) ?>">
+                        <button class="botonPdf" type="submit">Atrás</button>
+                    </form>
+                    <!-- Usamos un formulario con método POST para regresar a la pantalla anterior 
+                    y mantener el envío de datos de forma segura (sin exponerlos en la url).
+                    (Mejor opción en general, el metodo GET deja ver los datos en la url.)
+                    Esto es necesario porque la pantalla "seleccionar contador" originalmente recibe los datos por POST, 
+                    y si intentamos volver usando un enlace con GET (por ejemplo, <a href="...">),
+                    los datos no estarían disponibles en $_POST y se perderían. -->
             </div>
                     
                     

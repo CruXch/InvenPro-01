@@ -116,10 +116,10 @@ $resultado_contadores = mysqli_query($con, $sql_contadores);
                                 <td><?= htmlspecialchars($contador['apellido_usuario']) ?></td>
                                 <td><?= htmlspecialchars($contador['nombre_usuario']) ?></td>
                                 <td>
-                                    <input type="radio" name="contadores_asignados" value="<?= htmlspecialchars($contador['id_usuario']) ?>">
+                                    <input type="radio" name="contadores_asignados" value="<?= htmlspecialchars($contador['id_usuario']) ?>" required>
                                 </td>
                                 <td>
-                                    <a href="3_02_08_mirarContador.php?cedula=<?= urlencode($contador['id_usuario']) ?>">
+                                    <a href="3_02_08_mirarContador.php?id_usuario=<?= urlencode($contador['id_usuario']) ?>&productos_seleccionados=<?= urlencode($productos) ?>&productos_seleccionados_id=<?= urlencode($productosId)?>&fecha=<?= urlencode($fecha) ?>">
                                         <i class="fa-solid fa-eye iconoMirar"></i>
                                     </a>
                                 </td>

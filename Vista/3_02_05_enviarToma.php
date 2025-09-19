@@ -126,17 +126,17 @@ $fechaFormateada = ucfirst($fechaFormateada);
             
             <div class="contenedorConfirmar">
                 <div class="datosConfirmar1">
-                    <p class="datos2Fuente"><?= htmlspecialchars($fechaFormateada) ?></p>
+                    <p class="datos2Fuente">Fecha ingreso del producto: <?= htmlspecialchars($fechaFormateada) ?></p>
                     <p class="datos2Fuente">Id toma: (se generará al confirmar)</p>
 
-                    <h2 class="datos2Fuente">Productos asignados:</h2>
+                    <h2 class="datos2Fuente">Producto asignado:</h2>
                     <ul>
                         <?php foreach ($productosIdInfo as $productoId): ?>
                             <p class="datos2Fuente"><strong>ID:</strong> <?= htmlspecialchars($productoId['id']) ?> - <?= htmlspecialchars($productoId['nombre']) ?></p>
                         <?php endforeach; ?>
                     </ul>
 
-                    <h2 class="datos2Fuente">Contadores asignados:</h2>
+                    <h2 class="datos2Fuente">Contador asignado:</h2>
                     <ul>
                         <?php foreach ($contadoresInfo as $contador): ?>
                             <p class="datos2Fuente"><?= htmlspecialchars($contador) ?></p>
@@ -149,7 +149,7 @@ $fechaFormateada = ucfirst($fechaFormateada);
                 <p class="mensajeConfirmar">¿Desea asignar la siguiente toma de inventario y notificar al/los contadores?</p>
                 <div class="botonesSiNo">
                     <!-- ✅ Nuevo formulario que enviará la información a guardar_toma.php -->
-                    <form method="POST" action="../Controlador/guardar_toma_planificada.php" style="display:inline;">
+                    <form method="POST" action="../Controlador/guardar_toma_planificada.php">
                         <input type="hidden" name="fecha" value="<?= htmlspecialchars($fecha) ?>">
                         <?php foreach ($productos as $producto): ?>
                             <input type="hidden" name="productos_seleccionados[]" value="<?= htmlspecialchars($producto) ?>">

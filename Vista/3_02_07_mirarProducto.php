@@ -1,5 +1,32 @@
 <?php
 include("../Modelo/validar_sesion.php");
+include("../Modelo/conexion.php");
+$con = conexion();
+
+if (!isset($_GET['id_producto']) || !isset($_GET['fecha'])) {
+    echo "El id del producto o fecha no han sido recibidos";
+    exit;
+}
+
+$id = $_GET['id_producto'];
+$fechaRecibida = $_GET['fecha'];
+
+$sql = "SELECT p.*, 
+               c.nombre_categoria, 
+               s.id_subcategoria,
+               s.nombre_subcategoria
+        FROM tbl_productos p
+        INNER JOIN tbl_categorias c ON p.id_categoria = c.id_categoria
+        LEFT JOIN tbl_subcategorias s ON c.id_subcategoria = s.id_subcategoria 
+        /* Se usa LEFT JOIN porque si se usa INNER JOIN y hay valores NULL (por ejemplo, sin subcategoría), la consulta no devuelve resultados */
+        /* INNER JOIN solo trae datos cuando todas las tablas tienen coincidencias; LEFT JOIN permite traer productos aunque no tengan subcategoría */
+        WHERE p.id_producto = '$id'";
+
+
+$consulta = mysqli_query($con, $sql);
+
+$fila = mysqli_fetch_array($consulta);
+
 ?>
 
 <!DOCTYPE html>
@@ -73,19 +100,26 @@ include("../Modelo/validar_sesion.php");
                     
                     <div class="contenedorConfirmar">
                         <div class="datosConfirmar1">
-                            <p class="datos1Fuente">Id: 00001</p>
-                            <p class="datos1Fuente">Nombre: Harina - 500gr</p>
-                            <p class="datos1Fuente">Marca: Haz de oros</p>
-                            <p class="datos1Fuente">Descripción: Harina para arepas</p>
-                            <p class="datos1Fuente">Stock: 300 unidades</p>
-                            <p class="datos1Fuente">Categoria: Consumibles</p>
-                            <p class="datos1Fuente">Subcategoria: No registra</p>                          
+                            <p class="datos1Fuente">Id: <?= $fila['id_producto'] ?></p>
+                            <p class="datos1Fuente">Nombre: <?= $fila['nombre_producto']?></p>
+                            <p class="datos1Fuente">Descripción: <?= $fila['descripcion_producto']?></p>
+                            <p class="datos1Fuente">Marca: <?= $fila['marca_producto']?></p>
+                            <p class="datos1Fuente">Referencia: <?= $fila['referencia_producto']?></p>
+                            <p class="datos1Fuente">Stock: <?= $fila['stock_producto']?></p>
+                            <p class="datos1Fuente">Unidad: <?= $fila['unidad_producto']?></p>
+                            <p class="datos1Fuente">Id Categoria: <?= $fila['id_categoria'] ?></p>
+                            <p class="datos1Fuente">Categoria: <?= $fila['nombre_categoria'] ?></p>
+                            <p class="datos1Fuente">Id Subcategoria: <?= $fila['id_subcategoria'] ? $fila['id_subcategoria'] : 'No Aplica.' ?></p>                          
+                            <p class="datos1Fuente">Subcategoria: <?= $fila['nombre_subcategoria'] ? $fila['nombre_subcategoria'] : 'No Aplica.' ?></p>              
+                            <!-- Mostramos el id y nombre de la subcategoría solo si existe.
+                            Si el producto no tiene id o subcategoría (es NULL o vacío), mostramos el texto "No Aplica."
+                            Esto evita errores al acceder a valores nulos en productos que no tienen subcategoría asignada. -->                     
                         </div>
                     </div>
                     
                     <p class="mensajeConfirmar">Regresar a la pantalla anterior</p>
                     <div class="botonesSiNo">
-                        <a class="botonEliminarUsu" href="3_02_03_asignarProductos.php">Atras</a>
+                        <a class="botonEliminarUsu" href="3_02_03_asignarProductos.php?fecha=<?= urlencode($fechaRecibida) ?>">Atras</a>
                     </div>
 
             </div>

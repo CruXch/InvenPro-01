@@ -126,9 +126,9 @@ $fechaFormateada = ucfirst($fechaFormateada);
                                 <td><?= htmlspecialchars($fila['nombre_producto']) ?></td>
                                 <td><?= htmlspecialchars($fila['marca_ingreso']) ?></td>
                                 <td><?= htmlspecialchars($fila['stock_ingreso']) ?></td>
-                                <td><input type="radio" name="productos_seleccionados" value="<?= $fila['id_ingreso'] ?>"></td>
+                                <td><input type="radio" name="productos_seleccionados" value="<?= $fila['id_ingreso'] ?>" required></td>
                                 <input type="hidden" name="productos_seleccionados_id" value="<?= $fila['id_producto'] ?>">
-                                <td><a href="3_02_07_mirarProducto.php"><i class="fa-solid fa-eye iconoMirar"></i></a></td>
+                                <td><a href="3_02_07_mirarProducto.php?id_producto=<?= $fila['id_producto']?>&fecha=<?= urlencode($fechaRecibida)?>"><i class="fa-solid fa-eye iconoMirar"></i></a></td>
                                 </tr>
                                 <?php endwhile; ?>
                                 
