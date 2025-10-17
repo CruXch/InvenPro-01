@@ -6,14 +6,11 @@ $con = conexion();
 // Consulta SQL para obtener la cantidad de productos agrupados por fecha de ingreso
 // Incluye hora exacta (no solo la fecha) para diferenciar registros
 $sql = "SELECT fecha_ingreso, COUNT(*) AS total_productos 
-        FROM tbl_Ingresos_Csv 
+        FROM Tbl_Ingresos_Csv 
         GROUP BY fecha_ingreso 
         ORDER BY fecha_ingreso DESC";
 
 $resultado = mysqli_query($con, $sql);
-
-// Configuramos el locale en español para que strftime muestre la fecha en español
-setlocale(LC_TIME, 'spanish');
 
 // Recorremos los registros agrupados por fecha
 while ($fila = mysqli_fetch_assoc($resultado)) {
@@ -23,15 +20,24 @@ while ($fila = mysqli_fetch_assoc($resultado)) {
     // Convertimos la fecha a objeto DateTime
     $fecha = new DateTime($fechaCompleta);
 
-    // Formateamos la fecha en español (ej: "Lunes, 12 de Febrero de 2025 - 03:45 PM")
-    $formateada = strftime("%A, %e de %B de %Y - %I:%M %p", $fecha->getTimestamp());
-    $formateada = ucfirst($formateada); // Pone la primera letra en mayúscula
+    // Usamos IntlDateFormatter para formatear la fecha en español
+    $formatter = new IntlDateFormatter(
+        'es_ES', 
+        IntlDateFormatter::FULL, 
+        IntlDateFormatter::SHORT,
+        'America/Bogota',
+        IntlDateFormatter::GREGORIAN,
+        "EEEE, d 'de' MMMM 'de' yyyy - hh:mm a"
+    );
 
-    // Generamos el enlace para cada fecha, que lleva a la pantalla de asignación de productos
+    $formateada = ucfirst($formatter->format($fecha));
+
+    // Generamos el enlace para cada fecha
     echo '<a class="infoConteo" href="3_02_03_asignarProductos.php?fecha=' . $fechaCodificada . '">';
     echo 'Archivo - ' . $formateada;
     echo '</a>';
 }
+
 
 
 

@@ -4,6 +4,11 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// Forzar UTF-8 en la conexión y en la salida
+mysqli_set_charset($con, "utf8mb4");
+header('Content-Type: text/html; charset=utf-8');
+
+
 // Iniciar sesión solo si no está activa
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -46,7 +51,7 @@ if ($fechaInicio && $fechaFin) {
             FROM Tbl_Productos_Usuarios_Toma put
             INNER JOIN Tbl_Tomas_De_Inventario ti ON put.id_toma = ti.id_toma
             INNER JOIN Tbl_Usuarios u ON put.id_usuario = u.id_usuario
-            INNER JOIN tbl_Ingresos_Csv ic ON put.id_ingreso = ic.id_ingreso
+            INNER JOIN Tbl_Ingresos_Csv ic ON put.id_ingreso = ic.id_ingreso
             WHERE ti.fecha_toma BETWEEN '$fechaInicio' AND '$fechaFin'
             ORDER BY ti.id_toma ASC";
 
@@ -143,12 +148,13 @@ if ($fechaInicio && $fechaFin) {
 
         <div>
             <button class="botonMenu"><a href="5_01_listaInformes.php">Generar informes</a></button>
+            <button class="botonMenu"><a href="5_05_infoProductos.php">Información productos SAP</a></button>
         </div>
 
-        <div class="linksMenu1">
-            <a href="#" target="_blank" class="linkMenu">Documentación</a>
-            <a href="#" target="_blank" class="linkMenu">Soporte</a>
-            <a href="#" target="_blank" class="linkMenu">Empresa</a>
+        <div class="linksMenu">
+            <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+            <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
+            <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
             <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
         </div>
 

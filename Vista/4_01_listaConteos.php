@@ -77,7 +77,7 @@ $stmt->close();
 
             <div class="usuarioMenu1">
                 <div class="menuFotoNombre">
-                    <i class="fa-solid fa-bell campanaMenu"></i>
+                    <!-- <i class="fa-solid fa-bell campanaMenu"></i> -->
                     <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                     <div class="menuNombres">
                         <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
@@ -98,8 +98,8 @@ $stmt->close();
             </div>
 
             <div class="linksMenu1">
-                <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                 <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                 <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
             </div>

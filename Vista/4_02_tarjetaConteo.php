@@ -3,6 +3,13 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// Forzar UTF-8 en la conexión y en la salida
+mysqli_set_charset($con, "utf8mb4");
+header('Content-Type: text/html; charset=utf-8');
+
+setlocale(LC_TIME, 'spanish');
+
+
 // Obtener el ID de la toma desde la URL (GET). 
 // Se usa el operador null coalescing (??) para asignar null si no se pasa el parámetro.
 $id_toma = $_GET['id_toma'] ?? null;
@@ -74,7 +81,7 @@ while ($fila = $resultadoProductos->fetch_assoc()) {
     <div class="menu1">
         <div class="usuarioMenu1">
             <div class="menuFotoNombre">
-                <i class="fa-solid fa-bell campanaMenu"></i>
+                <!-- <i class="fa-solid fa-bell campanaMenu"></i> -->
                 <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                 <div class="menuNombres">
                     <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
@@ -95,10 +102,10 @@ while ($fila = $resultadoProductos->fetch_assoc()) {
         </div>
 
         <div class="linksMenu1">
-            <a href="#" class="linkMenu">Documentación</a>
-            <a href="#" class="linkMenu">Soporte</a>
+            <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+            <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
             <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
-            <a href="#" class="linkMenu">Redes sociales</a>
+            <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
         </div>
 
         <div class="contenedorBotonCerrar1">
@@ -112,11 +119,11 @@ while ($fila = $resultadoProductos->fetch_assoc()) {
 
         <h1 class="tituloCentro">Registrar conteos de inventarios</h1>
 
-        <form action="4_03_enviarConteo.php" method="POST">
+        <form action="4_03_enviarConteo.php" method="POST" accept-charset="UTF-8">
 
     <div class="contenedorInfoConteos2">
         <div class="contenedorConteos2">
-    <h2><?= date("l d F Y", strtotime($toma['fecha_toma'])) ?></h2>
+    <h2><?= ucfirst(strftime("%A %d %B %Y", strtotime($toma['fecha_toma']))) ?></h2>
     <p>ID toma: <?= $toma['id_toma'] ?></p>
     <input type="hidden" name="id_toma" value="<?= $id_toma ?>">
 

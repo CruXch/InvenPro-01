@@ -111,15 +111,5 @@ function pestañaEnviarToma(){
 }
 
 
-//-----------------5_06_eliminarInforme-------------------
-function eliminarInforme(){
-    alert ("Informe eliminado")
-}
 
-// Evita acceso con botón "atrás" después de cerrar sesión en todos los archivos
-window.addEventListener('pageshow', function (event) {
-  if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
-    window.location.reload();
-  }
-});
 

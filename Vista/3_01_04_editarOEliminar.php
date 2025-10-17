@@ -4,8 +4,27 @@ include ("../Modelo/conexion.php");
 $con = conexion();
 
 //Consulta en la base de datos para traer información de usuarios contador y jefe por su rol (2 y 3)
-$sql = "SELECT * FROM Tbl_Usuarios WHERE id_rol IN (2, 3)";
+$sql = "SELECT * FROM Tbl_Usuarios WHERE id_rol IN (2, 3) AND estado_usuario = 1";
 $consulta = mysqli_query($con, $sql);
+
+//Codigo logica del filtro
+$buscar = isset($_GET['buscar']) ? trim($_GET['buscar']) : '';
+$buscarEscapado = mysqli_real_escape_string($con, $buscar);
+
+// Consulta base
+$sql = "SELECT * FROM Tbl_Usuarios WHERE id_rol IN (2, 3) AND estado_usuario = 1";
+
+// Si hay búsqueda, añade condiciones
+if (!empty($buscarEscapado)) {
+    $sql .= " AND (
+        id_usuario LIKE '%$buscarEscapado%' OR
+        nombre_usuario LIKE '%$buscarEscapado%' OR
+        apellido_usuario LIKE '%$buscarEscapado%'
+    )";
+}
+
+$consulta = mysqli_query($con, $sql);
+
 
 ?>
 
@@ -61,8 +80,8 @@ $consulta = mysqli_query($con, $sql);
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -79,13 +98,12 @@ $consulta = mysqli_query($con, $sql);
                     <h1 class="tituloCentro">Ver, editar o eliminar usuarios</h1>
                     
                     <div class="contenedorBarra">
-                        <input class="barraBuscar" type="text" placeholder="Buscar">
-                        <div class="botonBuscar">
-                            <i class="fa-solid fa-magnifying-glass iconoLupa"></i>
-                        </div>
-                        <div class="contenedorBotonFiltrar">
-                            <button class="botonFiltrar"><i class="fa-solid fa-filter"></i>Filtrar</button>
-                        </div>
+                        <form method="GET" action="">
+                            <input type="text" name="buscar" class="barraBuscar" placeholder="Buscar por Cédula ó Apellidos ó Nombres">
+                            <button type="submit" class="botonFiltrar">
+                            <i class="fa-solid fa-filter"></i>Filtrar
+                            </button>
+                        </form>
                     </div>
 
                     <div class="contenedorInfoUsuarios">

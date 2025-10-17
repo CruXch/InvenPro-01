@@ -16,13 +16,15 @@ if ($rol == 'Contador') {
     $rol = 2; // Si es Contador, asignamos 2
 } elseif ($rol == 'Jefe') {
     $rol = 3; // Si es Jefe, asignamos 3
-} else {
+} elseif ($rol == 'Administrador') {
+    $rol = 1; // Si es Admin, asignamos 1
+}else {
     // Si no coincide con ninguno de los roles válidos, mostramos un error
     echo "Error elección de rol";
 }
 
 // Creamos la consulta SQL para actualizar los datos del usuario con el id recibido
-$sql = "UPDATE Tbl_usuarios 
+$sql = "UPDATE Tbl_Usuarios 
         SET contrasena_usuario='$contrasena', 
             nombre_usuario='$nombre', 
             apellido_usuario='$apellido', 

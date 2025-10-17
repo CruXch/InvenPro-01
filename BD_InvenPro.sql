@@ -1,7 +1,7 @@
 
-CREATE DATABASE BD_InvenPro;
+CREATE DATABASE bd_invenpro;
 
-USE BD_InvenPro;
+USE bd_invenpro;
 
 CREATE TABLE Tbl_Roles (
     id_rol INT PRIMARY KEY,
@@ -16,6 +16,7 @@ CREATE TABLE Tbl_Usuarios (
     apellido_usuario VARCHAR(30) NOT NULL,
     correo_usuario VARCHAR(35) NOT NULL,
     telefono_usuario VARCHAR(15) NOT NULL,
+    estado_usuario TINYINT(1) NOT NULL DEFAULT 1,
     codigo_recuperacion VARCHAR(6),
     expiracion_codigo DATETIME,
     id_rol INT NOT NULL,
@@ -75,8 +76,7 @@ CREATE TABLE Tbl_Productos_Usuarios_Toma (
     id_producto INT,
     id_usuario INT,
     id_ingreso INT,
-    PRIMARY KEY (id_toma, id_producto, id_usuario),
-    FOREIGN KEY (id_toma) REFERENCES Tbl_Tomas_De_Inventario(id_toma),
+    PRIMARY KEY (id_toma, id_producto),
     FOREIGN KEY (id_producto) REFERENCES Tbl_Productos(id_producto),
     FOREIGN KEY (id_usuario) REFERENCES Tbl_Usuarios(id_usuario),
     FOREIGN KEY (id_ingreso) REFERENCES tbl_Ingresos_Csv(id_ingreso)
@@ -95,16 +95,13 @@ CREATE TABLE Tbl_Asignaciones_Toma (
 
 
 
-INSERT INTO tbl_roles (id_rol, nombre_rol) VALUES
+INSERT INTO Tbl_Roles (id_rol, nombre_rol) VALUES
 (1, 'Administrador'),
 (2, 'Contador'),
 (3, 'Jefe');
 
 
-INSERT INTO tbl_usuarios (id_usuario, contrasena_usuario, nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, id_rol) VALUES
-(1118321987, 'DM64825v', 'Dayana', 'Vallejo', 'dayana@email.com', '3164967812', 1),
-(1118562874, 'DF66225P', 'David', 'Perez', 'david@email.com', '3226598742', 2),
-(1118603200, 'AF98725V', 'Felipe', 'Vargas', 'felipe@email.com', '3156984523', 3);
+
 
 
 

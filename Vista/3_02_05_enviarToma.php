@@ -6,6 +6,11 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// FORZAR UTF-8 para evitar problemas con tildes, ñ, etc.
+mysqli_set_charset($con, "utf8mb4");
+header('Content-Type: text/html; charset=utf-8');
+
+
 // Validación: comprobar que todos los datos esperados fueron enviados por POST
 if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados_id']) || !isset($_POST['contadores_asignados'])) {
     echo "Faltan datos necesarios para generar el resumen.";
@@ -44,7 +49,7 @@ foreach ($productosId as $id_producto) {
     $id_escapado = mysqli_real_escape_string($con, $id_producto);
 
     // Consultar el nombre del producto en la base de datos
-    $sqlProductoId = "SELECT nombre_producto FROM tbl_productos WHERE id_producto = '$id_escapado'";
+    $sqlProductoId = "SELECT nombre_producto FROM Tbl_Productos WHERE id_producto = '$id_escapado'";
     $resProductoId = mysqli_query($con, $sqlProductoId);
 
     // Si se encontró el producto, guardarlo en el arreglo
@@ -72,8 +77,9 @@ foreach ($contadores as $id_contador) {
 
     // Si se encontró, concatenar nombre y apellido y guardarlo en el arreglo
     if ($fila = mysqli_fetch_assoc($resContador)) {
-        $contadoresInfo[] = $fila['nombre_usuario'] . " " . $fila['apellido_usuario'];
+    $contadoresInfo[] = $fila['nombre_usuario'] . " " . $fila['apellido_usuario'];
     }
+
 }
 
 // -------------------- FORMATEAR FECHA PARA MOSTRAR --------------------
@@ -143,8 +149,8 @@ $fechaFormateada = ucfirst($fechaFormateada);
             </div>
 
             <div class="linksMenu">
-                <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                 <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                 <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
             </div>
@@ -181,7 +187,7 @@ $fechaFormateada = ucfirst($fechaFormateada);
             <div class="contenedorOpcion">
                 <p class="mensajeConfirmar">¿Desea asignar la siguiente toma de inventario y notificar al/los contadores?</p>
                 <div class="botonesSiNo">
-                    <!-- ✅ Nuevo formulario que enviará la información a guardar_toma.php -->
+                    <!-- Nuevo formulario que enviará la información a guardar_toma.php -->
                     <form method="POST" action="../Controlador/guardar_toma_planificada.php">
                         <input type="hidden" name="fecha" value="<?= htmlspecialchars($fecha) ?>">
                         <?php foreach ($productos as $producto): ?>

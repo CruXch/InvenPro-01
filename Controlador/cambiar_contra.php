@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $correo = $_SESSION['correo_recuperacion'];
 
     // Creamos la consulta para actualizar la contraseña del usuario en la base de datos
-    $stmt = $con->prepare("UPDATE tbl_usuarios SET contrasena_usuario = ? WHERE correo_usuario = ?");
+    $stmt = $con->prepare("UPDATE Tbl_Usuarios SET contrasena_usuario = ? WHERE correo_usuario = ?");
     $stmt->bind_param("ss", $nueva_contra, $correo);
 
     // Ejecutamos la consulta

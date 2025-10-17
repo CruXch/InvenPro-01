@@ -47,12 +47,13 @@ $con = conexion();
 
                 <div>
                     <button class="botonMenu"><a href="5_01_listaInformes.php">Generar informes</a></button>
+                    <button class="botonMenu"><a href="5_05_infoProductos.php">Información productos SAP</a></button>
                 </div>
 
-                <div class="linksMenu1">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
-                    <a href="#" target="_blank" class="linkMenu">Empresa</a>
+                <div class="linksMenu">
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
 

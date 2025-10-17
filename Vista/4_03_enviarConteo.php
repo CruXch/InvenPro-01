@@ -3,6 +3,9 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+//Para que las ñ y tíldes se guarden bien en la bd de datos y se vean bien
+mysqli_set_charset($con, "utf8mb4");
+
 // Inicia la sesión solo si aún no está iniciada
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -33,7 +36,7 @@ if (isset($_POST['confirmar_toma']) && isset($_SESSION['datos_toma'])) {
     $comentarios = $datos['comentarios'];
 
     // 1. Consultar el stock real del ingreso exacto en la base de datos
-    $sqlStock = "SELECT stock_ingreso FROM tbl_Ingresos_Csv WHERE id_ingreso = ?";
+    $sqlStock = "SELECT stock_ingreso FROM Tbl_Ingresos_Csv WHERE id_ingreso = ?";
     $stmtStock = $con->prepare($sqlStock);
     $stmtStock->bind_param("i", $id_ingreso);
     $stmtStock->execute();
@@ -77,12 +80,20 @@ if (!isset($_SESSION['datos_toma'])) {
 // Recuperar los datos para mostrarlos en la vista
 $datos = $_SESSION['datos_toma'];
 
-// Establecer formato de fecha en español
-setlocale(LC_TIME, 'spanish');
-$fecha_actual = strftime('%d/%m/%Y - %A');
+// -------------------- FORMATEAR FECHA EN ESPAÑOL (UTF-8 seguro) --------------------
+header('Content-Type: text/html; charset=utf-8'); // Asegura UTF-8 en la salida
 
+$formatter = new IntlDateFormatter(
+    'es_ES',                // Idioma español
+    IntlDateFormatter::FULL,
+    IntlDateFormatter::NONE,
+    'America/Bogota',       // Zona horaria
+    IntlDateFormatter::GREGORIAN,
+    'dd/MM/yyyy - EEEE'     // Formato personalizado: 24/09/2025 - miércoles
+);
+
+$fecha_actual = ucfirst($formatter->format(new DateTime()));
 ?>
-
 
 
 <!DOCTYPE html>
@@ -106,7 +117,7 @@ $fecha_actual = strftime('%d/%m/%Y - %A');
     <div class="menu1">
         <div class="usuarioMenu1">
             <div class="menuFotoNombre">
-                <i class="fa-solid fa-bell campanaMenu"></i>
+                <!-- <i class="fa-solid fa-bell campanaMenu"></i> -->
                 <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                 <div class="menuNombres">
                     <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
@@ -127,8 +138,8 @@ $fecha_actual = strftime('%d/%m/%Y - %A');
         </div>
 
         <div class="linksMenu1">
-            <a href="#" target="_blank" class="linkMenu">Documentación</a>
-            <a href="#" target="_blank" class="linkMenu">Soporte</a>
+            <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+            <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
             <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
             <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
         </div>

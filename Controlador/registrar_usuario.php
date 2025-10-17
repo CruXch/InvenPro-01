@@ -2,6 +2,10 @@
 include ("../Modelo/conexion.php");
 $con = conexion();
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
 // Captura los valores enviados por el formulario mediante el método POST
 $nombresUsuario   = $_POST['nombres-registro'];
 $apellidosUsuario = $_POST['apellidos-registro'];

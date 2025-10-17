@@ -3,6 +3,12 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// FORZAR UTF-8 en la conexión
+mysqli_set_charset($con, "utf8mb4");
+
+// FORZAR UTF-8 en la cabecera del navegador
+header('Content-Type: text/html; charset=utf-8');
+
 // Validación: asegurarse de que se hayan recibido el id del producto y la fecha
 if (!isset($_GET['id_producto']) || !isset($_GET['fecha'])) {
     echo "El id del producto o fecha no han sido recibidos";
@@ -16,26 +22,19 @@ $id = $_GET['id_producto'];
 $fechaRecibida = $_GET['fecha'];
 
 // Consulta SQL para obtener información detallada del producto
-// - Se obtienen todos los campos de la tabla productos (p.*)
-// - Se hace INNER JOIN con la tabla categorías (c) para obtener su nombre
-// - Se hace LEFT JOIN con subcategorías (s) para que, incluso si el producto no tiene subcategoría, igual se devuelva el registro
-//   (si fuera INNER JOIN, los productos sin subcategoría quedarían fuera del resultado)
 $sql = "SELECT p.*, 
                c.nombre_categoria, 
                s.id_subcategoria,
                s.nombre_subcategoria
-        FROM tbl_productos p
-        INNER JOIN tbl_categorias c ON p.id_categoria = c.id_categoria
-        LEFT JOIN tbl_subcategorias s ON c.id_subcategoria = s.id_subcategoria 
+        FROM Tbl_Productos p
+        INNER JOIN Tbl_Categorias c ON p.id_categoria = c.id_categoria
+        LEFT JOIN Tbl_Subcategorias s ON c.id_subcategoria = s.id_subcategoria 
         WHERE p.id_producto = '$id'";
 
-// Ejecutar la consulta en la base de datos
 $consulta = mysqli_query($con, $sql);
-
-// Obtener la fila con los resultados de la consulta
 $fila = mysqli_fetch_array($consulta);
-
 ?>
+
 
 
 <!DOCTYPE html>
@@ -90,8 +89,8 @@ $fila = mysqli_fetch_array($consulta);
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -114,7 +113,7 @@ $fila = mysqli_fetch_array($consulta);
                             <p class="datos1Fuente">Descripción: <?= $fila['descripcion_producto']?></p>
                             <p class="datos1Fuente">Marca: <?= $fila['marca_producto']?></p>
                             <p class="datos1Fuente">Referencia: <?= $fila['referencia_producto']?></p>
-                            <p class="datos1Fuente">Stock: <?= $fila['stock_producto']?></p>
+                            <p class="datos1Fuente">Historial Stock Acumulado: <?= $fila['stock_producto']?></p>
                             <p class="datos1Fuente">Unidad: <?= $fila['unidad_producto']?></p>
                             <p class="datos1Fuente">Id Categoria: <?= $fila['id_categoria'] ?></p>
                             <p class="datos1Fuente">Categoria: <?= $fila['nombre_categoria'] ?></p>
@@ -128,7 +127,7 @@ $fila = mysqli_fetch_array($consulta);
                     
                     <p class="mensajeConfirmar">Regresar a la pantalla anterior</p>
                     <div class="botonesSiNo">
-                        <a class="botonEliminarUsu" href="3_02_03_asignarProductos.php?fecha=<?= urlencode($fechaRecibida) ?>">Atras</a>
+                        <a class="botonEliminarUsu" href="3_02_03_asignarProductos.php?fecha=<?= urlencode($fechaRecibida) ?>">Atrás</a>
                     </div>
 
             </div>

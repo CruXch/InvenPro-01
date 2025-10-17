@@ -23,7 +23,7 @@ if ($contraAdmin !== $confirmarContraAdmin){
 }
 
 // --- Preparar e insertar el nuevo administrador en la tabla tbl_usuarios ---
-$sql = "INSERT INTO tbl_usuarios (id_usuario, contrasena_usuario, nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, id_rol) 
+$sql = "INSERT INTO Tbl_Usuarios (id_usuario, contrasena_usuario, nombre_usuario, apellido_usuario, correo_usuario, telefono_usuario, id_rol) 
         VALUES ('$cedulaAdmin','$contraAdmin','$nombresAdmin','$apellidosAdmin','$correoAdmin','$celularAdmin','$rolAdmin')";
 
 // Ejecutamos la consulta de inserción

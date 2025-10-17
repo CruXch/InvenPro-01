@@ -12,7 +12,7 @@ if (isset($_GET['fecha'])) {
 
     // Consulta para obtener productos ingresados en la fecha indicada
     $sql = "SELECT p.nombre_producto, i.marca_ingreso, i.stock_ingreso
-            FROM tbl_Ingresos_Csv i
+            FROM Tbl_Ingresos_Csv i
             INNER JOIN tbl_productos p ON i.id_producto = p.id_producto
             WHERE i.fecha_ingreso = '$fechaEscapada'";
 

@@ -5,7 +5,7 @@ $con = conexion();
 
 $id = $_GET['id_usuario'];
 
-$sql = "SELECT * FROM Tbl_usuarios WHERE id_usuario='$id'";
+$sql = "SELECT * FROM Tbl_Usuarios WHERE id_usuario='$id'";
 $consulta = mysqli_query($con, $sql);
 
 $fila = mysqli_fetch_array($consulta);
@@ -64,8 +64,8 @@ $fila = mysqli_fetch_array($consulta);
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -86,7 +86,6 @@ $fila = mysqli_fetch_array($consulta);
                             <p class="datos2Fuente">Nombre: <?= $fila['nombre_usuario'] ?></p>
                             <p class="datos2Fuente">Apellido: <?= $fila['apellido_usuario'] ?></p>
                             <p class="datos2Fuente">Cédula: <?= $fila['id_usuario']?></p>
-                            <p class="datos2Fuente">Contraseña: <?= $fila['contrasena_usuario']?></p>
                             <p class="datos2Fuente">Tipo de usuario: <?php if($fila['id_rol'] == 2){
                                 echo "Contador";
                             } else {

@@ -57,8 +57,8 @@ $con = conexion();
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -84,7 +84,7 @@ $con = conexion();
                             <br><br>
                             <div class="labelCsv">
                                 <label class="inputCsv" for="cargarCsv">Subir archivo .csv:</label>
-                                <input type="file" name="archivo_csv" id="cargarCsv" accept=".csv">
+                                <input type="file" name="archivo_csv" id="cargarCsv" accept=".csv" required>
                             </div>
                             <br><br>
                             <button class="ingresar4" type="submit" name="importar">Siguiente</button> 

@@ -5,7 +5,7 @@ $con = conexion();
 
 $id = $_GET['id_usuario'];
 
-$sql = "SELECT * FROM Tbl_usuarios WHERE id_usuario='$id'";
+$sql = "SELECT * FROM Tbl_Usuarios WHERE id_usuario='$id'";
 $consulta = mysqli_query($con, $sql);
 
 $fila = mysqli_fetch_array($consulta);
@@ -64,8 +64,8 @@ $fila = mysqli_fetch_array($consulta);
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -91,20 +91,23 @@ $fila = mysqli_fetch_array($consulta);
                             <input class="campo4" type="number" name="celular-registro" id="celular-registro" value="<?= $fila['telefono_usuario'] ?>" placeholder="Celular" required> 
                             <input class="campo4" type="text" name="correo-registro" id="correo-registro" value="<?= $fila['correo_usuario'] ?>" placeholder="Correo electrónico" required> 
 
-                            <input class="campo4" required list="usuario" id="tipo-usuario-registro" name="tipo-usuario-registro"
-                                    value="<?php if ($fila['id_rol'] == 1){
-                                        echo 'Administrador';
-                                    } elseif ($fila['id_rol'] == 2){
+                            <input class="campo4"  required list="usuario" id="tipo-usuario-registro" name="tipo-usuario-registro"
+                                    value="<?php if ($fila['id_rol'] == 2){
                                         echo 'Contador';
-                                    } else {
+                                    } elseif ($fila['id_rol'] == 3){
                                         echo 'Jefe';
+                                    } elseif ($fila['id_rol'] == 1){
+                                        echo 'Administrador';
+                                    } else {
+                                        echo 'Usuario no encontrado';
                                     }?>"> 
                                 <datalist id="usuario-elegido-registro">
                                     <option value="Contador">
                                     <option value="Jefe">
+                                    <option value="Administrador">
                                 </datalist> 
 
-                            <input class="campo4" type="text" name="contra-registro" id="contra-registro" value="<?= $fila['contrasena_usuario'] ?>" placeholder="Contraseña" required> <br>
+                            <input class="campo4" readonly type="password" name="contra-registro" id="contra-registro" value="<?= $fila['contrasena_usuario'] ?>" placeholder="Contraseña" required> <br>
                             
                             <button class="ingresar3" type="submit" onclick="return editarUsuario()">Siguiente</button> 
                         </form>

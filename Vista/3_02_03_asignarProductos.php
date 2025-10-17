@@ -3,8 +3,13 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
+// FORZAR UTF-8 en la conexión (por si acaso)
+mysqli_set_charset($con, "utf8mb4");
+
+// FORZAR UTF-8 en el header HTTP
+header('Content-Type: text/html; charset=utf-8');
+
 // Verifica que la URL traiga un parámetro "fecha"
-// Si no lo recibe, muestra un mensaje de error y detiene la ejecución
 if (!isset($_GET['fecha'])) {
     echo "No se recibió una fecha válida.";
     exit;
@@ -15,26 +20,25 @@ $fechaRecibida = urldecode($_GET['fecha']);
 $fechaEscapada = mysqli_real_escape_string($con, $fechaRecibida);
 
 // Consulta los productos registrados en la fecha seleccionada
-// Une las tablas de ingresos y productos para obtener nombre, marca y stock
 $sql = "SELECT p.id_producto, p.nombre_producto, i.id_ingreso, i.marca_ingreso, i.stock_ingreso
-        FROM tbl_ingresos_csv i
-        INNER JOIN tbl_productos p ON i.id_producto = p.id_producto
+        FROM Tbl_Ingresos_Csv i
+        INNER JOIN Tbl_Productos p ON i.id_producto = p.id_producto
         WHERE i.fecha_ingreso = '$fechaEscapada'";
 
-// Ejecuta la consulta y guarda el resultado
 $resultado = mysqli_query($con, $sql);
 
-// Convierte la fecha recibida a un objeto DateTime para formatearla
 $fecha = new DateTime($fechaRecibida);
 
-// Configura la localización a español para mostrar la fecha con nombres de días y meses
-setlocale(LC_TIME, 'spanish');
+$formatter = new IntlDateFormatter(
+    'es_ES', 
+    IntlDateFormatter::FULL, 
+    IntlDateFormatter::SHORT,
+    'America/Bogota',
+    IntlDateFormatter::GREGORIAN,
+    "EEEE, d 'de' MMMM 'de' yyyy - hh:mm a"
+);
 
-// Da formato a la fecha: ejemplo "Lunes, 16 de Septiembre de 2025 - 03:45 PM"
-$fechaFormateada = strftime("%A, %e de %B de %Y - %I:%M %p", $fecha->getTimestamp());
-
-// Asegura que la primera letra esté en mayúscula
-$fechaFormateada = ucfirst($fechaFormateada);
+$fechaFormateada = ucfirst($formatter->format($fecha));
 ?>
 
 
@@ -90,8 +94,8 @@ $fechaFormateada = ucfirst($fechaFormateada);
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -107,16 +111,6 @@ $fechaFormateada = ucfirst($fechaFormateada);
                 <a href="3_02_01_listaPlanificacion.php"><i class="fa-solid fa-circle-up fa-rotate-270 iconoVolver"></i></a>
 
                 <h1 class="tituloCentro">Asignar productos</h1>
-
-                    <div class="contenedorBarra">
-                        <input class="barraBuscar" type="text" placeholder="Buscar">
-                        <div class="botonBuscar">
-                            <i class="fa-solid fa-magnifying-glass iconoLupa"></i>
-                        </div>
-                        <div class="contenedorBotonFiltrar">
-                            <button class="botonFiltrar"><i class="fa-solid fa-filter"></i>Filtrar</button>
-                        </div>
-                    </div>
                     
                     <div class="contenedorInfoUsuarios">
                         <form action="3_02_04_asignarContador.php" method="POST">
@@ -139,8 +133,7 @@ $fechaFormateada = ucfirst($fechaFormateada);
                                 <td><?= htmlspecialchars($fila['nombre_producto']) ?></td>
                                 <td><?= htmlspecialchars($fila['marca_ingreso']) ?></td>
                                 <td><?= htmlspecialchars($fila['stock_ingreso']) ?></td>
-                                <td><input type="radio" name="productos_seleccionados" value="<?= $fila['id_ingreso'] ?>" required></td>
-                                <input type="hidden" name="productos_seleccionados_id" value="<?= $fila['id_producto'] ?>">
+                                <td><input type="radio" name="productos_seleccionados" value="<?= $fila['id_ingreso'] ?>|<?= $fila['id_producto'] ?>" required></td>
                                 <td><a href="3_02_07_mirarProducto.php?id_producto=<?= $fila['id_producto']?>&fecha=<?= urlencode($fechaRecibida)?>"><i class="fa-solid fa-eye iconoMirar"></i></a></td>
                                 </tr>
                                 <?php endwhile; ?>

@@ -30,7 +30,7 @@ $con = conexion();
 
                 <div class="usuarioMenu1">
                     <div class="menuFotoNombre">
-                        <i class="fa-solid fa-bell campanaMenu"></i>
+                        <!-- <i class="fa-solid fa-bell campanaMenu"></i> -->
                         <img class="menuFoto" src="img/fotoperfil.png" alt="Foto de perfil">
                             <div class="menuNombres">
                               <p class="nombres"><?= $_SESSION['nombre_usuario'] ?></p>
@@ -51,8 +51,8 @@ $con = conexion();
                 </div>
 
                 <div class="linksMenu1">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -71,13 +71,16 @@ $con = conexion();
                 </div>
 
                 <div class="infoMenu">
-                    <h2 class="tituloInfo">Noticias - Actualizaciones</h2>
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
-                    <p class="contenidoInfo">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat cupiditate nesciunt aliquid eius quas dicta laborum tempora perferendis eum beatae dolore esse quo ipsam, totam illum. Nulla perspiciatis deleniti libero?</p> 
+                    <h2 class="tituloInfo">Noticias - Actualizaciones Versión 1.0</h2>
+                    <p class="contenidoInfo">- Se agregó el manual de usuario en el enlace "Manuales".</p> 
+                    <p class="contenidoInfo">- En el módulo de administrador ahora al eliminar a un usuario Contador o Jefe, en realidad se está desactivando el usuario, así no se perderá la información de dicho usuario.</p> 
+                    <p class="contenidoInfo">- El usuario tipo Administrador ya no podrá ver la contraseña de los usuarios tipo Contador y jefe.</p> 
+                    <p class="contenidoInfo">- El usuario tipo Administrador ahora podrá cambiar el rol de un usuario tipo Contador a Jefe o viceversa.</p> 
+                    <p class="contenidoInfo">- En el módulo de planificación de inventario al momento de ver la información de un producto se cambió el nombre de “Stock” a “Historial Stock Acumulado” para un mejor entendimiento de a que se refiere esta línea de información que suma todas las existencias que hayan entrado al sistema con el mismo id.</p> 
+                    <p class="contenidoInfo">- Se arregló el problema de que las “ñ” y caracteres como tildes no se vean bien cuando se observa la información de un producto al momento de estar planificando una toma de inventario o generando un informe.</p> 
+                    <p class="contenidoInfo">- Se agregó una nueva función al módulo del usuario Jefe, ahora podrá ver la información de los archivos .csv importados así como también la información de los productos de dichas listas.</p> 
+                    <p class="contenidoInfo">- La fecha mínima en la búsqueda de fecha inicial para generar reporte se fijó en Agosto 1 del 2025.</p> 
+                    <p class="contenidoInfo">- Al momento de generar un informe detallado se agregó una línea de información adicional que avisa si una toma esta “completada” o “pendiente”.</p> 
                 </div>
 
             </div>

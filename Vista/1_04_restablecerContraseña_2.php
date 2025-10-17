@@ -36,8 +36,8 @@ if (!isset($_SESSION['codigo_verificado']) || $_SESSION['codigo_verificado'] !==
             </div>
             <div class="listaNav">
                 <ul>
-                    <li><a href="#" target="_blank">Documentación</a></li>
-                    <li><a href="#" target="_blank">Soporte</a></li>
+                    <li><a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank">Manuales</a></li>
+                    <li><a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank">Soporte</a></li>
                     <li><a href="1_00_index.html" target="_blank">Empresa</a></li>
                 </ul>
             </div>

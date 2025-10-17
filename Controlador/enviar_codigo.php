@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Revisamos si el correo existe en la base de datos
-    $stmt = $con->prepare("SELECT id_usuario FROM tbl_usuarios WHERE correo_usuario = ?");
+    $stmt = $con->prepare("SELECT id_usuario FROM Tbl_Usuarios WHERE correo_usuario = ?");
     $stmt->bind_param("s", $correo);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $expiracion = date('Y-m-d H:i:s', strtotime('+30 minutes'));
 
     // Guardamos el código y su expiración en la base de datos para el usuario correspondiente
-    $stmt = $con->prepare("UPDATE tbl_usuarios SET codigo_recuperacion = ?, expiracion_codigo = ? WHERE correo_usuario = ?");
+    $stmt = $con->prepare("UPDATE Tbl_Usuarios SET codigo_recuperacion = ?, expiracion_codigo = ? WHERE correo_usuario = ?");
     $stmt->bind_param("sss", $codigo, $expiracion, $correo);
 
     // Ejecutamos la consulta para guardar el código

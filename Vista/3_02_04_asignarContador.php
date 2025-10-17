@@ -6,23 +6,23 @@ include("../Modelo/validar_sesion.php");
 include("../Modelo/conexion.php");
 $con = conexion();
 
-// Validar que el formulario haya enviado todos los datos necesarios
-// Si falta alguno, se muestra un mensaje y se detiene la ejecución
-if (!isset($_POST['fecha']) || !isset($_POST['productos_seleccionados']) || !isset($_POST['productos_seleccionados_id'])) {
-    echo "No se recibieron los datos necesarios.";
-    exit;
+// Validar que el formulario haya enviado todos los datos necesarios ya sea que venga de la pagina anterior o siguiente
+if (isset($_POST['productos_seleccionados']) && strpos($_POST['productos_seleccionados'], '|') !== false) {
+    // Venimos desde 3_02_03 con "id_ingreso|id_producto"
+    list($productos, $productosId) = explode('|', $_POST['productos_seleccionados']);
+} else {
+    // Venimos desde 3_02_05 con los campos separados
+    $productos   = $_POST['productos_seleccionados'];
+    $productosId = $_POST['productos_seleccionados_id'] ?? null;
 }
+
 
 // Escapar la fecha recibida para evitar inyección SQL
 $fecha = mysqli_real_escape_string($con, $_POST['fecha']);
 
-// Guardar en variables los arrays con productos seleccionados e IDs
-$productos = $_POST['productos_seleccionados'];
-$productosId = $_POST['productos_seleccionados_id'];
-
 // Consulta para obtener todos los usuarios con rol de "Contador" (id_rol = 2)
 $sql_contadores = "SELECT id_usuario, nombre_usuario, apellido_usuario 
-                   FROM Tbl_Usuarios WHERE id_rol = 2";
+                   FROM Tbl_Usuarios WHERE id_rol = 2 AND estado_usuario = 1";
 
 // Ejecutar la consulta y obtener el resultado
 $resultado_contadores = mysqli_query($con, $sql_contadores);
@@ -77,8 +77,8 @@ $resultado_contadores = mysqli_query($con, $sql_contadores);
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>
@@ -92,16 +92,6 @@ $resultado_contadores = mysqli_query($con, $sql_contadores);
         <div class="menu2">
             <a href="3_02_03_asignarProductos.php?fecha=<?= urlencode($fecha) ?>"><i class="fa-solid fa-circle-up fa-rotate-270 iconoVolver"></i></a>
             <h1 class="tituloCentro">Asignar contador/es</h1>
-
-            <div class="contenedorBarra">
-                <input class="barraBuscar" type="text" placeholder="Buscar">
-                <div class="botonBuscar">
-                    <i class="fa-solid fa-magnifying-glass iconoLupa"></i>
-                </div>
-                <div class="contenedorBotonFiltrar">
-                    <button class="botonFiltrar"><i class="fa-solid fa-filter"></i>Filtrar</button>
-                </div>
-            </div>
 
             <div class="contenedorAsignar">
                 <form action="3_02_05_enviarToma.php" method="POST">

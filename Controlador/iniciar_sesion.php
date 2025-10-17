@@ -3,6 +3,12 @@ session_start();
 include("../Modelo/conexion.php");
 $con = conexion();
 
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     // Recuperamos los datos enviados por el formulario de login
     $usuario = $_POST['usuario'] ?? '';       // ID o nombre de usuario

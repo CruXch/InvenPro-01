@@ -17,7 +17,7 @@ $productos = $_GET['productos_seleccionados'];       // Lista de productos selec
 $productosId = $_GET['productos_seleccionados_id']; // IDs de los productos seleccionados
 
 // Consulta SQL para obtener los datos del usuario que corresponde al id recibido
-$sql = "SELECT * FROM tbl_usuarios WHERE id_usuario='$id'";
+$sql = "SELECT * FROM Tbl_Usuarios WHERE id_usuario='$id'";
 
 // Ejecutar la consulta
 $consulta = mysqli_query($con, $sql);
@@ -80,8 +80,8 @@ $fila = mysqli_fetch_assoc($consulta);
                 </div>
 
                 <div class="linksMenu">
-                    <a href="#" target="_blank" class="linkMenu">Documentación</a>
-                    <a href="#" target="_blank" class="linkMenu">Soporte</a>
+                    <a href="https://drive.google.com/drive/folders/1hRCdwiTO1Jt4KA0wqh2Q08sxTA_oYSZ6?usp=sharing" target="_blank" class="linkMenu">Manuales</a>
+                    <a href="mailto:SomosInvenpro@gmail.com?subject=Soporte%20técnico" target="_blank" class="linkMenu">Soporte</a>
                     <a href="1_00_index.html" target="_blank" class="linkMenu">Empresa</a>
                     <a href="#" target="_blank" class="linkMenu">Redes sociales</a>
                 </div>

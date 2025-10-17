@@ -4,7 +4,7 @@ function conexion() {
     $host = "localhost";   // Servidor donde está la BD (en XAMPP es localhost)
     $user = "root";        // Usuario de la BD (en XAMPP es root)
     $pass = "";            // Contraseña del usuario (en XAMPP es "" que significa vacio)
-    $bd   = "BD_InvenPro"; // Nombre de la base de datos
+    $bd   = "bd_invenpro"; // Nombre de la base de datos
 
     // Crea la conexión con los datos de arriba
     $conectar = mysqli_connect($host, $user, $pass, $bd);

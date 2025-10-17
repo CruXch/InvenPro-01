@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Prepara la consulta para obtener de la BD el código y su fecha de expiración
-    $stmt = $con->prepare("SELECT codigo_recuperacion, expiracion_codigo FROM tbl_usuarios WHERE correo_usuario = ?");
+    $stmt = $con->prepare("SELECT codigo_recuperacion, expiracion_codigo FROM Tbl_Usuarios WHERE correo_usuario = ?");
     $stmt->bind_param("s", $correo);
     $stmt->execute();
     $result = $stmt->get_result();
